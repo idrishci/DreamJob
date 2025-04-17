@@ -1,0 +1,41 @@
+{
+  "name": "offer_d_emploi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource/roboto": "^5.2.5",
+    "@mui/icons-material": "^6.4.7",
+    "@mui/material": "^6.4.7",
+    "@mui/styled-engine-sc": "^6.4.6",
+    "aos": "^2.3.4",
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.7",
+    "firebase": "^11.4.0",
+    "froala-editor": "^4.5.1",
+    "mysql2": "^3.13.0",
+    "next": "^15.2.0",
+    "radix-ui": "^1.1.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.1.1",
+    "react-froala-wysiwyg": "^4.5.1",
+    "react-quill": "^2.0.0",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "22.13.10",
+    "@types/react": "19.0.10",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.0",
+    "typescript": "5.8.2"
+  }
+}

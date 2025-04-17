@@ -1,0 +1,65 @@
+.offre{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    position: relative;
+}
+
+
+.offre .link{
+    width: 100%;
+}
+
+
+.offre .card {
+    display: flex;
+    flex-direction: column;
+    padding: 10;
+
+
+    margin :0px;
+
+
+    margin :10px;
+
+    width: 100%;
+    height:160px ;
+    background-color: var(--forgencolor);
+    border-radius: 20px;
+}
+.card .title {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 10px;
+}
+.card .option {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    margin: 10px;
+}
+.option h2{
+display: flex;
+flex-direction: row;
+padding: 5;
+margin: 5px;
+font-size: 14px;
+}
+.option span{
+    margin-left: 5;
+}
+@media screen and (max-width:768) {
+    .offre{
+        width: 90%;
+    }
+    .card{
+        width: 100%;
+    }
+    
+}

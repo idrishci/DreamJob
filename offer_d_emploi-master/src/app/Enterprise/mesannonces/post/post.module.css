@@ -1,0 +1,93 @@
+.offre{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    /* padding: 10; */
+    margin :10px;
+    width: 100%;
+    min-height:180px ;
+    background-color: var(--forgencolor);
+    border-radius: 20px;
+    position: relative;
+    animation: fadeInUp 0.3s ease-out forwards;
+    transition: all 0.3s ease-in-out;
+}
+.offre .button{ 
+    display: flex;
+    flex-direction: column;
+}
+.offre button{
+    /* width: 15%; */
+    height: 45px;  
+}
+.offre button:nth-child(2){
+
+    background-color: red;
+}
+.offre button:hover:nth-child(2){
+background-color: white;
+border: 2px solid red;
+}
+.offre .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10;
+    width: 80%;
+    border-radius: 20px;
+   
+}
+.card h3{
+    color: var(--buttoncolor);
+    font-size: 16;
+    font-weight: 600;
+    margin: 10;
+    cursor: pointer;
+}
+.card .title {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 10px;
+}
+.card .option {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    margin: 10px;
+}
+.option h2{
+display: flex;
+flex-direction: row;
+/* padding: 5; */
+margin: 5px;
+font-size: 14px;
+}
+.option span{
+    margin-left: 5;
+}
+@media screen and (max-width:768) {
+    .offre{
+        width: 100%;
+        min-height: 300px;
+        /* flex-direction: column; */
+    }
+    .offre .button{
+        flex-direction: row;
+    }
+    
+}
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

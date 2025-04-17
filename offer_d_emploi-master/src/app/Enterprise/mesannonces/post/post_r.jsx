@@ -1,0 +1,56 @@
+'use client'
+import Image from "next/image";
+import style from "./post.module.css"
+import stle from "./form.module.css"
+import style1 from "./offre.module.css"
+import pp from"./pp.css"
+import  Link from "next/link";
+import {getoffresentrerp} from "../../server/offre.js"
+import { useState,useEffect } from "react"
+import Form from "./formulair"
+import Aos from "aos";
+import "aos/dist/aos.css";
+export default function offre(){ 
+        const id =1;
+    useEffect(()=>{
+        Aos.init({duration:800});
+    
+    },[]);
+     const [offres,setOffres]=useState([]);
+        useEffect(()=>{
+            const fetchdata=async()=>{
+                const data1=await getoffresentrerp(id);
+              const  offre =data1;
+               setOffres(offre ? offre : []);  
+            };
+            fetchdata();
+        },[]);
+        useEffect(() => {
+            console.log("Updated offers state of card:", offres);
+          }, [offres]); 
+     
+          const filtredoffre=offres.filter(offre=>offre.situation==="refuse");
+    return (
+        <>
+               {filtredoffre.length>0 ? (filtredoffre.map((off)=>{ return(
+                  
+      <div className={style.offre} data-aos="fade-up">
+          <div className={style.card}>
+          <div className={style.title}>{off.titre}</div>
+          <div className={style.option}>
+              <h2><Image src={"/icon/office-building.png"} width={18} height={18} alt="location" key={id}/><span> {off.type_de_lieu_de_travail}</span></h2>
+              <h2><Image src={"/icon/form.png"} width={18} height={18} alt="location" key={id}/><span> {off.type_de_contrat}</span></h2>
+              <h2><Image src={"/icon/audience.png"} width={18} height={18} alt="location" key={id}/><span>{off.nombre_de_post}</span></h2>
+              <h2><Image src={"/icon/graduation-cap.png"} width={18} height={18} alt="location" key={id}/><span> {off.niveau_detude}</span></h2>
+              <h2><Image src={"/icon/verify.png"} width={18} height={18} alt="location" key={id}/><span>{off.annees_dexper}</span></h2>
+              <h2><Image src={"/icon/location-sign.png"} width={18} height={18} alt="location" key={id}/><span>{off.wilaya}</span></h2>
+              </div> 
+              <Link href={"../../Enterprise/show-annonce"}><h3 >voir plus</h3> </Link>
+          </div>
+          <div className={style.button}>
+                  <Link href={"../../Enterprise/annonce-Edit"}><button  >Modifier</button></Link>
+                  <button>Supprimer</button>
+          </div>
+      </div>)})):(<h4 data-aos="fade-up">n'existe pas</h4>)} </>
+          );
+      }

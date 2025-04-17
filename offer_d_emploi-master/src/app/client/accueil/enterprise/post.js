@@ -1,0 +1,25 @@
+export const data =[{
+    id:1,
+    url:"/image/sonatrach.png",
+    name:"Sonatrach",
+    post:"3",
+},
+{
+    id:2,
+    url:"/image/sonatrach.png",
+    name:"Sonatrach",
+    post:"3",
+},
+{
+    id:3,
+    url:"/image/sonatrach.png",
+    name:"Sonatrach",
+    post:"3",
+},
+{
+    id:4,
+    url:"/image/sonatrach.png",
+    name:"Sonatrach",
+    post:"3",
+}
+]

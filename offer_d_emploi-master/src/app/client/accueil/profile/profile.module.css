@@ -1,0 +1,192 @@
+.page{
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100 0;
+}
+.profile ,.edit{
+    width: 80%;
+    background-color: var(--forgencolor);
+    border-radius: 25;
+    padding: 20 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+
+.edit  input[type="file"]{
+    display:none;
+    /* position: absolute;
+    z-index: -999; */
+    background-color: var(--buttoncolor);
+    text-align: center;
+    top: 0;
+    
+    /* opacity: 0; */
+
+}
+
+.img{
+    margin: 30 0;
+    border-radius: 30px;
+    position: relative;
+}
+.data{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 40 0;
+    animation: fadein 0.3s ease-in-out;
+    transition: all 0.3 ease-in-out;
+}
+.data label{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+
+    width: 100%;
+
+    margin: 5;
+    padding: 5;
+}
+.data h2{
+    font-size: 15;
+    font-weight:700 ;
+    margin: 0 5;
+}
+.data h3{
+    font-size: 15;
+    margin: 0 5;
+}
+.desc{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* margin: 0 10; */
+}
+.desc h2{
+    font-weight: 700;
+    margin: 0 5;
+}
+.desc p{
+    margin: 0 10;
+}
+.data input ,.data  select{
+
+    width: 50%;
+
+    height: 40;
+    padding: 5;
+    border: none;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.123);
+    border-radius: 25;
+    cursor: pointer;
+
+}
+.edit label {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+
+    margin: 5;
+    padding: 5; 
+}
+.edit textarea{
+    width: 90%;
+    height: 100px;
+
+    margin: 5 10;
+    border: none;
+    padding: 10;
+    box-shadow: 1 1 10 1 rgba(0, 0, 0, 0.103);
+    border-radius: 20;
+    
+
+}
+.edit button{
+    width: 200px;
+    height: 40;
+}
+
+.imag{
+    position: relative;
+    cursor: pointer;
+    width: 160;
+}
+.imag::before{
+    content:'change image';
+    border-radius: 30;
+    position:absolute;
+    width: 150;
+    height: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.733);
+    z-index: 9;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+ .imag:hover::before{
+    height: 150;
+transition: all 0.1s ease-out;
+}
+.lab{
+    width: 150;
+}
+.lab .button{
+    position: relative;
+    cursor: pointer;
+    background-color: var(--buttoncolor);
+    color: #ffffff;
+    border-radius: 25;
+    text-align: center;
+    padding: 10;
+    height: 40;
+
+
+}
+.button:hover{
+    background-color: white;
+    border: 2px solid var(--buttoncolor);
+    color: black;
+    transition: all 0.3s ease-out;
+}
+
+@keyframes fadein{
+    from{
+        transform: translateY(30);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@media screen and (width<=768px) {
+
+     .profile,.edit{
+        width: 90%;
+     }
+    .data label{
+        width: 100%;
+    }
+}

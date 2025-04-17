@@ -1,0 +1,62 @@
+.annonce{
+    min-height: 100vh;
+    width: 100vw;
+    background-color: var(--forgencolor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:80px 5px;
+    text-align: center;
+    /* margin: 50px auto; */
+    /* border: 1px solid var(--fontcolor); */
+}
+.annonce h1{
+    font-size: 36px;
+    font-weight: 700;
+    /* font-family: "poppins"; */
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  width: 100%;
+}
+.main h4{
+  margin: 25px auto;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.annonce h4{
+    margin: 25px auto;
+    font-weight: 600;
+    
+}
+.fonction,.region{
+    width :80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.fonction h3 ,.region h3{
+    font-weight: 400;
+    font-size: 15px;
+    margin:5px ;
+    padding: 5px 5px;
+    border-radius: 10px;
+    background-color: var(--background);
+    cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .function ,.region {
+    width: 100%;
+  }  
+  .fonction h3 ,.region h3{
+    font-size: 10px;
+    font-weight: 600;
+  }
+}

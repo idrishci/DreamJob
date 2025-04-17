@@ -1,0 +1,28 @@
+.footer{
+    width: 100vw;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--forgencolor);
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
+    bottom: 0px;
+
+
+}
+.footer div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px;
+}
+.footer h2{
+    font-weight: 600;
+}
+.footer h4{
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.66);
+}

@@ -1,0 +1,112 @@
+.prof_entr{
+    /* background-color: var(--forgencolor); */
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 10px; */
+
+}.data{
+
+    width: 80%;
+    background-color: var(--forgencolor);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+
+.photo {
+    position: relative;
+        margin: 10 0 130;
+        width: 100%;
+        display: flex;
+        /* flex-direction: row-reverse; */
+        justify-content: center;
+     
+    }
+    .photo .first{
+        
+        position: absolute;
+        top: 80;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .first h1{
+    font-size: 20;
+    font-weight: 600;
+    }
+    .photo .logo{ 
+        border: 5px solid  var(--forgencolor);
+        background-color: rgb(255, 255, 255);
+        border-radius: 10;
+        overflow: hidden;
+        padding: 10px;
+        margin:5px;
+        /* margin-bottom: 30px; */
+
+    }
+    .photo .social{
+        display: flex;
+        flex-direction: row;
+
+        justify-content: center;
+        /* align-items: center; */
+    }
+    .photo .back{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--buttoncolor);
+        margin: 5px;
+        padding: 5px;
+        border-radius: 50px;
+        cursor: pointer;
+      
+    }
+    .second{
+        width: 100%;
+        /* background-color:  rgba(0, 0, 0, 0.123); */
+        border-radius: 25px;
+        
+    }
+    .second img{
+        width: 100%;
+        height: 150px;
+    }
+    
+    .profile{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+    }
+    .data h1{
+        font-size: 20px;
+        font-weight: bold;
+        margin:   10px 0;
+    }
+    @media screen and (max-width: 768px) {
+        .photo{
+            /* flex-direction: column; */
+            align-items: center;
+    
+        }
+        .second{
+            width: 100%;
+        }
+       
+    
+        .photo .social{
+            display: flex;
+            flex-direction: row;
+        }
+        .data{
+            width: 90%;
+        }
+    }
+

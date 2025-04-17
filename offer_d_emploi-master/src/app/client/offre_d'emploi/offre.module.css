@@ -1,0 +1,81 @@
+.offre{
+    width: 80%;
+    background-color: var(--forgencolor);
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.first{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+    margin: 25 10;
+}
+.first h1{
+    font-weight: 800;
+}
+.img{
+    margin: 2 20;
+    cursor: pointer;
+
+}
+.img:hover{
+    transform: scale(1.03);
+    filter: drop-shadow(1 1 3  blue);
+    
+}
+.second{
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* margin: 10; */
+    position: relative;
+
+}
+.second pre{
+    position: relative;
+    width: 100%;
+}
+.second label{
+    width: 48%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 5;
+    
+}
+.second label h3 {
+    font-size: 16;
+    margin: 0 3;
+}
+.second  span h3{
+    font-weight: 800;
+}
+.offre hr{
+    width: 90%;
+    margin: 20 0;
+}
+.three{
+    margin: 10px;
+}
+.btn button{
+    width: 150px;
+    height: 40px;
+}
+@media screen and (width<= 768px) {
+    .first h1{
+        font-size: 24px;
+    }
+    .second label{
+        width: 90%;
+    }
+}

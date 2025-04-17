@@ -1,0 +1,70 @@
+
+
+:root {
+  --background: #ffffff;
+  --forgencolor:#E2F2FF;
+  --fontcolor:#171717;
+  --buttoncolor:#2D96FF;
+
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+
+body {
+  max-width: 100vw;
+  /* overflow-x: hidden; */
+  margin: 0;
+  padding: 0;
+  position: relative;
+  color: black;
+
+}
+
+body {
+  color: var(--forenground);
+  background: var(--background);
+ 
+  /* font-size: 20; */
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* font-family: "Poppins", serif; */
+  font-weight: 300;
+  font-style: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button{
+  color:var(--background);
+  background-color: var(--buttoncolor);
+  width: 100px;
+  border-radius: 40px;
+  padding: 5px;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+
+}
+button:hover{
+  background-color: var(--buttonhover);
+  border: 2px solid var(--buttoncolor);
+  color: var(--fontcolor);
+  transition: all 0.2s ease-in-out;
+}
+
+
