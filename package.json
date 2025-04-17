@@ -27,7 +27,7 @@
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-froala-wysiwyg": "^4.5.1",
-    "react-quill": "^2.0.0",
+    "react-quill": "^0.0.2",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {
