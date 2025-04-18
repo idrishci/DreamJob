@@ -10,7 +10,7 @@ export function postiduser(uid,user){
     console.log(err);
     return [];}
 }
-export async function getinfouser(uid,role){
+export async function  getinfouser(uid,role){
     try{
  const res=await axios.get(api_url,{
     params:{
@@ -19,7 +19,7 @@ export async function getinfouser(uid,role){
     }
     
  });
- console.log("this is ",res.data);
+
  return res.data;
 }catch(err){
     console.log(err);

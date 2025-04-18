@@ -1,8 +1,4 @@
-
-
-
 "use client";
-
 import style from "./profile.module.css"
 
 import Profil from "./profil"

@@ -24,13 +24,11 @@ const values=[4,id];
 }
 const getinfouser = (req,res) => {
     const {uid,role}=req.query;
-    console.log("this is the uid",uid,"this is the role",role);
     if(role=="client"){
         const query="SELECT * FROM candidat WHERE uid_firebase=?";
-        // const values=[uid];
         connection.query(query,uid,(err,data)=>{
             if(err)return console.log(err);
-            // console.log("this is the data",data);
+            console.log(data);
             return res.json(data);
         })
 

@@ -21,7 +21,9 @@ export default function button(){
    
 const signout=async()=>{
     await await signOut(auth);
+    // setUser(null);
 }
+
 useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async(user) => {
         if (user) {
@@ -52,7 +54,7 @@ useEffect(() => {
          {/* <Image width={40} height={40} src={"/image/profile.jpg"} className={style.img}/>   */}
     </div></>}
     {isOpen &&<div className={style.proflist}>
-       <Link href="../client/accueil/profile"> <li>Mon profile</li> </Link>
+      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}>Mon profile</li> 
          <hr />
         <li onClick={()=>{setIsOpen(false); 
           signout()}}>deconected</li>
