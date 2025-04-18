@@ -10,14 +10,18 @@ export function postiduser(uid,user){
     console.log(err);
     return [];}
 }
-export function getinfouser(uid,role){
+export async function getinfouser(uid,role){
     try{
- const res=axios.get(api_url,{
+ const res=await axios.get(api_url,{
     params:{
         uid:uid,
         role:role
     }
- });}catch(err){
+    
+ });
+ console.log("this is ",res.data);
+ return res.data;
+}catch(err){
     console.log(err);
     return [];}
 

@@ -30,7 +30,7 @@ const getinfouser = (req,res) => {
         // const values=[uid];
         connection.query(query,uid,(err,data)=>{
             if(err)return console.log(err);
-            console.log("this is the data",data);
+            // console.log("this is the data",data);
             return res.json(data);
         })
 
