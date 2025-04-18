@@ -3,8 +3,12 @@ import cors from "cors";
 import offreroutes from "./routes/offreroutes.js";
 import enterpriseroutes from "./routes/enterpriseroutes.js";
 import searchroutes from "./routes/searchroutes.js";
+import postiduser from "./routes/userroutes.js";
 import connection from "./config/db.js";
+import userroutes from "./routes/userroutes.js";
 
+// const cookieParser = require('cookie-parser');
+// app.use(cookieParser());
 const app = express();
 app.use(express.json()); // Middleware to parse JSON
 app.use(cors()); 
@@ -14,6 +18,7 @@ app.listen(8801,()=>{
   }
 )
 
+app.use("/api/users",userroutes);
 app.use("/api/offres/search",searchroutes);
 app.use("/api/enterprise",enterpriseroutes);
 app.use("/api/offres",offreroutes);

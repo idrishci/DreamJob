@@ -20,44 +20,7 @@ const getoffres=(req,res)=>{
         
             
         })}
-//    const getoffresearch=(req,res)=>{
-  
-//     const {region,secteur,fonction,niveau,experiance,contrat,lieu}=req.query;
-//     let params=[];
-//     let query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.idoffre=enterprise.identerp WHERE 1=1" ;
-//     if(region){
-//         query += " AND region=?";
-//         params.push(region);
-//     }
-//     if(secteur){
-//         query += " AND secteur=?";
-//         params.push(secteur);
-//     }
-//     if(fonction){
-//         query += " AND fonction=?";
-//         params.push(fonction);
-//     }
-//     if(niveau){
-//         query += " AND niveau=?";
-//         params.push(niveau);
-//     }
-//     if(experiance){
-//         query += " AND experiance=?";
-//         params.push(experiance);
-//     }
-//     if(contrat){
-//         query += " AND type_de_contrat=CDI";
-//         params.push(contrat);
-//     }
-//     if(lieu){
-//         query += " AND lieu=?";
-//         params.push(lieu);
-//     }
 
-//     connection.query(query,params,(err,data)=>{
-//         if(err){return console.log(err);}
-//         return res.json(data);
-//     })}
 
 const postofres=(req,res)=>{
     const{title,description}=req.body;
