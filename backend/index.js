@@ -5,6 +5,7 @@ import enterpriseroutes from "./routes/enterpriseroutes.js";
 import searchroutes from "./routes/searchroutes.js";
 import postiduser from "./routes/userroutes.js";
 import connection from "./config/db.js";
+import userroutes from "./routes/userroutes.js";
 
 // const cookieParser = require('cookie-parser');
 // app.use(cookieParser());
@@ -16,7 +17,8 @@ app.listen(8800,()=>{
     console.log("server is running on port 8800")
   }
 )
-app.use("/api/users",postiduser);
+
+app.use("/api/users",userroutes);
 app.use("/api/offres/search",searchroutes);
 app.use("/api/enterprise",enterpriseroutes);
 app.use("/api/offres",offreroutes);

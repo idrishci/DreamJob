@@ -6,7 +6,7 @@ import mysql from "mysql2";
 const connection=await mysql.createConnection({
 host:'localhost' ,
 user:'root',
-password:'',
+password:'0000',
 database:'offre',
 // port:process.env.DB_PORT ,
 });

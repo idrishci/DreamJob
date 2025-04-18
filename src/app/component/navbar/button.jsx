@@ -11,28 +11,29 @@ import { onAuthStateChanged } from 'firebase/auth';
 import {getDoc }from"firebase/firestore";
 import{ db,doc} from "@/app/auth/firebase";
 import {useRouter}from"next/navigation";
+import {getinfouser}from"../../services/userserv";
 export default function button(){
       const [isOpen, setIsOpen] = useState(false);
       const [isConnected, setConnected] = useState('connected');
-      const [user, setUser] = useState([]);
+      const [userr, setUser] = useState([]);
       const router = useRouter();
       
-    //   const  rendercomponent = (type)=> {
-    //      setConnected({type});
-    //  }
+   
 const signout=async()=>{
     await await signOut(auth);
 }
 useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async(user) => {
         if (user) {
-            setUser(user.uid);
             console.log("id of user ", user);
             setConnected("connected");
-            // const role=getDoc(user.uid);
-            // console.log("role of user",role.role);
-            // setUser(role.role);
-            // getinfouser(user.uid,user.uid.role);
+            const docref = doc(db, "users", user.uid);
+             const document=await getDoc(docref);
+             const res=await getinfouser(user.uid,document.data().role);
+             console.log("this is the user",res);
+             setUser(res);
+             console.log("this is the user",userr);
+            console.log("role of user",document.data().role);
           
         } else {
           console.log("no user is connected");
@@ -42,14 +43,7 @@ useEffect(() => {
     })
     return ()=>unsubscribe();
 },[]);
-const getuser=async()=>{
-  const docref = doc(db, "users", user.uid);
-   const document=getDoc(docref);
-            console.log("role of user",document.data().role);
-            // setUser(role.role);
-            // getinfouser(user.uid,user.uid.role);
-}
-getuser();
+
     return (
         <div className={style.btn}>
            {isConnected=="deconnected" &&
@@ -58,7 +52,7 @@ getuser();
         </>}
       
      {isConnected=="connected" && <><div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
-         <h2>khene Lokmen {}</h2> 
+         <h2>khene Lokmen </h2> 
          {/* <Image width={40} height={40} src={"/image/profile.jpg"} className={style.img}/>   */}
     </div></>}
     {isOpen &&<div className={style.proflist}>

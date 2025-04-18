@@ -1,5 +1,5 @@
 import express from 'express';
-import connection from '../backend/config/db.js';
+import connection from '../config/db.js';
 const router=express.Router();
 const postiduser = (req,res) => {
 const id=req.body.uid;
@@ -21,8 +21,40 @@ const values=[4,id];
     return res.json("user added successfully");
 })
 }
-
-
 }
+const getinfouser = (req,res) => {
+    const {uid,role}=req.query;
+    console.log("this is the uid",uid,"this is the role",role);
+    if(role=="client"){
+        const query="SELECT * FROM candidat WHERE uid_firebase=?";
+        // const values=[uid];
+        connection.query(query,uid,(err,data)=>{
+            if(err)return console.log(err);
+            console.log("this is the data",data);
+            return res.json(data);
+        })
+
+    }
+    else if(role=="enterprise"){
+            const query="SELECT * FROM enterprise WHERE uid_firebase=?";
+           const values=[uid];
+            connection.query(query,values,(err,data)=>{
+                if(err)return console.log(err);
+                return res.json(data);
+            })
+        }
+        else if(role=="admin"){
+            const query="SELECT * FROM admin WHERE uid_firebase=?";
+            const values=[uid];
+            connection.query(query,values,(err,data)=>{
+                if(err)return console.log(err);
+                console.log(data);
+                return res.json(data);
+            })
+    }
+    
+    
+}
+router.get("/",getinfouser);
 router.post("/",postiduser);
 export default router;
