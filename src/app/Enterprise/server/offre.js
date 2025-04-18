@@ -24,3 +24,15 @@ export async function getoffresentrerp(id){
            return [];
        }
    }
+   export async function getoffrebyId(id){
+    try{
+        console.log("id = "+id)
+   const res=await axios.get(`http://localhost:8800/api/offresid/${id}`);
+   console.log("result =" + res.data);
+   return res.data
+       }catch(err){
+   
+           console.log(err);
+           return [];
+       }
+   }

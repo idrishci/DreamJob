@@ -6,14 +6,32 @@ import "froala-editor/css/froala_style.min.css";
 import "froala-editor/css/froala_editor.pkgd.min.css";
 import style from "./form.module.css"
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
+import { getoffrebyId} from "../server/offre.js"
+
 import Aos from "aos";
 import "aos/dist/aos.css";
-export default function form(){
+export default function form({id}){
   useEffect(()=>{
     Aos.init({duration:800});
 
 },[]);
+console.log(id);
+ const [offre,setOffre]=useState([]);
+   
+   
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            const offres=await getoffrebyId(id);
+             console.log(offres);
+           setOffres(offres );
+            // setEnterprise(data2);
+           
+        };
+         
+        fetchdata();
+    },[id]);
+
     return(
     
         <div className={style.form} data-aos="fade-up">

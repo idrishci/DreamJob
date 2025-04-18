@@ -15,12 +15,11 @@ const getoffres=(req,res)=>{
         const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.idoffre=enterprise.identerp WHERE offre_demploi.id_enterp=?";
         connection.query(query,[id],(err,data)=>{
             if(err){return console.log(err);}
-            console.log(data);
+            // console.log(data);
             return res.json(data);
         
             
         })}
-
 
 const postofres=(req,res)=>{
     const{title,description}=req.body;
@@ -33,8 +32,9 @@ const postofres=(req,res)=>{
         if(err){return console.log(err);}
         return res.json(data);
     })}
-   
+ 
     router.get("/:id",getoffresenterp);
+   
     router.get("/",getoffres);
     router.post("/",postofres);
     export default router;
