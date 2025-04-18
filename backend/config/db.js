@@ -3,7 +3,7 @@ import mysql from "mysql2";
 
 // dotenv.config({ path: './backend/.env' });
 // export async function qeury({qeury,values=[]}){
-const connection=await mysql.createConnection({
+const connection= mysql.createConnection({
 host:'localhost' ,
 user:'root',
 password:'0000',
