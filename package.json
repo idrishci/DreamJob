@@ -20,14 +20,13 @@
     "dotenv": "^16.4.7",
     "firebase": "^11.4.0",
     "froala-editor": "^4.5.1",
-    "mysql2": "^3.13.0",
+    "mysql2": "^3.14.0",
     "next": "^15.2.0",
     "radix-ui": "^1.1.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-froala-wysiwyg": "^4.5.1",
-    "react-quill": "^0.0.2",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {

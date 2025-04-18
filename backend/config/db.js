@@ -3,10 +3,10 @@ import mysql from "mysql2";
 
 // dotenv.config({ path: './backend/.env' });
 // export async function qeury({qeury,values=[]}){
-const connection=await mysql.createConnection({
+const connection= mysql.createConnection({
 host:'localhost' ,
 user:'root',
-password:'',
+password:'0000',
 database:'offre',
 // port:process.env.DB_PORT ,
 });
