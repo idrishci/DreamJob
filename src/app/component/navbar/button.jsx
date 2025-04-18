@@ -21,7 +21,9 @@ export default function button(){
    
 const signout=async()=>{
     await await signOut(auth);
+    // setUser(null);
 }
+
 useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async(user) => {
         if (user) {
@@ -30,11 +32,7 @@ useEffect(() => {
             const docref = doc(db, "users", user.uid);
              const document=await getDoc(docref);
              const res=await getinfouser(user.uid,document.data().role);
-             console.log("this is the user",res);
-             setUser(res);
-             console.log("this is the user",userr);
-            console.log("role of user",document.data().role);
-          
+             await setUser(res);
         } else {
           console.log("no user is connected");
             setUser(null);
@@ -52,11 +50,11 @@ useEffect(() => {
         </>}
       
      {isConnected=="connected" && <><div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
-         <h2>khene Lokmen </h2> 
+     {userr.map((use)=>(<h2> {use.nom } {use.prenom }</h2>))} 
          {/* <Image width={40} height={40} src={"/image/profile.jpg"} className={style.img}/>   */}
     </div></>}
     {isOpen &&<div className={style.proflist}>
-       <Link href="../client/accueil/profile"> <li>Mon profile</li> </Link>
+      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}>Mon profile</li> 
          <hr />
         <li onClick={()=>{setIsOpen(false); 
           signout()}}>deconected</li>
