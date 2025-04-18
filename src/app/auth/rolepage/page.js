@@ -8,7 +8,7 @@ import { Sync } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
-import { postiduser } from "../services/userserv";
+import { postiduser } from "../../services/userserv";
 export default function rolepage(){
   const router =useRouter();
 

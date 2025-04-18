@@ -10,3 +10,15 @@ export function postiduser(uid,user){
     console.log(err);
     return [];}
 }
+export function getinfouser(uid,user){
+    try{
+ const res=axios.get(api_url,{
+    // params:{
+        uid:uid,
+        user:user
+    // }
+ });}catch(err){
+    console.log(err);
+    return [];}
+
+}

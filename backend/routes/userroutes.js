@@ -1,5 +1,5 @@
 import express from 'express';
-import connection from '../config/db.js';
+import connection from '../backend/config/db.js';
 const router=express.Router();
 const postiduser = (req,res) => {
 const id=req.body.uid;

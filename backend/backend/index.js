@@ -3,7 +3,7 @@ import cors from "cors";
 import offreroutes from "./routes/offreroutes.js";
 import enterpriseroutes from "./routes/enterpriseroutes.js";
 import searchroutes from "./routes/searchroutes.js";
-import postiduser from "./routes/userroutes.js";
+import postiduser from "../routes/userroutes.js";
 import connection from "./config/db.js";
 
 // const cookieParser = require('cookie-parser');
