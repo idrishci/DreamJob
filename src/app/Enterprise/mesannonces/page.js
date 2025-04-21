@@ -5,6 +5,7 @@ import PostAtt from "./post/post_att"
 import PostR from "./post/post_r"
 import { useState } from 'react';
 export default function Home() {
+  const id=1;
     const [activeItem, setActiveItem] = useState("item1");
 
     const handleClick = (item) => {
@@ -22,9 +23,9 @@ export default function Home() {
             </ul> 
              </div>
              <main>
-             {activeItem === 'item1' && <Post/>}
-        {activeItem === 'item2' && <PostAtt/>}
-        {activeItem === 'item3' && <PostR/>}
+             {activeItem === 'item1' && <Post id={id}/>}
+        {activeItem === 'item2' && <PostAtt id={id}/>}
+        {activeItem === 'item3' && <PostR id={id}/>}
               
              </main>
              

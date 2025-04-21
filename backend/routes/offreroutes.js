@@ -34,7 +34,7 @@ const postofres=(req,res)=>{
     })}
  
     router.get("/:id",getoffresenterp);
-   
+
     router.get("/",getoffres);
     router.post("/",postofres);
     export default router;

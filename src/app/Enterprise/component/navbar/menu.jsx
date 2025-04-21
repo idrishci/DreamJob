@@ -10,16 +10,16 @@ export default function menu() {
  return (
     <>
  <div className={style.menu} onClick={() => setIsOpen(!isOpen)}>
-     <Image src={"/icon/menu.png"}
+     <Image src={"/icon/hamburger.png"}
            key={1}
-           width={50}
-           height={40}
+           width={40}
+           height={35}
            alt="menu"  />
     </div>
     {isOpen && <div className={style.menulist}>
-    <Link href="../Enterprise"><li>Mon profile</li></Link>
-            <Link href="../Enterprise/mesannonces/"><li >Mes post</li></Link>
-            <Link href="../Enterprise/Candidat/"><li >Candidat</li></Link>
+    <Link href="../Enterprise"><li onClick={() => setIsOpen(!isOpen)}>acceuil</li></Link>
+            <Link href="../Enterprise/mesannonces/"><li onClick={() => setIsOpen(!isOpen)}>Mes post</li></Link>
+            <Link href="../Enterprise/Candidat/"><li onClick={() => setIsOpen(!isOpen)}>Candidat</li></Link>
         </div>
         }
     </>

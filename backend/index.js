@@ -7,6 +7,7 @@ import offresidroutes from "./routes/offresidroutes.js"
 import postiduser from "./routes/userroutes.js";
 import connection from "./config/db.js";
 import userroutes from "./routes/userroutes.js";
+import updateEnterprise from "./routes/updateenetrroutes.js"
 
 // const cookieParser = require('cookie-parser');
 // app.use(cookieParser());
@@ -18,13 +19,16 @@ app.listen(8800,()=>{
     console.log("server is running on port 8800")
   }
 )
-const offresRoutes = require('./routes/offresidroutes.js');
+
 app.use("/api/users",userroutes);
 app.use("/api/offres/search",searchroutes);
 app.use("/api/enterprise",enterpriseroutes);
+app.use("/api/getenterprise",enterpriseroutes);
 app.use("/api/offres",offreroutes);
 app.use("/api/offres/:id",offreroutes);
-app.use("/api/offresid/:id",offresidroutes);
+app.use("/api/offre",offresidroutes);
+app.use("/api/updateoffre", offresidroutes);
+app.use("/api/update-enter", updateEnterprise);
 
 app.get("/",(req,res)=>{
   res.json("hello this the beckend");

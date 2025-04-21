@@ -1,13 +1,14 @@
 
 import style from "./page.module.css"
-import Profile from "./monprofile/profile"
+import Acceuil from "./acceuil/acceuil"
+import Stat from "./acceuil/statistique"
 
 export default function Home() {
-
+const id=1;
   return (
     <section className={style.home} >
-      <Profile />
-       
+      <Acceuil />
+       <Stat id={id}/>
      </section>
   );
 }
