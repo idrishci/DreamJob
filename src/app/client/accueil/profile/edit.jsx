@@ -9,27 +9,28 @@ export default function edit (iduser){
     const [infouser,setInfouser]=useState({});
     const[image,setImage]=useState(null);
     const[filecv,setFilecv]=useState(null);
-const formdata=new FormData();
+    const formdata=new FormData();
+
     const setinfouser = async (e) => {
         const {name,value}=e.target;
        await setInfouser(prev=>({...prev,[name]:value}));
-       
-       for (let key in infouser) {
-        formdata.append(key, infouser[key]);
-      }
-      formdata.append("image",image);
-        formdata.append("cv",filecv);
-      for (let pair of formdata.entries()) {
-        console.log(`${pair[0]}:`, pair[1]);
-      }
-   
+
+    //   for (let pair of formdata.entries()) {
+    //     console.log(`${pair[0]}:`, pair[1]);
+    //   }
+      updateinfouser(formdata);
     }
     const updateinfo = async (e) => {
-        updateinfouser(iduser ,formdata);
+        formdata.append("iduser",iduser.id);
+        for (let key in infouser) {
+         formdata.append(key, infouser[key]);
+       }
+       await formdata.append("photo",image);
+       await formdata.append("cv",filecv);
+        console.log("fdfd");
+       await  updateinfouser(formdata);
     }
-    useEffect(() =>{       
-   
-      }, [infouser]);
+
     setinfouser();
     return(
         <div className={style.edit}>
@@ -82,9 +83,10 @@ const formdata=new FormData();
             </label>
             <div className={style.lab}>
             
-                 <label name="cv" className={style.button} >upload mon cv  </label> 
+            <label name="cv" className={style.button} >upload mon cv  
            
             <input type="file" id="cv" onChange={(e)=>{setFilecv(e.target.files[0])}} />
+            </label> 
           </div>
 
 
@@ -96,7 +98,7 @@ const formdata=new FormData();
            {/* <textarea className={style.textarea} > */}
             <textarea name="description" id=""  className={style.textarea} placeholder="description" onChange={setinfouser}></textarea>
         </div>
-        <button type="submit" onClick={updateinfo}> Sauvgarder</button>
+        <button  onClick={updateinfo}> Sauvgarder</button>
         </div>
     );
 }

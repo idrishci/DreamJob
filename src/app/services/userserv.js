@@ -11,12 +11,19 @@ export function postiduser(uid,user){
     return [];}
 }
 
-export function updateinfouser(uid,user){
+export function updateinfouser(formdata){
     try{
- const res=axios.post(api_url,{
-    uid:uid,
-    formfata:user
- });
+         for (let pair of formdata.entries()) {
+        console.log("userinfooo",`${pair[0]}:`, pair[1]);
+      }
+        // console.log("the user info ",user);
+ const res=axios.post("http://localhost:8800/api/users/updateclient",formdata
+    // {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data"
+    //     }
+    //   }
+ );
 }catch(err){
     console.log(err);
     return [];}
