@@ -10,12 +10,25 @@ export function postiduser(uid,user){
     console.log(err);
     return [];}
 }
+
+export function updateinfouser(uid,user){
+    try{
+ const res=axios.post(api_url,{
+    uid:uid,
+    formfata:user
+ });
+}catch(err){
+    console.log(err);
+    return [];}
+}
 export async function  getinfouser(uid,role){
     try{
  const res=await axios.get(api_url,{
     params:{
         uid:uid,
         role:role
+
+
     }
     
  });

@@ -4,14 +4,12 @@ import style from "./profile.module.css"
 import Profil from "./profil"
 import{useState,useEffect} from "react"
 import { useRouter } from 'next/navigation';
+
+
 export default function Page(){
-
-
-
     const router = useRouter();
-    const [id, setId] = useState(null);
-
-      
+    const [id, setId] = useState(null);  
+ 
         useEffect(() => {
             const urlParams = new URLSearchParams(window.location.search);
             const idFromUrl = urlParams.get("id");
@@ -20,15 +18,7 @@ export default function Page(){
           }, []);
     return (
         <div className={style.prof_entr}>
-
-        
-        <Profil id={id}/>
-
-
-
-
-       
-        
+        <Profil id={id}/>    
         </div>
     );
 }
