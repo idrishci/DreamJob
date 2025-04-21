@@ -1,6 +1,6 @@
 import style from "./profile.module.css"
 import Image from "next/image";
-export default function Person(){
+export default function Person({id}){
 return(
   
          <div className={style.profile} data-aos="zoom-in">
