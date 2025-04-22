@@ -24,10 +24,31 @@ const values=[4,email,id];
 })
 }
 }
+
+const postthepost = (req,res) => {
+  const { sujet, titre, uid } = req.body;
+  console.log("sujet ",sujet,"titre",titre,"id",uid);
+  const query="INSERT INTO post (idpost,titre,sujet,uid_firebase) VALUES (?,?,?,?)";
+  const VALUES=[2,sujet,titre,uid];
+  connection.query(query,VALUES,(err,data)=>{
+  if(err)return console.log(err);
+  return res.json(data);
+  })
+}
+const getthepost = (req,res) => {
+  const { uid } = req.query;
+  console.log("id",uid);
+  const query="SELECT * FROM post  WHERE uid_firebase=?";
+  const VALUES=[uid];
+  connection.query(query,VALUES,(err,data)=>{
+  if(err)return console.log(err);
+  return res.json(data);
+  })
+}
 const getinfouser = (req,res) => {
     const {uid,role}=req.query;
     if(role=="client"){
-        const query="SELECT * FROM candidat  INNER JOIN post ON candidat.idcandidat=post.idpost WHERE uid_firebase=?";
+        const query="SELECT * FROM candidat   WHERE  candidat.uid_firebase = ?";
         connection.query(query,uid,(err,data)=>{
             if(err)return console.log(err);
             console.log(data);
@@ -142,4 +163,6 @@ const updateinfoclient = (req,res) => {
 router.get("/",getinfouser);
 router.post("/",postiduser);
 router.post("/updateclient",updateinfoclient);
+router.get("/getpost",getthepost);
+router.post("/post", postthepost);
 export default router;

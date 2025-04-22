@@ -56,7 +56,7 @@ export default function Page(){
              </div>
                {selectedItem.type ==='profile' && <Profile id={iduser}/> }
                {selectedItem.type ==='edit' && <Edit  id={iduser}/> }
-               {selectedItem.type ==='demende' && <Demende /> }
+               {selectedItem.type ==='demende' && <Demende id={iduser} /> }
 
 </div>  </>} </> );
 

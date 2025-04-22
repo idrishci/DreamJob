@@ -31,8 +31,10 @@ useEffect(() => {
             setConnected("connected");
             const docref = doc(db, "users", user.uid);
              const document=await getDoc(docref);
+             
              const res=await getinfouser(user.uid,document.data().role);
              await setUser(res);
+             console.log("infouser", res);
         } else {
           console.log("no user is connected");
             setUser(null);

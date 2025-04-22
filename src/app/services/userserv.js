@@ -47,3 +47,20 @@ export async function  getinfouser(uid,role){
     return [];}
 
 }
+
+export function postthepost(data){
+    try{
+ const res=axios.post("http://localhost:8800/api/users/post",data);
+}catch(err){
+    console.log(err);
+    return [];}
+}
+
+export function getthepost(uid){
+    try{
+ const res=axios.get("http://localhost:8800/api/users/getpost",{params:uid});
+ return res.data;
+}catch(err){
+    console.log(err);
+    return [];}
+}

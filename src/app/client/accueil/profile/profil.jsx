@@ -5,6 +5,7 @@ import {getDoc }from"firebase/firestore";
 import{ db,doc,auth } from "@/app/auth/firebase";
 import {getinfouser}from"@/app/services/userserv";
 import { useState ,useEffect} from "react";
+
 export default function profile(iduser){
     console.log("id of user11 ", iduser);
 const [userr,setUser]=useState([]);
