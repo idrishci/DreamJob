@@ -4,19 +4,20 @@ import multer from "multer";
 const router=express.Router();
 const postiduser = (req,res) => {
 const id=req.body.uid;
+const email=req.body.email;
 const user=req.body.user;
 console.log("this is th is ",id,"this is user",user);
 if(user=="client"){
-    const query="INSERT INTO candidat (idcandidat,uid_firebase) VALUES (?,?)";
-    const VALUES=[3,id];
+    const query="INSERT INTO candidat (idcandidat,email,uid_firebase) VALUES (?,?,?)";
+    const VALUES=[4,email,id];
     connection.query(query,VALUES,(err,data)=>{
     if(err)return console.log(err);
     return res.json("user added successfully");
 })
 }else if(user=="enterprise"){
-    const query="INSERT INTO enterprise (identerp,uid_firebase) VALUES (?,?)";
+    const query="INSERT INTO enterprise (identerp,email,uid_firebase) VALUES (?,?,?)";
 //    const VALUES=[4,id];
-const values=[4,id];
+const values=[4,email,id];
     connection.query(query,values,(err,data)=>{
     if(err)return console.log(err);
     return res.json("user added successfully");

@@ -43,7 +43,7 @@ app.use("/api/offre",offresidroutes);
 app.use("/api/updateoffre", offresidroutes);
 app.use("/api/update-enter", updateEnterprise);
 
-// app.use("/api/offresid/:id",offresidroutes);
+app.use("/api/offresid/:id",offresidroutes);
 
 
 app.get("/",(req,res)=>{
