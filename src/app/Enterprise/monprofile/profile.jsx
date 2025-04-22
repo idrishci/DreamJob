@@ -5,7 +5,7 @@ import Data from "./data"
 import Edit from "./edit"
 import { useState } from "react"
 import style from "./profile.module.css"
-export default function profile(){
+export default function profile({id}){
     const [selectedItem, setSelectedItem] = useState({type:'enter'});
     const  rendercomponent = (type)=> {
        setSelectedItem({type});
@@ -18,7 +18,7 @@ export default function profile(){
         <li onClick={()=>rendercomponent('edit')}>Edit</li>
             </ul> 
              </div>
-             {selectedItem.type ==='enter' ? <Data /> :<Edit /> }
+             {selectedItem.type ==='enter' ? <Data id={id}/> :<Edit id={id} /> }
         </div>
     );
 }

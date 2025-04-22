@@ -10,7 +10,7 @@ import { useState,useEffect } from "react"
 import Form from "./formulair"
 import Aos from "aos";
 import "aos/dist/aos.css";
-export default function offre(){
+export default function offre({id}){
 
    useEffect(()=>{
         Aos.init({duration:800});
@@ -29,7 +29,7 @@ export default function offre(){
             console.log("Updated offers state of card:", offres);
           }, [offres]); 
           
-          const filtredoffre=offres.filter(offre=>offre.situation==="");
+          const filtredoffre=offres.filter(offre=>offre.situation==="attent");
           return (
             <>
                {filtredoffre.length>0 ? (filtredoffre.map((off)=>{ return(

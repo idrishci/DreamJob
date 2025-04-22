@@ -10,8 +10,8 @@ import { useState,useEffect } from "react"
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Form from "./formulair"
-export default function Offre(){
-    const id =1;
+export default function Offre({id}){
+  
     useEffect(()=>{
         Aos.init({duration:800});
     
@@ -49,7 +49,7 @@ export default function Offre(){
           </div>
           <div className={style.button}>
                   <Link href={`../../Enterprise/annonce-Edit?id=${off.idoffre}`}><button  >Modifier</button></Link>
-                  <button>Supprimer</button>
+                  <button >Supprimer</button>
           </div>
       </div>)})):(<h4 data-aos="zoom-in">n'existe pas</h4>)} </>
           );

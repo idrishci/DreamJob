@@ -26,8 +26,8 @@ export async function getoffresentrerp(id){
    }
    export async function getoffrebyId(id){
     try{
-        console.log("id = "+id)
-   const res=await axios.get(`http://localhost:8800/api/offresid/${id}`);
+        
+   const res=await axios.get(`http://localhost:8800/api/offre/${id}`);
    console.log("result =" + res.data);
    return res.data
        }catch(err){
@@ -36,3 +36,14 @@ export async function getoffresentrerp(id){
            return [];
        }
    }
+   export async function updateOffre(id, updatedOffre) {
+    try {
+      const res = await axios.put(`http://localhost:8800/api/offre/updateoffre/${id}`, updatedOffre);  // تعديل المسار هنا
+      console.log(updatedOffre);
+      console.log(res.data);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
