@@ -50,9 +50,16 @@ useEffect(() => {
         </>}
       
      {isConnected=="connected" && <><div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
-     {userr.map((use)=>(<h2> {use.nom } {use.prenom }</h2>))} 
-         {/* <Image width={40} height={40} src={"/image/profile.jpg"} className={style.img}/>   */}
-    </div></>}
+     {userr.map((use)=>( 
+      <>
+    <h2> {use.nom } {use.prenom }</h2>
+     <Image width={40} height={40} alt={use.photo_profile} src={`http://localhost:8800/uploaded/photo/${use.photo_profile}`} className={style.img}/>
+     </>
+    ))} 
+     </div>
+     </>
+
+    }
     {isOpen &&<div className={style.proflist}>
       <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}>Mon profile</li> 
          <hr />

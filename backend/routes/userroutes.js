@@ -104,12 +104,16 @@ const updateinfoclient = (req,res) => {
     fields.push("secteur_dactivite= ?");
     values.push(formdata.secteur_activite);
   }
+  if (formdata.description) {
+    fields.push("description_can= ?");
+    values.push(formdata.description);
+  }
   if (files.photo) {
     fields.push("photo_profile= ?");
     const photoName = files.photo[0].filename; 
     values.push(photoName );
   }
-
+  
   if (files.cv) {
     fields.push("cv = ?");
     const cvName = files.photo[0].filename; 

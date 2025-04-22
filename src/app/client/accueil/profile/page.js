@@ -54,7 +54,7 @@ export default function Page(){
 
             </ul> 
              </div>
-               {selectedItem.type ==='profile' && <Profile/> }
+               {selectedItem.type ==='profile' && <Profile id={iduser}/> }
                {selectedItem.type ==='edit' && <Edit  id={iduser}/> }
                {selectedItem.type ==='demende' && <Demende /> }
 
