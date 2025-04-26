@@ -1,10 +1,9 @@
 import axios from "axios";
 const api_url="http://localhost:8800/api/users";
-export function postiduser(uid,email,user){
+export function postiduser(uid,user){
     try{
  const res=axios.post(api_url,{
     uid:uid,
-    email:email,
     user:user
  });
 }catch(err){
@@ -34,10 +33,7 @@ export async function  getinfouser(uid,role){
  const res=await axios.get(api_url,{
     params:{
         uid:uid,
-        role:role
-
-
-    }
+        role:role}
     
  });
 
@@ -46,21 +42,4 @@ export async function  getinfouser(uid,role){
     console.log(err);
     return [];}
 
-}
-
-export function postthepost(data){
-    try{
- const res=axios.post("http://localhost:8800/api/users/post",data);
-}catch(err){
-    console.log(err);
-    return [];}
-}
-
-export function getthepost(uid){
-    try{
- const res=axios.get("http://localhost:8800/api/users/getpost",{params:uid});
- return res.data;
-}catch(err){
-    console.log(err);
-    return [];}
 }

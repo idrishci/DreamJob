@@ -5,18 +5,21 @@ import stle from "./form.module.css"
 import style1 from "./offre.module.css"
 import pp from"./pp.css"
 import  Link from "next/link";
-import {getoffresentrerp} from "../../server/offre.js"
+import {getoffresentrerp,deletoffre} from "../../server/offre.js"
 import { useState,useEffect } from "react"
 import Form from "./formulair"
 import Aos from "aos";
 import "aos/dist/aos.css";
 export default function offre({id}){
-
+        
+    const [showDeleteId, setShowDeleteId] = useState(null);
+/////////////animation
    useEffect(()=>{
         Aos.init({duration:800});
     
     },[]);
      const [offres,setOffres]=useState([]);
+     ///////////////get offre by id enterprise
         useEffect(()=>{
             const fetchdata=async()=>{
                 const data1=await getoffresentrerp(id);
@@ -25,9 +28,18 @@ export default function offre({id}){
             };
             fetchdata();
         },[]);
-        useEffect(() => {
-            console.log("Updated offers state of card:", offres);
-          }, [offres]); 
+////////////////////delet annonce
+             const delet =async(id)=>{
+            const delet =await deletoffre(id);
+
+            if(delet){
+                setShowDeleteId(null);
+                alert('offre delet')
+            }else{
+                alert('Failed to delete offre');
+            }
+             }
+        ////////////////filtrage 
           
           const filtredoffre=offres.filter(offre=>offre.situation==="attent");
           return (
@@ -49,8 +61,15 @@ export default function offre({id}){
           </div>
           <div className={style.button}>
                   <Link href={`../../Enterprise/annonce-Edit?id=${off.idoffre}`}><button  >Modifier</button></Link>
-                  <button>Supprimer</button>
+                  <button onClick={() => setShowDeleteId(off.idoffre)} >Supprimer</button>
           </div>
+          {showDeleteId === off.idoffre && (
+          <div className={style.delet}>
+            <p>Êtes-vous sûr de vouloir supprimer cette offre ?</p>
+            <button onClick={() => delet(off.idoffre)}>Confirmer</button>
+            <button onClick={() => setShowDeleteId(null)}>Annuler</button>
+          </div>
+        )}
       </div>)})):(<h4 data-aos="zoom-in">n'existe pas</h4>)} </>
           );
       }

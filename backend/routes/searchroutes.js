@@ -7,7 +7,7 @@ const getoffresearch=(req,res)=>{
     const {text,localisation,wilaya,secteur,fonction,niveau,experiance,contrat,lieu}=req.query;
  
     let params=[];
-    let query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.idoffre=enterprise.identerp WHERE 1=1" ;
+    let query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.identerp WHERE 1=1" ;
     if(text){
         query += " AND (titre LIKE ? OR fonction LIKE ? OR nom LIKE ? OR secteur_dactivite LIKE ?)";
         params.push(`%${text}%`, `%${text}%`, `%${text}%`, `%${text}%`);
@@ -56,6 +56,32 @@ const getoffresearch=(req,res)=>{
         console.log("Data fetched:", data);
         return res.json(data);
     })}
-    
+    const getcandidatsearch=(req,res)=>{
+  
+        const {text,secteur,wilaya}=req.query;
+     
+        let params=[];
+        let query="SELECT * FROM candidat  INNER JOIN post  ON candidat.uid_firebase=post.uid_firebase WHERE 1=1" ;
+        if(text){
+            query += " AND (titre LIKE ? OR sujet LIKE ? OR nom LIKE ? OR prenom LIKE ? OR email LIKE ? )";
+            params.push(`%${text}%`, `%${text}%`, `%${text}%`, `%${text}%`,`%${text}%`);
+        }
+        if(secteur){
+            query += " AND secteur_dactivite=?";
+            console.log(secteur);
+            params.push(secteur);
+        }
+        if(wilaya){
+            query += " AND wilaya=?";
+            console.log(wilaya);
+            params.push(wilaya);
+        }
+      
+        connection.query(query,params,(err,data)=>{
+            if(err){return console.log(err);}
+            console.log("Data fetched:", data);
+            return res.json(data);
+        })}
     router.get("/",getoffresearch);
+    router.get("/candidat",getcandidatsearch);
     export default router;

@@ -5,18 +5,32 @@ import stle from "./form.module.css"
 import style1 from "./offre.module.css"
 import pp from"./pp.css"
 import  Link from "next/link";
-import {getoffresentrerp} from "../../server/offre.js"
+import {getoffresentrerp,deletoffre} from "../../server/offre.js"
 import { useState,useEffect } from "react"
 import Aos from "aos";
 import "aos/dist/aos.css";
-import Form from "./formulair"
+
 export default function Offre({id}){
-  
+    
+    const [showDeleteId, setShowDeleteId] = useState(null);
+  ///////////animation
     useEffect(()=>{
         Aos.init({duration:800});
     
     },[]);
      const [offres,setOffres]=useState([]);
+     ////////////delet offre
+     const delet =async(id)=>{
+    const delet =await deletoffre(id);
+    fetchdata();
+    if(delet){
+        setShowDeleteId(null);
+        alert('offre delet')
+    }else{
+        alert('Failed to delete offre');
+    }
+     }
+     ///////////get offre by id enterprise 
         useEffect(()=>{
             const fetchdata=async()=>{
                 const data1=await getoffresentrerp(id);
@@ -25,9 +39,6 @@ export default function Offre({id}){
             };
             fetchdata();
         },[]);
-        useEffect(() => {
-            console.log("Updated offers state of card:", offres);
-          }, [offres]); 
        
           const filtredoffre=offres.filter(offre=>offre.situation==="active");
           return (
@@ -49,8 +60,15 @@ export default function Offre({id}){
           </div>
           <div className={style.button}>
                   <Link href={`../../Enterprise/annonce-Edit?id=${off.idoffre}`}><button  >Modifier</button></Link>
-                  <button >Supprimer</button>
+                  <button onClick={()=>setShowDeleteId(off.idoffre)} >Supprimer</button>
           </div>
+          {showDeleteId === off.idoffre && (
+          <div className={style.delet}>
+            <p>Êtes-vous sûr de vouloir supprimer cette offre ?</p>
+            <button onClick={() => delet(off.idoffre)}>Confirmer</button>
+            <button onClick={() => setShowDeleteId(null)}>Annuler</button>
+          </div>
+        )}
       </div>)})):(<h4 data-aos="zoom-in">n'existe pas</h4>)} </>
           );
       }

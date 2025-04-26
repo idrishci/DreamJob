@@ -1,6 +1,12 @@
-import { Poppins } from "next/font/google";
-const font= Poppins({ subsets: ["latin"] ,weight:["100","200","300","400","600","700","800","900"] });
+
 import "./globals.css";
+import { Poppins } from 'next/font/google'
+
+const font = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '600', '700', '800', '900'],
+  display: 'swap',
+})
 import Navbar from "./component/navbar/Navbar";
 import Footer from "./component/footer/Footer";
 

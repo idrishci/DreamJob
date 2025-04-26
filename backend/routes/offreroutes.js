@@ -3,16 +3,38 @@ import connection from "../config/db.js";
 const router=express.Router();
 
 const getoffres=(req,res)=>{
-    const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.idoffre=enterprise.identerp";
+    const query="SELECT * FROM offre_demploi  ";
     connection.query(query,(err,data)=>{
         if(err){return console.log(err);}
         return res.json(data);
-         consol.log("hello");
     })}
+    const getoffresAtt=(req,res)=>{
+        const query="SELECT * FROM offre_demploi WHERE offre_demploi.situation ='attent' OR situation = 'refuse'";
+        console.log(query);
+        connection.query(query,(err,data)=>{
+            if(err){return console.log(err);}
+            return res.json(data);
+        })}
+        const acceptoffre=(req,res)=>{
+            const id =req.params.id
+            const query="UPDATE offre_demploi SET situation ='active' WHERE offre_demploi.idoffre=?";
+            console.log(query);
+            connection.query(query,[id],(err,data)=>{
+                if(err){return console.log(err);}
+                return res.json(data);
+            })}
+            const refuseoffre=(req,res)=>{
+                const id =req.params.id
+                const query="UPDATE offre_demploi SET situation ='refuse' WHERE offre_demploi.idoffre=?";
+                console.log(query);
+                connection.query(query,[id],(err,data)=>{
+                    if(err){return console.log(err);}
+                    return res.json(data);
+                })}
 
     const getoffresenterp= (req,res)=>{
         const id=req.params.id;
-        const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.idoffre=enterprise.identerp WHERE offre_demploi.id_enterp=?";
+        const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.identerp WHERE offre_demploi.id_enterp=?";
         connection.query(query,[id],(err,data)=>{
             if(err){return console.log(err);}
             // console.log(data);
@@ -20,21 +42,24 @@ const getoffres=(req,res)=>{
         
             
         })}
+        const getperson= (req,res)=>{
+            const id=req.params.id;
+            const query="SELECT * FROM postuler  INNER JOIN candidat  ON postuler.idcandidat=candidat.idcandidat WHERE postuler.idoffre=?";
+            connection.query(query,[id],(err,data)=>{
+                if(err){return console.log(err);}
+                // console.log(data);
+                return res.json(data);
+            
+                
+            })}
 
-const postofres=(req,res)=>{
-    const{title,description}=req.body;
-    if(!title || !description){
-        return res.status(400).json({error:"all fields are required"});
-    }
-    const query ="INSERT INTO offre_demploi (title,description) VALUES(?,?)";
-    const VALUES =[title,description];
-    connection.query(query,VALUES,(err,data)=>{
-        if(err){return console.log(err);}
-        return res.json(data);
-    })}
+
  
     router.get("/:id",getoffresenterp);
-
+    router.get("/person/:id",getperson);
+    router.get("/attent/attent",getoffresAtt);
     router.get("/",getoffres);
-    router.post("/",postofres);
+    router.put("/accept/:id",acceptoffre);
+    router.put("/refuse/:id",refuseoffre);
+
     export default router;

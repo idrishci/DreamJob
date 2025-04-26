@@ -25,7 +25,7 @@ export default function Form({id}) {
       const offres = await getoffrebyId(id);
       setOffre(offres[0]);
       setFormData(offres[0]);
-      setDescription(offres[0]?.description || "");
+      setDescription(offres[0]?.description_offre || "");
     };
     fetchdata();
   }, [id]);
