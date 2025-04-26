@@ -3,7 +3,7 @@ import Image from "next/image";
 import style from "./post.module.css"
 import stle from "./form.module.css"
 import style1 from "./offre.module.css"
-import pp from"./pp.css"
+
 import  Link from "next/link";
 import {getoffresentrerp,deletoffre} from "../../server/offre.js"
 import { useState,useEffect } from "react"
