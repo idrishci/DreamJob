@@ -17,41 +17,50 @@ export default function edit({id}){
      const [formData, setFormData] = useState({});
      const [logo, setLogo] = useState(null);
      const [cover, setCover] = useState(null);
-     const [previewLogo, setPreviewLogo] = useState('');
+     const [previewLogo, setPreviewLogo] = useState('/image/account.png');
      const [previewCover, setPreviewCover] = useState('');
        
      
      ////get info
-     useEffect(()=>{
-            const fetchdata=async()=>{
+     const fetchdata=async()=>{
     
-                const data=await getEnterprise(id);
-                setFormData(data[0]);
-                setEnterprises(data ? data[0] : []);
-                setDescription(offres[0]?.description || "");
-            }
+      const data=await getEnterprise(id);
+      setFormData(data[0]);
+      setEnterprises(data ? data[0] : []);
+      setDescription(offres[0]?.description || "");
+  }
+     useEffect(()=>{
+            
             fetchdata();
         }
         ,[]);
         ///////////////////
         const handleChange = (field, value) => {
             setFormData({ ...formData, [field]: value });
+
+           
           };
           /////
         const handleSubmit = async () => {
             const formDataToSend = new FormData();
-               // ajouter les champs texte
             for (let key in formData) {
-              formDataToSend.append(key, formData[key]);
+              if (key !== "photo_profile" && key !== "pathcover") {
+                formDataToSend.append(key, formData[key]);
+              }
             }
-          
-            // ajouter les fichiers s'ils existent
-            if (logo) formDataToSend.append("logo", logo);
-            if (cover) formDataToSend.append("cover", cover);
-                 console.log("this "+formDataToSend)
+            if (formData.photo_profile) {
+              formDataToSend.append("photo_profile", formData.photo_profile);
+            }
+            if (formData.pathcover) {
+              formDataToSend.append("pathcover", formData.pathcover);
+            }
+
+            console.log("photo_profile type:", typeof formData.photo_profile);
+            console.log("pathcover type:", typeof formData.pathcover);
            const result = await updateenterprise(id, formDataToSend);
               if (result) {
                 alert("Offre modifiée avec succès !");
+                fetchdata();
               } else {
                 alert("Erreur lors de la modification.");
               }
@@ -61,9 +70,11 @@ export default function edit({id}){
             const file = e.target.files[0];
             if (file) {
               if (type === "logo") {
+                setFormData({ ...formData, 'photo_profile': file });
                 setLogo(file);
                 setPreviewLogo(URL.createObjectURL(file));
               } else if (type === "cover") {
+                setFormData({ ...formData, 'pathcover': file });
                 setCover(file);
                 setPreviewCover(URL.createObjectURL(file));
               }
@@ -75,10 +86,10 @@ export default function edit({id}){
      <div className={style.photo}>
         
         <div className={style.logo}>
-        <label htmlFor="logo"><img src={previewLogo || enterprises.pathprofile} alt="logo" /></label><input type="file" id="logo" style={{display:"none"}}  onChange={(e) => handleImageChange(e, "logo")} />
+        <label htmlFor="logo"><img src={previewLogo || `/image/${ enterprises.photo_profile}`} alt="logo" /></label><input type="file" id="logo" style={{display:"none"}}   onChange={(e) => handleImageChange(e, "logo")} />
         </div>
         <div className={style.background}>
-        <label For="backg" ><Image width={140} height={140} src={previewCover || enterprises.pathcover}/></label><input type="file" id="backg" style={{display:"none"}} onChange={(e) => handleImageChange(e, "cover")} />
+        <label For="backg" ><Image width={140} height={140} src={previewCover || `/image/${ enterprises.pathcover}`}/></label><input type="file" id="backg" style={{display:"none"}} onChange={(e) => handleImageChange(e,"cover")} />
         </div>
         
      </div> 
@@ -132,7 +143,7 @@ export default function edit({id}){
                 </label>
                 <label className={style.description}>
                     <h3>Description</h3>
-                    <textarea className={style.area}  onChange={e => handleChange('desecription', e.target.value)} value={enterprises.desecription}></textarea>
+                    <textarea className={style.area}  onChange={e => handleChange('desecription_enter', e.target.value)} value={enterprises.desecription}></textarea>
                 </label>
                 
                 

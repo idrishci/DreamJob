@@ -1,0 +1,27 @@
+.table{
+    width: 100%;
+    }
+    .table table{
+        padding: 10px;
+        width: 100%;
+        /* border: 1px ; */
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.11);
+    border-radius: 25;
+    background-color: var(--forgencolor);
+    }
+    .table thead tr{
+        /* font-size: 20; */
+        background-color:var(--forgencolor);
+    }
+    .table tbody tr{
+        padding: 5;
+        margin: 5;
+        background-color: white;
+        
+       
+        
+    }
+    .table table td{
+        padding: 5;
+        margin: 5;
+    }

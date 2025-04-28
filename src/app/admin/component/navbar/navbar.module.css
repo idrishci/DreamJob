@@ -107,6 +107,69 @@ font-weight: 700;
     
 }
 
+.proflist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    position: fixed;
+    padding: 20 5;
+    top: 70px;
+    right: 20;
+    width: 200px;
+    text-align: center;
+    background-color: var(--forgencolor);  
+   
+    animation: open 0.3s ease-in-out;
+    /* transition: all 0.2s ease-in-out; */
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.164); 
+}
+.proflist li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    height: 40;
+    cursor: pointer;
+}
+.proflist li h4{
+    
+    margin: 0 5;
+}
+.proflist li:hover{
+    font-weight: 700;
+    transition: all 0.2s ease-in-out;
+}
+
+.profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5;
+    cursor: pointer;
+    padding: 5px;
+    height: 100%;
+    /* border: 1px solid rgba(0, 0, 0, 0.226); */
+}
+.profile:hover{
+    /* background-color: var(--forgencolor); */
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.144);
+    transition: all 0.2s ease-in-out;
+    /* border-radius: 50%; */
+}
+ /* .img{
+    
+} */
+.profile h2{
+font-size: 13px;
+
+font-weight: 600;
+margin: 0 5;
+}
 @media screen and (max-width: 768px) {
     .list {
         display: none;

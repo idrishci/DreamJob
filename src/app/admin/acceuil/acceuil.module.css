@@ -1,0 +1,97 @@
+
+.main {
+    width: 80%;
+    margin: 10px;
+    background-color: var(--forgencolor);
+    border-radius:20px ;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.main section{
+    width: 100%;
+display: flex;
+position: relative;
+flex-direction: row;
+justify-content: center;
+/* align-items: ; */
+margin: 10 0;
+}
+.main  .block{
+    width: 300px;
+    height: 100;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 10;
+    /* display: flex; */
+    background-color: var(--background);
+}
+.block h2{
+    font-size: 16px;
+    margin:10 5 ;
+
+}
+.block span{
+    font-size: 20px;
+    margin: 5 5;
+    font-weight: 700;
+}
+.main button {
+    width: 250px;
+    height: 40px;
+}
+.acceuil{
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+.acceuil section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 47%;
+    margin: 30 0;
+
+}
+.acceuil h1{
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
+}
+.acceuil p{
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    margin: 10;
+
+}
+.acceuil button{
+    width: 200;
+    height: 50;
+    font-size: 16;
+}
+@media screen and (max-width: 768px) {
+    .main{
+        width: 90%;
+    }
+    .main section{
+        flex-direction: column;
+        align-items: center;
+    }
+    .main .block {
+        width: 90%;
+        flex-direction: row;
+
+    }  
+    .acceuil{
+        flex-wrap: wrap;
+    }
+}

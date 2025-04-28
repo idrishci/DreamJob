@@ -13,7 +13,9 @@ const getenterprise=(req,res)=>{
 }
 const getenterprisebyID=(req,res)=>{
     const id=req.params.id;
-    const query="SELECT * FROM enterprise WHERE enterprise.identerp=?";
+    const query="SELECT * FROM enterprise WHERE enterprise.uid_firebase=?";
+    console.log(id)
+    console.log(query)
     connection.query(query,[id],(err,data)=>{
         if(err){console.log(err);return res.status(500).json({ error: err.message });
             }
@@ -21,7 +23,7 @@ const getenterprisebyID=(req,res)=>{
     })
 }
 const postenterprise=(req,res)=>{
-    const query="INSERT INTO enterprise (nom,email,mot_de_passe,num_telephone,secteur_dactivite,siteweb,linkedin,nombre_demployer,localisation) VALUES(?)";
+    const query="INSERT INTO enterprise (nom,email,num_telephone,secteur_dactivite,siteweb,linkedin,nombre_demployer,localisation) VALUES(?)";
     const VALUES=[];
     connection.query(query,VALUES,(req,res)=>{
         if(err){return console.log(err);}

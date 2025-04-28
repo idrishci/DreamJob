@@ -26,7 +26,7 @@ export default function data({id}){
         { enterprises &&
       <div className={style.data}>
 <Photo 
-    logo={enterprises.pathprofile ? enterprises.pathprofile : ""}
+    logo={enterprises.photo_profile ? enterprises.photo_profile : "account.png"}
     cover={enterprises.pathcover ?enterprises.pathcover :""}
     email={enterprises.email ? enterprises.email :""}
     linkedin={enterprises.linkedin ?enterprises.linkedin:""}
@@ -53,7 +53,7 @@ export default function data({id}){
 <p>{enterprises.localisation}</p>
 
 <h1>Description :</h1>
-            <p>{enterprises.desecription}</p>
+            <p>{enterprises.description_enter}</p>
 
 </>
 

@@ -13,8 +13,13 @@ export async function getEnterprise(id) {
 }
 export async function updateenterprise(id, updateenterprise) {
     try { 
-        console.log("hello"+ updateenterprise);
-      const res = await axios.put(`http://localhost:8800/api/update-enter/${id}`, updateenterprise);  // تعديل المسار هنا
+      for (let pair of updateenterprise.entries()) {
+        console.log("userinfo",`${pair[0]}:`, pair[1]);}
+      const res = await axios.put(`http://localhost:8800/api/update-enter/update/${id}`, updateenterprise,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });  // تعديل المسار هنا
      
       console.log(res.data);
       return res.data;

@@ -12,6 +12,12 @@
     position: relative;
     margin:  5;
 }
+.save{
+    position: absolute;
+    right: 20;
+    top: 20;
+    cursor: pointer;
+}
 
 .img{
     /* margin: 30 20; */
