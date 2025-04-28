@@ -4,7 +4,7 @@ const router=express.Router();
 //// get all data by id offre
 const getoffrebyId=(req,res)=>{
     const id=req.params.id;
-    const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.identerp WHERE offre_demploi.idoffre=?";
+    const query="SELECT * FROM offre_demploi INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE offre_demploi.idoffre=?";
  connection.query(query,[id],(err,data)=>{
     if(err){return console.log(err);}
     console.log(data);
@@ -38,7 +38,7 @@ const updateoffre=(req,res)=>{
       salaire,
       type_de_contrat,
       nombre_de_post,
-      desecription
+      description_offre
     } = req.body;
   
     const query = `
@@ -56,7 +56,7 @@ const updateoffre=(req,res)=>{
         situation = ?
       WHERE idoffre = ?
     `;
-    const values = [titre, fonction, type_de_lieu_de_travail, annees_dexper, wilaya, niveau_detude, salaire, type_de_contrat, nombre_de_post, desecription, situation,id];
+    const values = [titre, fonction, type_de_lieu_de_travail, annees_dexper, wilaya, niveau_detude, salaire, type_de_contrat, nombre_de_post, description_offre, situation,id];
   
     connection.query(query, values, (err, result) => {
       if (err) return res.status(500).json({ error: "Erreur update", err });
@@ -94,7 +94,6 @@ const updateoffre=(req,res)=>{
   const situation="attent"
     const query = `
      INSERT INTO offre_demploi (
-    idoffre, 
     titre,
     fonction,
     type_de_lieu_de_travail,
@@ -108,11 +107,9 @@ const updateoffre=(req,res)=>{
     description_offre,
     date,
     id_enterp
-  ) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ?)
+  ) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
     `;
-  const idoffre=13;
     const values = [
-      idoffre,
       titre,
       fonction,
       type_de_lieu_de_travail,

@@ -19,9 +19,9 @@ export async function getcandidat(){
    
        }
       }
-      export async function addfav(id){
+      export async function addfav(ids){
         try{
-           const res=await axios.post("http://localhost:8800/api/users/addfav",{params:id});
+           const res=await axios.post("http://localhost:8800/api/users/addfav",{params:ids});
               console.log("data",res.data);
                return res.data;
         }catch(err){
@@ -37,12 +37,11 @@ export async function getcandidat(){
     
         }
        }
-    //    export async function delet(id){
-    //     try{
-    //        const res=await axios.get("http://localhost:8800/api/offres/fav/candidat",{params:filters});
-    //           console.log("data",res.data);
-    //            return res.data;
-    //     }catch(err){
+       export async function deletfav(ids){
+        try{
+           const res=await axios.delete("http://localhost:8800/api/users/deletfav",{params:ids});
+               return res.data;
+        }catch(err){
     
-    //     }
-    //    }
+        }
+       }

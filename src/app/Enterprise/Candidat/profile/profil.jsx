@@ -7,16 +7,18 @@ import { useEffect,useState } from "react"
 import Aos from "aos";
 import "aos/dist/aos.css";
 import {secteur,fonction,niveau,experiance,contrat,lieu} from "@/app/file_json/data.js"
-import { getcandidat,getcandidatsearch } from "../../server/candidat"
-import { addfav,getfavorit } from "../../server/candidat";
+import { getcandidat,getcandidatsearch ,getfavorit,addfav,deletfav} from "../../server/candidat"
 
-export default function profile(){
+
+
+export default function profile({identer}){
      const [candidat,setcandidat]=useState([]);
       const [filters, setFilters] = useState({});
       const [select,setselect]=useState('');
-      const [save,setsave]=useState(false);
-      const [fav,setfav]=useState();
-      const identerp=1;
+      const [loading, setLoading] = useState(true);
+      const [favoris, setFavoris] = useState([]); 
+
+
       ////////////recherche a candidat
       const  handlelechange = async(e) => {
         const { name, value } = e.target;
@@ -35,24 +37,9 @@ export default function profile(){
         }
         ////////////get fav 
 
-   useEffect(()=>{
-const fetchdata=async()=>{
-const data=await getfavorit(identer); 
-setfav(data);
-};
-fetchdata();},[]);  
+  
 ////////add fav candidat
-const add=async(idcandidat)=>{
-    console.log(idcandidat);
-    const ids={id:3,identerp:1,idcandidat:idcandidat}
-    const favorit=await addfav(ids);
-    setfav(favorit);
-    if (favorit) {
-        alert("sauvgarde !");
-      } else {
-        alert("Erreur de sauvegarde");
-      }
-}
+
 // function virifier(idcandidat,identerp){
 //     const sauv=fav.find((av)=>(av.idcandidat===id&&av.identerp===identerp));
 //     sauv? setsave(true):setsave(false);
@@ -63,9 +50,13 @@ const add=async(idcandidat)=>{
 /////////////get candidat
  useEffect(()=>{
 const fetchdata=async()=>{
+    const data1 = await getfavorit(identer); // identer = 3
+    setFavoris(data1.map((fav) => fav.idcandidat));
 const data=await getcandidat();
  setcandidat(data);
  console.log(data); 
+ fetchFavoris();
+ setLoading(false);
 };
 fetchdata();},[]);
 ////animation             
@@ -87,6 +78,31 @@ Aos.init({duration:800});
     
                 })
             }
+            //////////////get favorit
+            const fetchFavoris = async () => {
+                const data1 = await getfavorit(identer); // identer = 3
+                setFavoris(data1.map((fav) => fav.uid_firebase));
+                console.log("hi "+data1);  // 🌟 فقط ids
+              };
+            useEffect(() => {
+              
+                fetchFavoris();
+              }, []);
+              /////////add fav 
+const toggleSave = async (uid_firebase) => {
+                const ids={identer:identer,idcandidat:uid_firebase}
+                console.log(ids);
+                if (!favoris.includes(uid_firebase)) {
+                  await addfav(ids); // تسجيل في قاعدة البيانات
+                  setFavoris((prev) => [...prev, uid_firebase]);
+
+                } else { 
+                    await deletfav(ids);   
+                  // هنا يمكنك إضافة خاصية حذف لو تريد
+                  setFavoris((prev) => prev.filter(id => id !== uid_firebase));
+
+                }
+              };
 
     return(
         <>
@@ -104,15 +120,24 @@ Aos.init({duration:800});
         <hr />
         </div>
 {/* //////////// */}
-
-{candidat.length > 0?  candidat.map((can)=>{ return(
+{loading ? (
+  <h4>Chargement...</h4>
+) :
+candidat.length > 0?  candidat.map((can)=>(
     <div className={style.profile} data-aos="zoom-in">
     <div className={style.save}>
-     {save?  
-    <Image width={40} height={40} src={"/icon/save.png"} alt="save" onClick={()=>setsave(!save)}/>
-    :<Image width={40} height={40} src={"/icon/unsave.png"}alt="save" onClick={()=>setsave(!save)}/>  } 
+   
+            <Image
+              width={40}
+              height={40}
+              src={favoris.includes(can.uid_firebase) ? "/icon/unsave.svg" : "/icon/save.svg"}
+              alt="save"
+              unoptimized
+              onClick={ () => toggleSave(can.uid_firebase)}
+            />
+        {/* <Button uid_firebase={can.uid_firebase} identer={3} key={can.idcandidat}  /> */}
     </div>
-        <Image width={100} height={100} alt="photo" src={"/image/accueil.png"} className={style.img} key={can.idcandidat}/>
+        <Image width={100} height={100} alt="photo" src={`/image/${can.photo_profile}`} className={style.img} key={can.idcandidat}/>
         <div className={style.data}>
             <h1>{can.titre}</h1>
             <label > <h2>Nom :</h2> <h3>{can.nom}</h3></label>
@@ -125,7 +150,7 @@ Aos.init({duration:800});
             <label > <h2>Niveau d’etude :</h2> <h3>{can.niveau_detude}</h3></label>
             <label > <h2>Secteur d'activité :</h2> <h3>{can.secteur_dactivite}</h3></label>
             
-            <label > <a href="/file/1745249871661_cv.pdf" target="_blank" rel="noopener noreferrer"><h3>mon cv</h3></a></label>
+            <label > <a href={`/file/${can.cv}`} target="_blank" rel="noopener noreferrer"><h3>mon cv</h3></a></label>
         </div>
         <hr/>
         <div className={style.desc}>
@@ -135,7 +160,7 @@ Aos.init({duration:800});
         </label>
         </div>
         </div>
-)}) : <h4 >n'existe pas </h4> }
+)) : <h4 >n'existe pas </h4> }
  
         
 

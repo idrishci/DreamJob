@@ -16,7 +16,8 @@
     .table tbody tr{
         padding: 5;
         margin: 5;
-        background-color: white;
+        /* background-color: white; */
+        border: 1px solid white;
         
        
         
@@ -24,4 +25,5 @@
     .table table td{
         padding: 5;
         margin: 5;
+        border: 1px solid white;
     }

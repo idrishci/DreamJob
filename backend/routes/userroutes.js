@@ -150,22 +150,35 @@ const updateinfoclient = (req,res) => {
 
 }
 const addfavcan=(req,res)=>{
- const{id,idcandidat,identerp}=req.body.params
+ const{identer,idcandidat}=req.body.params
  console.log(req.body);
   console.log("66666");
-  const values=[id,idcandidat,identerp];
+  const values=[identer,idcandidat];
   console.log(values);
-  const query = "INSERT INTO favorit_can_enterp (id, idcandidat, identerp) VALUES (?,?,?)";
+  const query = "INSERT INTO favorit_can_enterp (identerp,idcandidat) VALUES (?,?)";
   console.log(query);
   connection.query(query,values,(err,data)=>{
     if(err){return console.log(err);}
     return res.json(data);
 })
 }
+const deletfavcan=(req,res)=>{
+  console.log(req.query);
+  const{identer,idcandidat}=req.query
+   console.log("66666");
+   const values=[identer,idcandidat];
+   console.log(values);
+   const query = "DELETE FROM favorit_can_enterp WHERE identerp = ? AND idcandidat = ? ";
+   console.log(query);
+   connection.query(query,values,(err,data)=>{
+     if(err){return console.log(err);}
+     return res.json(data);
+ })
+ }
 const getfavorit=(req,res)=>{
-  const id = req.params.id;
-
-  const query = "SELECT * FROM favorit_can_enterp WHERE favorit_can_enterp.identerp=?";
+  const id=req.params.id;
+  const query = "SELECT * FROM favorit_can_enterp JOIN candidat ON favorit_can_enterp.idcandidat = candidat.uid_firebase WHERE favorit_can_enterp.identerp=?";
+  console.log(query);
   connection.query(query,id,(err,data)=>{
     if(err){return console.log(err);}
     return res.json(data);
@@ -173,6 +186,7 @@ const getfavorit=(req,res)=>{
 }
 
 router.post("/addfav",addfavcan);
+router.delete("/deletfav",deletfavcan);
 router.get("/",getinfouser);
 router.get("/getfav/:id",getfavorit);
 router.post("/",postiduser);

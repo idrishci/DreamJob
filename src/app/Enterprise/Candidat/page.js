@@ -42,7 +42,7 @@ export default function Home(){
       <>
       {isConnected&&
         <div className={style.page}>
-      <Profile/>
+      <Profile identer={iduser}/>
       </div>}</>
     );
 }

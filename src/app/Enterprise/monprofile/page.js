@@ -7,7 +7,7 @@ import{ db,doc,auth} from "@/app/auth/firebase";
 import { useState ,useEffect} from "react";
 import { useRouter } from "next/navigation";
 export default function Home() {
-    const [isConnected,setConnected]=useState('connected');
+    const [isConnected,setConnected]=useState('');
     const [loading,setLoading]=useState(true);
     const [iduser,setiduser]=useState(null);
     const router = useRouter();
@@ -27,9 +27,9 @@ export default function Home() {
          return ()=>unsubscribe();
      },[]);
   
-//      if (loading) {
-//       return <div>Loading...</div>; // or a spinner/loading component
-//   }
+     if (loading) {
+      return <div>Loading...</div>; // or a spinner/loading component
+  }
 //   if (isConnected !== "connected") {
 //       return null; // prevent rendering anything while redirecting
 //   }

@@ -19,14 +19,18 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    width: 100%;
 
 }
 .area{
     width: 100%;
-    height: 100px;
+    height: 150px;
     border-radius: 20;
     border: none;
     padding: 10;
+}
+.area textarea{
+    width: 100%;
 }
 .first label{
     width: 40%;
@@ -49,15 +53,7 @@
 font-weight: 600;
 margin: 10px;
 }
-.first hr{
-    width: 80%;
-    height: 1px;
-    border: none;
-    background-color: rgba(0, 0, 0, 0.171);
-    /* font-size: 2; */
-    margin: 30px auto;
-    color: black;
-}
+
 .photo{
     width: 100%;
     display: flex;
@@ -121,11 +117,25 @@ transition: all 0.3s ease-out;
     height: 50px;
 } */
 @media screen and (width<=768px) {
+    .edit{
+        width: 90%;
+    }
+    .photo{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+
+    }
+    .photo .background{
+        width: 100%;
+    }
     .first{
         flex-direction: column;
+        width: 100%;
     }
     .first label{
-        width: 90%;
+        width: 100%;
+        /* text-align: center; */
     }
 }
 

@@ -3,28 +3,31 @@ import style from "./profile.module.css"
 import Photo from "./photo"
 import {getEnterprise} from "../server/enterprise.js"
 import { useState,useEffect } from "react"; 
-export default function data({id}){
+export default function Data({id}){
     const [enterprises,setEnterprises]=useState('');
+         const [loading, setLoading] = useState(true);
+
+     
     useEffect(()=>{
         const fetchdata=async()=>{
-
+            console.log("this id "+id)
             const data=await getEnterprise(id);
-
-           
-            setEnterprises(data ? data[0] : []);
+            console.log("this enterprise "+data[0])
+            setEnterprises(data[0]) ;
+            setLoading(false);
         }
         fetchdata();
     }
     ,[]);
     useEffect(() => {
-        console.log("Updated enterprise state of card:", enterprises);
+        console.log("this enterprise"+enterprises)
       }, [enterprises]);
      
 
     return (
         <>
-        { enterprises &&
-      <div className={style.data}>
+        { loading?<h4>chargement .....</h4>:
+      enterprises &&<div className={style.data}>
 <Photo 
     logo={enterprises.photo_profile ? enterprises.photo_profile : "account.png"}
     cover={enterprises.pathcover ?enterprises.pathcover :""}
