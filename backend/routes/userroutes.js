@@ -202,6 +202,8 @@ router.post("/addfav",addfavcan);
 router.get("/",getinfouser);
 router.get("/getfav/:id",getfavorit);
 router.post("/",postiduser);
+router.post("/post",postthepost);
+router.get("/getpost",getthepost);
 router.post("/updateclient",updateinfoclient);
 router.get("/candidat",getcandidat);
 router.get("/allcandidat",getallcandidat);

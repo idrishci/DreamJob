@@ -21,15 +21,6 @@ connection.query(query,[id],(err,data)=>{
   console.log(data);
   console.log("hello");
   return res.json(data);
-    console.log(id);
-    const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.idoffre=enterprise.identerp WHERE offre_demploi.idoffre=?";
- connection.query(query,[id],(err,data)=>{
-    if(err){return console.log(err);}
-    console.log(data);
-    console.log("hello");
-    return res.json(data);
-
-  
 })}
 ////updata data offre  by id offre 
 
@@ -175,5 +166,5 @@ const updateoffre=(req,res)=>{
   router.put("/updateoffre/:id", updateoffre);
 router.get("/:id",getoffrebyId);
 router.post("/creeoffre/:id",postoffres);
-router.delete("/deletoffre/:id",deletoffre)
+router.delete("/deletoffre/:id",deletoffre);
     export default router;
