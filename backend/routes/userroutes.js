@@ -8,11 +8,17 @@ const email=req.body.email;
 const user=req.body.user;
 console.log("this is th is ",id,"this is user",user);
 if(user=="client"){
-    const query="INSERT INTO candidat (idcandidat,email,uid_firebase) VALUES (?,?,?)";
+    const query1="INSERT INTO candidat (idcandidat,email,uid_firebase) VALUES (?,?,?)";
+    const query2="INSERT INTO post (idpost,uid_firebase) VALUES (?,?)";
+   const VALUES1=[2,id];
     const VALUES=[4,email,id];
-    connection.query(query,VALUES,(err,data)=>{
+    connection.query(query1,VALUES,(err,data)=>{
     if(err)return console.log(err);
     return res.json("user added successfully");
+})
+connection.query(query2,VALUES1,(err,data)=>{
+  if(err)return console.log(err);
+  return res.json("user added successfully");
 })
 }else if(user=="enterprise"){
     const query="INSERT INTO enterprise (identerp,email,uid_firebase) VALUES (?,?,?)";
@@ -28,19 +34,18 @@ const values=[4,email,id];
 const postthepost = (req,res) => {
   const { sujet, titre, uid } = req.body;
   console.log("sujet ",sujet,"titre",titre,"id",uid);
-  const query="INSERT INTO post (idpost,titre,sujet,uid_firebase) VALUES (?,?,?,?)";
-  const VALUES=[2,sujet,titre,uid];
+  const query = "UPDATE post SET titre = ?, sujet = ? WHERE uid_firebase = ?";
+  const VALUES=[titre,sujet,uid];
   connection.query(query,VALUES,(err,data)=>{
   if(err)return console.log(err);
   return res.json(data);
   })
 }
 const getthepost = (req,res) => {
-  const { uid } = req.query;
-  console.log("id",uid);
-  const query="SELECT * FROM post  WHERE uid_firebase=?";
-  const VALUES=[uid];
-  connection.query(query,VALUES,(err,data)=>{
+  const {uid}  = req.query;
+  console.log("id uid",uid);
+  const query="SELECT * FROM post  WHERE post.uid_firebase=?";
+  connection.query(query,uid,(err,data)=>{
   if(err)return console.log(err);
   return res.json(data);
   })

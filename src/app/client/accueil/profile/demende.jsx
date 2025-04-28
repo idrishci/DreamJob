@@ -3,31 +3,40 @@ import Image from "next/image";
 import style from "./profile.module.css"
 import {useEffect, useState}from "react";
 import {postthepost} from "@/app/services/userserv";
+import {getthepost} from "@/app/services/userserv";
 export default function demende(iduser){
-    // const [lademande,setdemande]=useState(null);
+    const [lademande,setdemande]=useState({});
 
 useEffect(()=>{
-    const getthepost =async()=>{
+    const fetchPost =async()=>{
         const res= await getthepost(iduser.id);
-        console.log("the post",res);
-        await setInfouser(res[0]);
+        console.log("the post",res[0]);
+
+        await setdemande(res[0]);
         // await setuser(res[0]);
     }
-    getthepost();
-    })
+    if(iduser.id){
+    fetchPost();}
+    }
+    ,[]);
 
 
     const handlelechange=async(e)=>{
-        const titre=document.getElementById("name").value;
-        const sujet=document.getElementById("sujet").value;
-        // const {name,value}=e.target;
-       console.log("name",titre);
-        console.log("value",sujet);
-         const lademande={
-            titre: titre,
-            sujet: sujet,
-            uid: iduser.id, // ← correctly setting uid from your user object
-          };
+        const {name,value}=e.target;
+       await  setdemande((prev) => ({
+            ...prev,
+            [name]: value,
+            uid: iduser.id,
+          }));
+
+        //  const lademande={
+        //     [name]: value,
+        //     uid: iduser.id, // ← correctly setting uid from your user object
+        //   };
+      
+        
+    }
+    const updatethepost=async()=>{
         console.log("lademande",lademande);
         await postthepost(lademande);
         
@@ -36,7 +45,7 @@ useEffect(()=>{
 
         <div className={style.edit}>
     <div className={style.data}>
-    <label > <h2>Titre</h2> <input type="text" name="titre" id="name" ></input></label>
+    <label > <h2>Titre</h2> <input type="text" name="titre"   id="name"   value={lademande.titre || ""} onChange={handlelechange }></input></label>
   
 
     </div> 
@@ -44,9 +53,10 @@ useEffect(()=>{
         
         <h2>Sujet</h2>
        {/* <textarea className={style.textarea} > */}
-        <textarea name="sujet" id="sujet"  className={style.textarea} ></textarea>
+        <textarea name="sujet" id="sujet" className={style.textarea}   value={lademande.sujet || ""} onChange={handlelechange
+    }></textarea>
     </div>
-    <button onClick={()=>{handlelechange()}}>demende</button>
+    <button onClick={updatethepost}>demende</button>
         </div>
         
     );

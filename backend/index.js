@@ -44,6 +44,7 @@ app.use("/api/offres",offreroutes);
 app.use("/api/offres/:id",offreroutes);
 
 
+// app.use("/api/offre/",offresidroutes);
 app.use("/api/offre",offresidroutes);
 app.use("/api/updateoffre", offresidroutes);
 app.use("/api/update-enter", updateEnterprise);

@@ -48,17 +48,23 @@ export async function  getinfouser(uid,role){
 
 }
 
-export function postthepost(data){
+export async function postthepost(data){
     try{
- const res=axios.post("http://localhost:8800/api/users/post",data);
+ const res=await axios.post("http://localhost:8800/api/users/post",data);
 }catch(err){
     console.log(err);
     return [];}
 }
 
-export function getthepost(uid){
+export async function getthepost(uid){
     try{
- const res=axios.get("http://localhost:8800/api/users/getpost",{params:uid});
+        console.log("id 1uid",uid);
+ const res=await axios.get("http://localhost:8800/api/users/getpost",{
+    params:{
+        uid:uid,
+    }
+    
+ });
  return res.data;
 }catch(err){
     console.log(err);

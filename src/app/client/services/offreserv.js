@@ -24,10 +24,53 @@ export async function getoffresentrerp(id){
            return [];
        }
    }
+
+   export async function getoneoffresentrerp(idoffre){
+    try{
+        console.log("idoffre",idoffre);
+   const res=await axios.get(`http://localhost:8800/api/offresid/:id/${idoffre}`);
+   console.log(res.data);
+   return res.data
+       }catch(err){
+   
+           console.log(err);
+           return [];
+       }
+   }
    export async function getoffresearch(filters){
     try{
      console.log(filters.contrat);
        const res=await axios.get("http://localhost:8800/api/offres/search/",{params:filters});
+          console.log("data",res.data);
+           return res.data;
+    }catch(err){
+
+    }
+   }
+   export async function postpostuler(idoffre,identerp,iduser){
+    try{
+     console.log("offreesee",idoffre,identerp,iduser);
+       const res=await axios.post("http://localhost:8800/api/offre/postuler/",{
+        idoffre:idoffre,
+        identerp:identerp,
+        iduser:iduser
+     });
+          console.log("datapostuler",res.data[0].idpostuler);
+
+           return res.data;
+    }catch(err){
+
+    }
+   }
+
+   export async function getpostuler(idoffre,identerp,iduser){
+    try{
+     console.log("offreesee",idoffre,identerp,iduser);
+       const res=await axios.get("http://localhost:8800/api/offre/postuler/",{params:{
+        idoffre:idoffre,
+        identerp:identerp,
+        iduser:iduser
+     }});
           console.log("data",res.data);
            return res.data;
     }catch(err){

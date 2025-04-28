@@ -1,7 +1,7 @@
 import Image from "next/image";
 import style from "./offre.module.css"
 const id=1;
-export default function card(){
+export default function card({id}){
     return(
         <div className={style.card}>
      <div className={style.title}>Conseiler Commercial</div>

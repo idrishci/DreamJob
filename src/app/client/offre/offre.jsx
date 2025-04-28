@@ -9,6 +9,7 @@ import {secteur,fonction,niveau,experiance,contrat,lieu} from "@/app/file_json/d
 import Hr from "@/app/component/hr/line.jsx";
 import {getoffresearch}from"../services/offreserv.js";
 import {useSearchParams}from"next/navigation";
+import Link from "next/link";
 // import stylee from "../../component/search-bar/search-bar.module.css";
 
 import stylesearch from "@/app/component/search-bar/search.module.css";
@@ -203,7 +204,7 @@ return value;
           {offres.length > 0 ? (
            offres.map((offre)=>{
             // console.log(offre.idoffre);
-          return  <Card key={offre.idoffre} id={offre.idoffre} />
+          return  <Link href={`./offre_demploi?id=${offre.idoffre}`} key={offre.idoffre}id={offre.idoffre}  className={style.offre}><Card  id={offre.idoffre} key={offre.idoffre}/></Link> 
            } )
         ): offres.length===0 ? (
             <p> n'existe pas d'offres...</p>
