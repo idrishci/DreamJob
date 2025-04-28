@@ -7,11 +7,17 @@ const id=req.body.uid;
 const user=req.body.user;
 console.log("this is th is ",id,"this is user",user);
 if(user=="client"){
-    const query="INSERT INTO candidat (idcandidat,uid_firebase) VALUES (?,?)";
-    const VALUES=[3,id];
-    connection.query(query,VALUES,(err,data)=>{
+    const query1="INSERT INTO candidat (idcandidat,email,uid_firebase) VALUES (?,?,?)";
+    const query2="INSERT INTO post (idpost,uid_firebase) VALUES (?,?)";
+   const VALUES1=[2,id];
+    const VALUES=[4,email,id];
+    connection.query(query1,VALUES,(err,data)=>{
     if(err)return console.log(err);
     return res.json("user added successfully");
+})
+connection.query(query2,VALUES1,(err,data)=>{
+  if(err)return console.log(err);
+  return res.json("user added successfully");
 })
 }else if(user=="enterprise"){
     const query="INSERT INTO enterprise (identerp,uid_firebase) VALUES (?,?)";
@@ -22,6 +28,26 @@ const values=[5,id];
     return res.json("user added successfully");
 })
 }
+}
+
+const postthepost = (req,res) => {
+  const { sujet, titre, uid } = req.body;
+  console.log("sujet ",sujet,"titre",titre,"id",uid);
+  const query = "UPDATE post SET titre = ?, sujet = ? WHERE uid_firebase = ?";
+  const VALUES=[titre,sujet,uid];
+  connection.query(query,VALUES,(err,data)=>{
+  if(err)return console.log(err);
+  return res.json(data);
+  })
+}
+const getthepost = (req,res) => {
+  const {uid}  = req.query;
+  console.log("id uid",uid);
+  const query="SELECT * FROM post  WHERE post.uid_firebase=?";
+  connection.query(query,uid,(err,data)=>{
+  if(err)return console.log(err);
+  return res.json(data);
+  })
 }
 const getinfouser = (req,res) => {
     const {uid,role}=req.query;
@@ -190,6 +216,8 @@ router.delete("/deletfav",deletfavcan);
 router.get("/",getinfouser);
 router.get("/getfav/:id",getfavorit);
 router.post("/",postiduser);
+router.post("/post",postthepost);
+router.get("/getpost",getthepost);
 router.post("/updateclient",updateinfoclient);
 router.get("/candidat",getcandidat);
 router.get("/allcandidat",getallcandidat);

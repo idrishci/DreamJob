@@ -21,10 +21,32 @@ connection.query(query,[id],(err,data)=>{
   console.log(data);
   console.log("hello");
   return res.json(data);
-
-  
 })}
 ////updata data offre  by id offre 
+
+const postuler=(req,res)=>{
+    const {idoffre,identerp,iduser}=req.body;
+    console.log(idoffre,identerp,iduser);
+    const query="INSERT INTO postuler (idoffre,identerp,uid_firebase) VALUES (?,?,?)";
+    const values=[idoffre,identerp,iduser];
+    connection.query(query,values,(err,data)=>{
+        if(err)return console.log(err);
+        return res.json(data);
+    })
+}
+const getpostuler=(req,res)=>{
+  // const {idoffre,identerp,iduser}=req.params;
+  const idoffre=req.query.idoffre;
+  const identerp=req.query.identerp;
+  const iduser=req.query.iduser;
+  console.log("fdf",idoffre,identerp,iduser);
+  const query="SELECT * FROM postuler WHERE  idoffre=? AND identerp=? AND uid_firebase=? ";
+  const values=[idoffre,identerp,iduser];
+  connection.query(query,values,(err,data)=>{
+      if(err)return console.log(err);
+      return res.json(data);
+  })
+}
 const updateoffre=(req,res)=>{
     const id = req.params.id;
     const situation ="attent";
@@ -135,8 +157,11 @@ const updateoffre=(req,res)=>{
     });
   };
   
+  router.post("/postuler",postuler);
+  router.get("/postuler",getpostuler);
+
   router.put("/updateoffre/:id", updateoffre);
 router.get("/:id",getoffrebyId);
 router.post("/creeoffre/:id",postoffres);
-router.delete("/deletoffre/:id",deletoffre)
+router.delete("/deletoffre/:id",deletoffre);
     export default router;

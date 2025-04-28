@@ -10,9 +10,9 @@ export default function photo(){
             <div className={style.first}>
             <div className={style.logo}><Image src={"/image/sonatrach.png"} width={130} height={130} alt="logo"/></div>
             <div className={style.social}>
-                <div className={style.back}><Image src={"/icon/mail.png"} width={30} height={30}/></div>
-                <div className={style.back}><Image src={"/icon/linkedin.png"} width={30} height={30}/></div>
-                <div className={style.back}><Image src={"/icon/internet (1).png"} width={30} height={30}/></div>
+                <div className={style.back}><Image src={"/icon/mail.png"} alt="mail"width={30} height={30}/></div>
+                <div className={style.back}><Image src={"/icon/linkedin.png"} alt="linkedin" width={30} height={30}/></div>
+                <div className={style.back}><Image src={"/icon/internet (1).png"} alt="internet" width={30} height={30}/></div>
             </div>
             </div>
             

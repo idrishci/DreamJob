@@ -20,7 +20,7 @@ import ColorModeSelect from '../ColorModeSelect';
 import { GoogleIcon, FacebookIcon,  } from './components/CustomIcons';
 
 import { app,auth,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "../firebase";
-import { updateProfile } from 'firebase/auth';
+import { updateProfile ,provider } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 
 
@@ -89,7 +89,7 @@ const router =useRouter();
       }   catch (error) {
         if (error.code === "auth/email-already-in-use") {
         setUsedEmailError(true);
-        setUsedEmailErrorMessage('This email is already in use1');
+        setUsedEmailErrorMessage('This email is already in use');
        
       } else {
         setUsedEmailError(false);
@@ -100,7 +100,34 @@ const router =useRouter();
      
     }
   };
+const  handleSignupgoogle=async()=>{
+    try{
+      const provider = new GoogleAuthProvider();
+      const res= await signInWithPopup(auth,provider);
+      console.log(res.user);
+      router.push("/auth/rolepage");
+    }  catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+      setUsedEmailError(true);
+      setUsedEmailErrorMessage('This email is already in use');
+     
+    } else {
+      setUsedEmailError(false);
+      setUsedEmailErrorMessage(''); 
+    }
+    }
+  }
+  const handleSignupfacebook=async()=>{
+    try{
+      const provider = new FacebookAuthProvider();
+      const res= await signInWithPopup(auth,provider);
+      console.log(res.user);
+      router.push("/auth/rolepage");
+    }catch(error){
+      console.log(error);
+    } 
 
+}
   const validateInputs = () => {
 
     const email = document.getElementById('email');
@@ -250,19 +277,19 @@ const router =useRouter();
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => alert('Sign up with Google')}
+              onClick={() => handleSignupgoogle()}
               startIcon={<GoogleIcon />}
             >
               Sign up with Google
             </Button>
-            <Button
+            {/* <Button
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign up with Facebook')}
               startIcon={<FacebookIcon />}
             >
               Sign up with Facebook
-            </Button>
+            </Button> */}
             <Typography sx={{ textAlign: 'center' }}>
               Already have an account?{' '}
               <Link

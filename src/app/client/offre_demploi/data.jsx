@@ -1,5 +1,5 @@
 import style from "./profile.module.css"
-export default function data(){
+export default function data({id}){
     return (
         <div className={style.data}>
             {/* ///////////// */}

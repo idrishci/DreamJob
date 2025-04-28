@@ -67,6 +67,10 @@
 .three{
     margin: 10px;
 }
+.three h3{
+    font-size: 16px;
+    font-weight: 800;
+}
 .btn button{
     width: 150px;
     height: 40px;
