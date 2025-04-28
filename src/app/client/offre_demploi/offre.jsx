@@ -7,7 +7,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 import {getDoc }from"firebase/firestore";
 import{ db,doc,auth} from "@/app/auth/firebase";
 import { postpostuler,getpostuler } from "../services/offreserv";
-import Buttonpostuler from "./buttonpostuler";
 export default function offre({id}){
    const [offres,setOffres]=useState([]);
    const [idoffre,setIdoffre]=useState(null);

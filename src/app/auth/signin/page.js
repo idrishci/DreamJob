@@ -95,7 +95,22 @@ const router =useRouter();
     }
 
   }
-
+const  handleSignupgoogle=async()=>{
+    try{
+      const provider = new GoogleAuthProvider();
+      const res= await signInWithPopup(auth,provider);
+      router.push("/");
+    }  catch (error) {
+      if (error.code === "auth/invalid-credential") {
+        setPasswordError(true);
+        setPasswordErrorMessage("Invalid email or password.");
+     
+    } else {
+      setUsedEmailError(false);
+      setUsedEmailErrorMessage(''); 
+    }
+    }
+  }
   const handleGoogleLogin = async () => {
         try {
           await signInWithPopup(auth, googleProvider);
@@ -210,19 +225,19 @@ const router =useRouter();
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => alert('Sign in with Google')}
+              onClick={() => handleSignupgoogle()}
               startIcon={<GoogleIcon />}
             >
               Sign in with Google
             </Button>
-            <Button
+            {/* <Button
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign in with Facebook')}
               startIcon={<FacebookIcon />}
             >
               Sign in with Facebook
-            </Button>
+            </Button> */}
             <Typography sx={{ textAlign: 'center' }}>
               Don&apos;t have an account?{' '}
               <Link

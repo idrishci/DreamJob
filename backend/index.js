@@ -5,7 +5,7 @@ import enterpriseroutes from "./routes/enterpriseroutes.js";
 import searchroutes from "./routes/searchroutes.js";
 import upload from "./uploaded/upload.js";
 
-import uploadenter from "./uploaded/uploadenter.js"
+// import uploadenter from "./uploaded/uploadenter.js"
 import offresidroutes from "./routes/offresidroutes.js"
 
 import postiduser from "./routes/userroutes.js";
