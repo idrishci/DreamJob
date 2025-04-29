@@ -14,9 +14,8 @@ export default function offre({id}){
    const [identrep,setIdentreprise]=useState(null);
    const [isConnected,setConnected]=useState('connected');
    const [ispostuler,setispostuler]=useState(false);
-   
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async(user) => {
+        const unsubscribe =  onAuthStateChanged(auth, async(user) => {
             if (user) {
                 setConnected("connected");
                 console.log("user",user.uid);
@@ -124,13 +123,16 @@ useEffect(() => {
             {offre.description_offre}
             </p>
             </div>
-            {ispostuler?(
+            {isConnected?(
+            ispostuler?(
                 <div className={style.btn}> <span><h3>vous postulez deja</h3></span></div>
             ):(
                
                 <div className={style.btn}><button onClick={()=>postuler()}>postuler</button></div>
+            )
+            ):(
+                <div className={style.btn}><button onClick={()=>alert("Veuillez vous connecter pour postuler. Merci !")}>postuler</button></div>
             )}
-          
         </div>
         )}
 

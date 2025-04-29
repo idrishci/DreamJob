@@ -52,7 +52,8 @@ const getthepost = (req,res) => {
 const getinfouser = (req,res) => {
     const {uid,role}=req.query;
     if(role=="client"){
-        const query="SELECT * FROM candidat  INNER JOIN post ON candidat.idcandidat=post.idpost WHERE uid_firebase=?";
+      const query="SELECT * FROM candidat   WHERE  candidat.uid_firebase = ?";
+        // const query="SELECT * FROM candidat  INNER JOIN post ON candidat.idcandidat=post.idpost WHERE uid_firebase=?";
         connection.query(query,uid,(err,data)=>{
             if(err)return console.log(err);
             console.log(data);

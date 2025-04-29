@@ -51,7 +51,7 @@ useEffect(()=>{
 
         <div className={style.lab}>
         <label  className={style.imag} name="image">
-        <Image width={150} height={150} alt="User profile photo" src={`http://localhost:8800/uploaded/photo/${infouser.photo_profile}`} className={style.img}/>
+        {/* <Image width={150} height={150} alt="User profile photo" src={`http://localhost:8800/uploaded/photo/${infouser.photo_profile}`} className={style.img}/> */}
                 <input type="file"  id="image" onChange={(e)=>{setImage(e.target.files[0])}}/>
         </label>
        </div>
