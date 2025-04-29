@@ -2,7 +2,7 @@
 import style from "./page.module.css"
 import Candidat from "./candidat"
 import Enterprise from "./enterprise"
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import {getDoc }from"firebase/firestore";
 import{ db,doc,auth} from "@/app/auth/firebase";
@@ -45,8 +45,8 @@ if (isConnected !== "connected") {
     <>{isConnected  &&      <div className={style.page}>
                <div className={style.nav}>
             <ul>
-        <li onClick={() => handleClick('item1')}>candidat</li>
-        <li onClick={() => handleClick('item2')}>enterprise</li>
+        <li onClick={() => handleClick('item1')} style={{ color: activeItem === 'item1' ? 'var(--buttoncolor)' : 'black' }}>candidat</li>
+        <li onClick={() => handleClick('item2') }  style={{ color: activeItem === 'item2' ? 'var(--buttoncolor)' : 'black' }}>enterprise</li>
             </ul> 
              </div>
              <main>

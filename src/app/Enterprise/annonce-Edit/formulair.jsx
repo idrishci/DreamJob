@@ -25,7 +25,7 @@ export default function Form({id}) {
       const offres = await getoffrebyId(id);
       setOffre(offres[0]);
       setFormData(offres[0]);
-      setDescription(offres[0]?.description_offre || "");
+      // setDescription(offres[0]?.description_offre || "");
     };
     fetchdata();
   }, [id]);
@@ -116,14 +116,11 @@ export default function Form({id}) {
 
           <label className={style.area}>
             <h3>Description du post</h3>
-            <FroalaEditor
-              tag='textarea'
-              model={description}
-              onModelChange={(newContent) => {
-                setDescription(newContent);
-                handleChange('desecription', newContent);
-              }}
-            />
+            <textarea
+              
+              defaultValue={offre.description_offre}
+              onChange={e => handleChange('description_offre', e.target.value)}
+            ></textarea>
           </label>
 
           <div className={style.btn}>

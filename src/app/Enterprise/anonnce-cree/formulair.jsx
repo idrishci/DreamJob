@@ -133,11 +133,9 @@ export default function Form({ id }) {
 
       <label className={style.area}>
         <h3>Description du post</h3>
-        <FroalaEditor
-          tag={"description"}
-          model={formData.description_offre}
+        <textarea
           onModelChange={(newContent) => handleChange('description', newContent)}
-        />
+        ></textarea>
       </label>
 
       <div className={style.btn}>

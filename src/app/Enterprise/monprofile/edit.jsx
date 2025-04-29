@@ -15,9 +15,7 @@ import { useState,useEffect } from "react";
 export default function edit({id}){
      const [enterprises,setEnterprises]=useState('');
      const [formData, setFormData] = useState({});
-     const [logo, setLogo] = useState(null);
-     const [cover, setCover] = useState(null);
-     const [previewLogo, setPreviewLogo] = useState('/image/account.png');
+     const [previewLogo, setPreviewLogo] = useState('');
      const [previewCover, setPreviewCover] = useState('');
        
      

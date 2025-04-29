@@ -79,7 +79,8 @@ export default function offre({id}){
             <hr />
             <div className={style.three}> <h3 style={{fontWeight:"800"}}>Description:</h3> 
     {/* <pre dangerouslySetInnerHTML={{ __html: offre.description_offre }}  style={{ whiteSpace: "pre-wrap" }}/>             */}
-       <div dangerouslySetInnerHTML={{ __html: offre.description_offre }}  style={{ whiteSpace: "pre-wrap" }}></div>       
+       {/* <div dangerouslySetInnerHTML={{ __html: offre.description_offre }}  style={{ whiteSpace: "pre-wrap" }}></div>        */}
+       <p>{offre.description_offre}</p>
 
                 
             </div>

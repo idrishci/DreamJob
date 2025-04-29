@@ -47,9 +47,9 @@ if (isConnected !== "connected") {
         {isConnected&& <div className={style.page}>
                <div className={style.nav}>
             <ul>
-        <li onClick={() => handleClick('item1')}>Active</li>
-        <li onClick={() => handleClick('item2')}>En cour de validation</li>
-        <li onClick={() => handleClick('item3') }>Rejeter</li>
+        <li onClick={() => handleClick('item1')}style={{ color: activeItem === 'item1' ? 'var(--buttoncolor)' : 'black' }}>Active</li>
+        <li onClick={() => handleClick('item2')}style={{ color: activeItem === 'item2' ? 'var(--buttoncolor)' : 'black' }}>En cour de validation</li>
+        <li onClick={() => handleClick('item3') }style={{ color: activeItem === 'item3' ? 'var(--buttoncolor)' : 'black' }}>Rejeter</li>
             </ul> 
              </div>
              <main>

@@ -14,8 +14,6 @@ const getenterprise=(req,res)=>{
 const getenterprisebyID=(req,res)=>{
     const id=req.params.id;
     const query="SELECT * FROM enterprise WHERE enterprise.uid_firebase=?";
-    console.log(id)
-    console.log(query)
     connection.query(query,[id],(err,data)=>{
         if(err){console.log(err);return res.status(500).json({ error: err.message });
             }

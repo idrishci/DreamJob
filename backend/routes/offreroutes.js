@@ -34,7 +34,7 @@ const getoffres=(req,res)=>{
 
     const getoffresenterp= (req,res)=>{
         const id=req.params.id;
-        const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.identerp WHERE offre_demploi.id_enterp=?";
+        const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE offre_demploi.id_enterp=?";
         connection.query(query,[id],(err,data)=>{
             if(err){return console.log(err);}
             // console.log(data);
@@ -44,7 +44,7 @@ const getoffres=(req,res)=>{
         })}
         const getperson= (req,res)=>{
             const id=req.params.id;
-            const query="SELECT * FROM postuler  INNER JOIN candidat  ON postuler.idcandidat=candidat.idcandidat WHERE postuler.idoffre=?";
+            const query="SELECT * FROM postuler  INNER JOIN candidat  ON postuler.idcandidat=candidat.uid_firebase WHERE postuler.idoffre=?";
             connection.query(query,[id],(err,data)=>{
                 if(err){return console.log(err);}
                 // console.log(data);
