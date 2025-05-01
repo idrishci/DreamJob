@@ -31,16 +31,16 @@ export default function card({id}){
           {enterprises.map((enterprise)=>{return (
         <div className={style.card} data-aos="fade-up">
 
-            {/* <Image src={props.url}
+            <Image src={enterprise.photo_profile? `/image/${enterprise.photo_profile}`:'/image/account.png'}
                    width={85}
                    height={120}
                    alt="logo"
-                //    key={enterprise.identerp}
-                   /> */}
+                key={enterprise.identerp}
+                   />
                    
            <h2>{enterprise.nom}</h2>
              
-            {/* <h5>({props.post} post vide)</h5>  //for letter*/}
+            <h5>{enterprise.secteur_dactivite} post vide</h5> 
         </div>
            )})} 
    </>

@@ -54,8 +54,9 @@ useEffect(() => {
      {isConnected=="connected" && <><div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
      {userr.map((use)=>( 
       <>
-    <h2> {use.nom } {use.prenom }</h2>
-     <Image width={40} height={40} alt={use.photo_profile} src={`http://localhost:8800/uploaded/photo/${use.photo_profile}`} className={style.img}/>
+      
+    <h2> {use.nom }{use.prenom }</h2>
+     <Image width={40} height={40} alt={"photo profile"} src={use.photo_profile?`/image/${use.photo_profile}`:"/image/account.png"} className={style.img}/>
      </>
     ))} 
      </div>

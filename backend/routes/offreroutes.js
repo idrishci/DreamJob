@@ -3,13 +3,13 @@ import connection from "../config/db.js";
 const router=express.Router();
 
 const getoffres=(req,res)=>{
-    const query="SELECT * FROM offre_demploi  ";
+    const query="SELECT * FROM offre_demploi INNER JOIN enterprise ON offre_demploi.id_enterp=enterprise.uid_firebase ";
     connection.query(query,(err,data)=>{
         if(err){return console.log(err);}
         return res.json(data);
     })}
     const getoffresAtt=(req,res)=>{
-        const query="SELECT * FROM offre_demploi WHERE offre_demploi.situation ='attent' OR situation = 'refuse'";
+        const query="SELECT * FROM offre_demploi WHERE offre_demploi.situation ='attent' ";
         console.log(query);
         connection.query(query,(err,data)=>{
             if(err){return console.log(err);}

@@ -20,7 +20,7 @@ export default function acceuil({id}){
                 <Link href={`./Enterprise/anonnce-cree?id=${id}`}><button>cree une annonce</button></Link>
             </section>
             <section data-aos="fade-left">
-                <Image src="/image/enter.png" width={350} height={500} alt="photo" />
+                <Image src="/image/enter.png" width={350} height={500} alt={"photo"} />
             </section>
         </div>
     );

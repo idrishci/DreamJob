@@ -24,8 +24,8 @@ export default function profile({id}){
         <div className={style.profile}>
                <div className={Style_nav.nav}>
             <ul>
-        <li onClick={()=>rendercomponent('enter') }>Enterprise</li>
-        <li onClick={()=>rendercomponent('offre')}>Offres d'emploi</li>
+        <li onClick={()=>rendercomponent('enter') } style={{ color: selectedItem.type === 'enter' ? 'var(--buttoncolor)' : 'black' }}>Enterprise</li>
+        <li onClick={()=>rendercomponent('offre')} style={{ color: selectedItem.type === 'offre' ? 'var(--buttoncolor)' : 'black' }}>Offres d'emploi</li>
             </ul> 
              </div>
              { selectedItem.type ==='enter' ?  <Data id={id}/>:<Offre  id={id}/>  }

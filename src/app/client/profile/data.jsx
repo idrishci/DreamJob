@@ -32,7 +32,7 @@ export default function data({id}){
             <div className={style.data}>
            <Photo id={id}/><>
             <h1>Description : </h1>
-            <p> {enterprise.desecription}</p>
+            <p> {enterprise.description_enter}</p>
        
         <h1>Secteur :</h1>
         <p>{enterprise.secteur_dactivite}</p>

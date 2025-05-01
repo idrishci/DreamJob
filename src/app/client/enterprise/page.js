@@ -12,7 +12,7 @@ import getenterprise from "../services/enterpriseserv"
 import {wilaya} from "@/app/file_json/wilaya";
 import {secteur} from "@/app/file_json/data.js";
 import {getoffresearch}from"../services/offreserv.js";
-export default function page(){
+export default function Page(){
    const [enterprises,setEnterprises]=useState([]);
    useEffect(()=>{
        const fetchdata=async()=>{
@@ -63,6 +63,7 @@ export default function page(){
 
 
     <div className={style.enterprise}>
+      
          <div className={style.search_bar}>
           <input type="text" name="nom" id="nom" placeholder="nom d'enterprise" />
              <select name="secteur" id="" onChange={handlelechange}>
