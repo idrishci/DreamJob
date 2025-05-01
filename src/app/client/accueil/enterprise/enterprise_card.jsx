@@ -27,9 +27,9 @@ export default function page(){
 
 
       {enterprises.length > 0 ? (
-      enterprises.map((enterprise)=>{
-        return  <Link  href={`./client/profile?id=${enterprise.identerp}`} ><Card key={enterprise.identerp} id={enterprise.identerp}  /></Link>
-     } )
+      enterprises.map((enterprise)=>(
+         <Link  key={enterprise.identerp} href={`./client/profile?id=${enterprise.identerp}`} ><Card key={enterprise.identerp} id={enterprise.identerp}  /></Link>
+       ) )
   
       ) : (
         <p>Chargement des enterprises...</p> // ✅ Display message while fetching

@@ -15,11 +15,6 @@ export default function profile({id}){
     const  rendercomponent = (type)=> {
        setSelectedItem({type});
    }
-
-   const hell=()=>{
-       console.log("this is ths id ",id);}
-       hell();
-
     return (
         <div className={style.profile}>
                <div className={Style_nav.nav}>

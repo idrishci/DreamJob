@@ -7,19 +7,21 @@ import { onAuthStateChanged } from 'firebase/auth';
 import {getDoc }from"firebase/firestore";
 import{ db,doc,auth} from "@/app/auth/firebase";
 import { postpostuler,getpostuler } from "../services/offreserv";
-export default function offre({id}){
+export default function offre({id,uid}){
    const [offres,setOffres]=useState([]);
    const [idoffre,setIdoffre]=useState(null);
    const [iduser,setiduser]=useState(null);
    const [identrep,setIdentreprise]=useState(null);
    const [isConnected,setConnected]=useState('connected');
    const [ispostuler,setispostuler]=useState(false);
+   const [isuid,setUid]=useState(null); 
     useEffect(() => {
         const unsubscribe =  onAuthStateChanged(auth, async(user) => {
             if (user) {
                 setConnected("connected");
                 console.log("user",user.uid);
                 setiduser(user.uid);
+                
             } else {
                 setConnected("deconnected");
             }
@@ -30,45 +32,50 @@ export default function offre({id}){
  useEffect(()=>{
    
         const fetchdata=async()=>{  
+            console.log("id of offre222 ", id);
+            setUid(uid);
             const offre=await getoneoffresentrerp(id);
             setOffres(offre); 
+            // console.log("offre2221212",offre);
             console.log("user",iduser);
-            console.log("offre11111",idoffre,identrep,iduser);
-
-            const postulerr=await getpostuler(id,offre[0].identerp,iduser);
-            console.log("postulerr",postulerr[0].identerp);
-
+            console.log("iddd",id);
+            console.log("uidddd",uid);
+            console.log("offre11111k",id,uid,iduser);
+            if(id &&uid&& iduser){
+            const postulerr=await getpostuler(id,uid,iduser);
+            // console.log("postulerr",postulerr[0].identerp);
+            
             if(postulerr.length>0){
                 setispostuler(true);
                 console.log("already postuler");
-            }
+            }}
            
                
         };
          
         fetchdata();
-    },[id,iduser]);
+    },[id,uid,iduser]);
 useEffect(() => {
        
     }, []);
 
     const postuler=async()=>{
+        console.log("id of uid", uid);
         setispostuler(true);
         console.log("isistpostuler",ispostuler);
-        await postpostuler(id,offres[0].identerp,iduser);
+        await postpostuler(id,isuid,iduser);
         
     }
 
     return(
         <>
         {offres.length>0?(
-            offres.map((offre) => {
-                return(  
+            offres.map((offre) => (  
                
-        <div className={style.offre}>
+        <div className={style.offre} key={offre.idoffre}>
             <div className={style.first}>
                <h1>{offre.titre}  </h1>
-                    <Image width={40} height={40} src={"/icon/bookmark.png"} className={style.img}/>
+                    <Image width={40} height={40} src={"/icon/bookmark.png"} alt="icon" className={style.img}/>
             </div>
             <div className={style.second}>
                 <label >
@@ -134,7 +141,7 @@ useEffect(() => {
                 <div className={style.btn}><button onClick={()=>alert("Veuillez vous connecter pour postuler. Merci !")}>postuler</button></div>
             )}
         </div>
-        )}
+        )
 
     ))
     :(

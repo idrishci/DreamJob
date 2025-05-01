@@ -23,7 +23,7 @@ useEffect(() => {
     return(<>{userr.map((usere)=>(
     <div className={style.profile}>
         
-            {/* <Image width={150} height={150} alt="photo_profile" src={`http://localhost:8800/uploaded/photo/${usere.photo_profile}`} className={style.img}/> */}
+            <Image width={150} height={150} alt="photo_profile" src={`http://localhost:8800/uploaded/photo/${usere.photo_profile}`} className={style.img}/>
        
         <div className={style.data}>
             <label > <h2>Nom :</h2> <h3>{usere.nom}</h3></label>
@@ -43,7 +43,7 @@ useEffect(() => {
         <div className={style.desc}>
         <label >
             <h2>Description</h2>
-            <p>{usere.sujet} </p>
+            <p>{usere.description_can} </p>
         </label>
         </div>
     </div>

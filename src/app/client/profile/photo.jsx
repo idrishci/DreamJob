@@ -16,7 +16,7 @@ export default function photo({id}){
        
         const fetchdata=async()=>{
             const data=await getenterprise();
-            const enter=data.find((data)=>data.identerp===Number(id));
+            const enter=data.find((data)=>data.uid_firebase===id);
           
             // console.log(enter);
             // console.log("card");
@@ -28,14 +28,15 @@ export default function photo({id}){
    
 
 
-    return(
+    return(<>
+       {enterprises.map((enterprise)=>(
+        <div className={style.photo} key={enterprise.identerp}>
        
-        <div className={style.photo}>
-       {enterprises.map((enterprise)=>{ return (
-       <>  <div className={style.second}>
+       <>  
+       <div className={style.second} >
         <img src="/image/sonatrach.png" alt="cover"  />
         
-    </div> 
+        </div> 
            <div className={style.first}>
 
                <Image src={"/image/sonatrach.png"} width={130} height={130} alt="logo" className={style.logo}/>
@@ -45,12 +46,13 @@ export default function photo({id}){
                    <div className={style.back}><Image src={"/icon/internet (1).png"} onClick={() => enterprise.siteweb && window.open(enterprises.siteweb, "_blank")} width={30} height={30} alt="siteweb" /></div>
                </div>
                <h1> {enterprise.nom}</h1>
-</div>
-          
-               </>  
-        ) })}
         </div>
-   
+          
+        </>  
+        
+        </div>
+        ) )}
+   </>
 
     );
 }

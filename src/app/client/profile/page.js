@@ -12,9 +12,9 @@ export default function Page(){
  
         useEffect(() => {
             const urlParams = new URLSearchParams(window.location.search);
-            const idFromUrl = urlParams.get("id");
+            const idFromUrl = urlParams.get("uid");
             setId(idFromUrl);
-            console.log("ID from page:", idFromUrl);
+            // console.log("ID from page:", idFromUrl);
           }, []);
     return (
         <div className={style.prof_entr}>

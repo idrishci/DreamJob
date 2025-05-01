@@ -34,6 +34,7 @@ const getoffres=(req,res)=>{
 
     const getoffresenterp= (req,res)=>{
         const id=req.params.id;
+        console.log("id of enterp3333",id);
         const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE offre_demploi.id_enterp=?";
         connection.query(query,[id],(err,data)=>{
             if(err){return console.log(err);}
@@ -52,6 +53,7 @@ const getoffres=(req,res)=>{
             
                 
             })}
+
 
 
  

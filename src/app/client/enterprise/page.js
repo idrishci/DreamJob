@@ -78,9 +78,10 @@ export default function page(){
       <Hr/> 
       <div className={style.cards}>
     {enterprises.length > 0 ? (
-      enterprises.map((enterprise)=>{
-        return  <Link  href={`./profile?id=${enterprise.identerp}`} ><Card key={enterprise.identerp} id={enterprise.identerp}  /></Link>
-  } )
+      enterprises.map((enterprise)=>(
+        console.log("enterprise uid",enterprise.uid_firebase),
+         <Link  href={`./profile?uid=${enterprise.uid_firebase}`} key={enterprise.identerp} ><Card key={enterprise.identerp} id={enterprise.identerp}  /></Link>
+  ))
   
   ): enterprises.length===0 ? (
     <p> n'existe pas d'enterprise...</p>

@@ -15,6 +15,7 @@ return res.data;
 }
 export async function getoffresentrerp(id){
     try{
+        console.log("id of enterp33333",id);
    const res=await axios.get(`http://localhost:8800/api/offres/${id}`);
    console.log(res.data);
    return res.data
@@ -27,7 +28,7 @@ export async function getoffresentrerp(id){
 
    export async function getoneoffresentrerp(idoffre){
     try{
-        console.log("idoffre",idoffre);
+        console.log("idoffreone",idoffre);
    const res=await axios.get(`http://localhost:8800/api/offresid/:id/${idoffre}`);
    console.log(res.data);
    return res.data

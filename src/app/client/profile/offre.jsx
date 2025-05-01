@@ -6,8 +6,6 @@ import Link from "next/link";
 export default function offre({id}){
 
     const [offres,setOffres]=useState([]);
-   
-   
     useEffect(()=>{
         const fetchdata=async()=>{
             const offre=await getoffresentrerp(id);
@@ -29,9 +27,9 @@ export default function offre({id}){
     return (
     <>
         {offres.length>0?(
-            offres.map((offre) => {return(  
-        <div className={style.offre} > 
-              <Link href={`./offre_demploi?id=${offre.idoffre}`} key={offre.idoffre} className={style.link}>
+            offres.map((offre) => (  
+        <div className={style.offre}  key={offre.idoffre}> 
+              <Link href={`./offre_demploi?id=${offre.idoffre}&uid=${id}`} key={offre.idoffre} className={style.link}>
         <div className={style.card}>
         <div className={style.title}>{offre.titre}</div>
         <div className={style.option}>
@@ -45,7 +43,7 @@ export default function offre({id}){
     </div>
    </Link>
      </div>
-)}
+)
 
 ))
 :(

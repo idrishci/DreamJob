@@ -5,7 +5,7 @@ import Data from "../profile/data"
 import Offre from "./offre"
 import { useState } from "react"
 import style from "./profile.module.css"
-export default function profile({id}){
+export default function profile({id,uid}){
     const [selectedItem, setSelectedItem] = useState({type:'offre'});
     const  rendercomponent = (type)=> {
        setSelectedItem({type});
@@ -19,7 +19,7 @@ export default function profile({id}){
       
             </ul> 
              </div>
-             {selectedItem.type ==='offre' ? <Offre id={id} />:<Data id={id} />  }
+             {selectedItem.type ==='offre' ? <Offre id={id}uid={uid} />:<Data id={uid} />  }
         </div>
     );
 }

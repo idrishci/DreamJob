@@ -58,8 +58,8 @@ export default function card({id}){
 
         <div className={style.offre}>
              
-                {offres.map((offre) => {return(
-             <div className={style.card} data-aos="fade-up">
+                {offres.map((offre) => (
+             <div className={style.card} key={offre.idoffre}data-aos="fade-up">
 
              <div className={style.first}>
              <Image src={"/image/sonatrach.png"} width={82} height={82} key={id} alt="logo"/>
@@ -81,7 +81,7 @@ export default function card({id}){
              </div>
          </div>
             
-         )}) 
+         )) 
         
         }
 

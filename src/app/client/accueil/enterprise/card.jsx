@@ -1,5 +1,5 @@
 import style from './style.module.css';
-import Image from 'next/image';
+// import Image from 'next/image';
 import {date} from "./post.js"
 import {useState,useEffect}from"react";
 import getenterprise from "../../services/enterpriseserv"
@@ -28,21 +28,21 @@ export default function card({id}){
         ,[]);
     return(
         <>
-          {enterprises.map((enterprise)=>{return (
-        <div className={style.card} data-aos="fade-up">
+          {enterprises.map((enterprise)=> (
+        <div className={style.card} key={enterprise.identerp}data-aos="fade-up">
 
-            {/* <Image src={props.url}
+            <Image src={props.url}
                    width={85}
                    height={120}
                    alt="logo"
-                //    key={enterprise.identerp}
-                   /> */}
+                   key={enterprise.identerp}
+                   />
                    
            <h2>{enterprise.nom}</h2>
              
             {/* <h5>({props.post} post vide)</h5>  //for letter*/}
         </div>
-           )})} 
+           ))} 
    </>
     
         );}

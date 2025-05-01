@@ -24,17 +24,17 @@ const signout=async()=>{
     // setUser(null);
 }
 
-useEffect(async() => {
-    const unsubscribe = await onAuthStateChanged(auth, async(user) => {
+useEffect(() => {
+    const unsubscribe =  onAuthStateChanged(auth, async(user) => {
         if (user) {
-            console.log("id of user ", user);
+            // console.log("id of user ", user);
             setConnected("connected");
             const docref = doc(db, "users", user.uid);
              const document=await getDoc(docref);
              
              const res=await getinfouser(user.uid,document.data().role);
              await setUser(res);
-             console.log("infouser", res);
+            //  console.log("infouserbuton", res);
         } else {
           console.log("no user is connected");
             setUser(null);
@@ -47,21 +47,38 @@ useEffect(async() => {
     return (
         <div className={style.btn}>
            {isConnected=="deconnected" &&
-           <> <button onClick={()=>{router.push("/auth/signup")}}>sign up</button>
-        <button onClick={()=>{router.push("/auth/signin")}}>sign in</button>
-        </>}
+           <> 
+           <button onClick={()=>{router.push("/auth/signup")}}>sign up</button>
+            <button onClick={()=>{router.push("/auth/signin")}}>sign in</button>
+            </>
+        }
       
-     {isConnected=="connected" && <><div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
+     {/* {isConnected=="connected" && 
+     <>
+     <div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
      {userr.map((use)=>( 
       <>
     <h2> {use.nom } {use.prenom }</h2>
-     {/* <Image width={40} height={40} alt={use.photo_profile} src={`http://localhost:8800/uploaded/photo/${use.photo_profile}`} className={style.img}/> */}
+     <Image width={40} height={40} alt={use.photo_profile} src={`http://localhost:8800/uploaded/photo/${use.photo_profile}`} className={style.img}/>
      </>
     ))} 
      </div>
      </>
 
-    }
+    } */}
+
+    {isConnected === "connected" && userr[0] &&(
+  <div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
+    <h2>{userr[0].nom} {userr[0].prenom}</h2>
+    <Image 
+      width={40} 
+      height={40} 
+      alt={userr[0].photo_profile} 
+      src={`http://localhost:8800/uploaded/photo/${userr[0].photo_profile}`} 
+      className={style.img}
+    />
+  </div>
+)}
     {isOpen &&<div className={style.proflist}>
       <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}>Mon profile</li> 
          <hr />
