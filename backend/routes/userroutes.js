@@ -1,34 +1,117 @@
 import express from 'express';
 import connection from '../config/db.js';
 import multer from "multer";
-const router=express.Router();
-const postiduser = (req,res) => {
-const id=req.body.uid;
-const user=req.body.user;
-console.log("this is th is ",id,"this is user",user);
-if(user=="client"){
-    const query1="INSERT INTO candidat (idcandidat,email,uid_firebase) VALUES (?,?,?)";
-    const query2="INSERT INTO post (idpost,uid_firebase) VALUES (?,?)";
-   const VALUES1=[2,id];
-    const VALUES=[4,email,id];
-    connection.query(query1,VALUES,(err,data)=>{
-    if(err)return console.log(err);
-    return res.json("user added successfully");
-})
-connection.query(query2,VALUES1,(err,data)=>{
-  if(err)return console.log(err);
-  return res.json("user added successfully");
-})
-}else if(user=="enterprise"){
-    const query="INSERT INTO enterprise (identerp,uid_firebase) VALUES (?,?)";
-//    const VALUES=[4,id];
-const values=[5,id];
-    connection.query(query,values,(err,data)=>{
-    if(err)return console.log(err);
-    return res.json("user added successfully");
-})
-}
-}
+import path from "path";
+// import { fileURLToPath } from 'url';
+// import { dirname } from 'path';
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+// // const multer = require('multer');
+// // const path = require('path');
+const router = express.Router();
+
+// تحديد مكان الحفظ واسم الملف
+
+// إعداد multer
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     if (file.fieldname === 'photo_profile' ) {
+//       folder = path.join('public', 'image');
+//     } else {
+//       folder = path.join('public', 'file');
+//     }
+//   },
+//   filename: (req, file, cb) => {
+//     const uniqueName = Date.now() + path.extname(file.originalname);
+//     cb(null, uniqueName);
+//   }
+// });
+
+// const upload = multer({ storage: storage });
+// router.post('/adduser', upload.fields([
+//   { name: 'photo_profile', maxCount: 1 },
+//   { name: 'cv', maxCount: 1 } // Ajout du champ CV
+// ]), async (req, res) => {
+//   console.log(1)
+//   const {
+//     uid_firebase,
+//     nom,
+//     prenom,
+//     age,
+//     gender,
+//     email,
+//     num_telephone,
+//     secteur_dactivite,
+//     niveau_detude,
+//     exper,
+//     wilaya,
+//     description_can
+//   } = req.body;
+
+//   const requiredFields = [nom, prenom,age,gender, num_telephone, niveau_detude, secteur_dactivite, email, description_can,wilaya,exper];
+//   if (requiredFields.some(field => !field)) {
+//     return res.status(400).json({ error: "Tous les champs obligatoires doivent être remplis." });
+//   }
+
+//   // Récupérer les fichiers
+//   const logo = req.files['photo_profile'] ? req.files['photo_profile'][0].filename : null;
+//   const cv = req.files['cv'] ? req.files['cv'][0].filename : null;
+
+//   const columns = [
+//             "uid_firebase",
+//             "nom",
+//             "prenom",
+//             "age",
+//             "gender",
+//             "wilaya",
+//             "exper",
+//             "num_telephone",
+//             "niveau_detude",
+//             "secteur_dactivite",
+//             "email",
+//             "description_can",
+//   ];
+//    console.log(1)
+//   const values = [
+//     uid_firebase,
+//     nom,
+//     prenom,
+//     age,
+//     gender,
+//     wilaya,
+//     exper,
+//     num_telephone,
+//     niveau_detude,
+//     secteur_dactivite,
+//     email,
+//     description_can
+//   ];
+
+//   // Champs facultatifs
+//   if (logo) {
+//     columns.push("photo_profile");
+//     values.push(logo);
+//   }
+//   if (cv) {
+//     columns.push("cv");
+//     values.push(cover);
+//   }
+
+
+//   const placeholders = columns.map(() => "?").join(", ");
+//   const query = `INSERT INTO enterprise (${columns.join(", ")}) VALUES (${placeholders})`;
+
+//   connection.query(query, values, (err, result) => {
+//     if (err) {
+//       console.error("Erreur lors de l'ajout :", err);
+//       return res.status(500).json({ error: "Erreur lors de l'ajout." });
+//     }
+//     res.status(200).json({ success: true, message: "candidat ajoutée avec succès", id: result.insertId });
+//   });
+// });
+
+
 
 const postthepost = (req,res) => {
   const { sujet, titre, uid } = req.body;
@@ -52,7 +135,8 @@ const getthepost = (req,res) => {
 const getinfouser = (req,res) => {
     const {uid,role}=req.query;
     if(role=="client"){
-        const query="SELECT * FROM candidat  INNER JOIN post ON candidat.idcandidat=post.idpost WHERE uid_firebase=?";
+      const query="SELECT * FROM candidat   WHERE  candidat.uid_firebase = ?";
+        // const query="SELECT * FROM candidat  INNER JOIN post ON candidat.idcandidat=post.idpost WHERE uid_firebase=?";
         connection.query(query,uid,(err,data)=>{
             if(err)return console.log(err);
             console.log(data);
@@ -215,7 +299,7 @@ router.post("/addfav",addfavcan);
 router.delete("/deletfav",deletfavcan);
 router.get("/",getinfouser);
 router.get("/getfav/:id",getfavorit);
-router.post("/",postiduser);
+// router.post("/",postiduser);
 router.post("/post",postthepost);
 router.get("/getpost",getthepost);
 router.post("/updateclient",updateinfoclient);

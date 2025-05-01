@@ -28,12 +28,13 @@ export default function card({id}){
         ,[]);
     return(
         <>
-          {enterprises.map((enterprise)=>{return (
-        <div className={style.card} data-aos="fade-up">
+          {enterprises.map((enterprise)=> (
+        <div className={style.card} key={enterprise.identerp}data-aos="fade-up">
+
 
             <Image src={enterprise.photo_profile? `/image/${enterprise.photo_profile}`:'/image/account.png'}
-                   width={85}
-                   height={120}
+                   width={100}
+                   height={100}
                    alt="logo"
                 key={enterprise.identerp}
                    />
@@ -42,7 +43,7 @@ export default function card({id}){
              
             <h5>{enterprise.secteur_dactivite} post vide</h5> 
         </div>
-           )})} 
+           ))} 
    </>
     
         );}

@@ -6,8 +6,10 @@ import mysql from "mysql2";
 const connection= mysql.createConnection({
 host:'localhost' ,
 user:'root',
+
 password:'',
 database:'offreemploi',
+
 // port:process.env.DB_PORT ,
 });
 connection.connect((err)=>{

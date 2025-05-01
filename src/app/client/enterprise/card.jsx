@@ -23,9 +23,9 @@ export default function card({id}){
       }, [enterprises]);
     return(
         <>
-        {enterprises.map((enterprise)=>{return (
+        {enterprises.map((enterprise)=>(
 
-        <div className={style.card}>
+        <div className={style.card} key={enterprise.identerp}>
             <div className={style.background} >
 
             <div className={style.logo}>
@@ -37,13 +37,13 @@ export default function card({id}){
 
             <div className={style.data}>
 
-                <h3><Image src={"/icon/office-building.png"} width={20} height={20}/><span> {enterprise.secteur_dactivite}</span></h3>
-                <h3><Image src={"/icon/location-sign.png"} width={20} height={20}/><span>  {enterprise.localisation}</span></h3>
-                <h3><Image src={"/icon/audience.png"} width={20} height={20}/><span></span> {enterprise.nombre_demployer}</h3>
-                <h3>2 offer d’emploi</h3>
+                <h3><Image src={"/icon/office-building.png"} alt={"icon"} width={20} height={20}/><span> {enterprise.secteur_dactivite}</span></h3>
+                <h3><Image src={"/icon/location-sign.png"}alt={"icon"} width={20} height={20}/><span>  {enterprise.localisation}</span></h3>
+                <h3><Image src={"/icon/audience.png"} alt={"icon"} width={20} height={20}/><span></span> {enterprise.nombre_demployer}</h3>
+                {/* <h3>2 offer d’emploi</h3> */}
             </div>
         </div>
-    )})}
+    ))}
     </>
     )
 

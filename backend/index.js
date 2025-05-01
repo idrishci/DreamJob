@@ -4,7 +4,7 @@ import offreroutes from "./routes/offreroutes.js";
 import enterpriseroutes from "./routes/enterpriseroutes.js";
 import searchroutes from "./routes/searchroutes.js";
 import upload from "./uploaded/upload.js";
-
+import adduser from "./routes/adduserrout.js"
 // import uploadenter from "./uploaded/uploadenter.js"
 import offresidroutes from "./routes/offresidroutes.js"
 
@@ -41,7 +41,7 @@ app.use("/api/users", upload.fields([
 ]),userroutes);
 app.use("/api/users/post",userroutes);
 app.use("/api/users/getpost",userroutes);
-
+app.use("/api/addusers",adduser)
 
 app.use("/api/offres/search",searchroutes);
 app.use("/api/enterprise",enterpriseroutes);

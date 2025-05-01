@@ -14,7 +14,7 @@ useEffect(()=>{
 },[]);
     return (
         <div className={style.img} data-aos="fade-left">
-<Image width={400} height={400} src={"/image/accueil.png"}/>
+<Image width={400} height={400} alt={"accueil.png"}src={"/image/accueil.png"}/>
         </div>
     );
 

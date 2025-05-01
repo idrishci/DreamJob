@@ -3,39 +3,57 @@
 import style from "./edit.module.css"
 
 import Image from "next/image"
-
+import {setenterprise} from "../../services/userserv"
 import {secteur} from "@/app/file_json/data.js"
 import { useState,useEffect } from "react";
 
-export default function edit({id}){
+export default function FormEnter({id}){
+  console.log("hhhh"+id);
     //  const [enterprises,setEnterprises]=useState('');
      const [formData, setFormData] = useState({});
      const [previewLogo, setPreviewLogo] = useState('');
      const [previewCover, setPreviewCover] = useState('');
+     const requiredFields = [
+      "nom",
+      "localisation",
+      "num_telephone",
+      "nombre_demployer",
+      "secteur_dactivite",
+      "email",
+      "description_enter",
+    ];
        
      
      ////get info
-     const fetchdata=async()=>{
-    
-      const data=await getEnterprise(id);
-      setFormData(data[0]);
-      // setEnterprises(data ? data[0] : []);
-      // setDescription(offres[0]?.description || "");
-  }
-     useEffect(()=>{
-            
-            fetchdata();
-        }
-        ,[]);
+
+
         ///////////////////
         const handleChange = (field, value) => {
-            setFormData({ ...formData, [field]: value });
-
-           
-          };
+            setFormData({ ...formData, [field]: value });};
           /////
         const handleSubmit = async () => {
-            const formDataToSend = new FormData();
+     
+          const formDataToSend = new FormData();
+          formDataToSend.append('uid_firebase', id);
+          console.log("this"+formDataToSend.uid_firebase)
+          const requiredFields = [
+            "nom",
+            "localisation",
+            "num_telephone",
+            "nombre_demployer",
+            "secteur_dactivite",
+            "email",
+            "description_enter",
+
+          ];
+        
+          for (const field of requiredFields) {
+            if (!formData[field]) {
+              alert(`Veuillez remplir le champ : ${field.replace(/_/g, " ")}`);
+              return;
+            }
+          }
+           
             for (let key in formData) {
               if (key !== "photo_profile" && key !== "pathcover") {
                 formDataToSend.append(key, formData[key]);
@@ -48,9 +66,9 @@ export default function edit({id}){
               formDataToSend.append("pathcover", formData.pathcover);
             }
 
-            console.log("photo_profile type:", typeof formData.photo_profile);
-            console.log("pathcover type:", typeof formData.pathcover);
-           const result = await updateenterprise(id, formDataToSend);
+            // console.log("photo_profile type:", typeof formData.photo_profile);
+            // console.log("pathcover type:", typeof formData.pathcover);
+           const result = await setenterprise( formDataToSend);
               if (result) {
                 alert("Offre modifiée avec succès !");
                 fetchdata();
@@ -64,11 +82,11 @@ export default function edit({id}){
             if (file) {
               if (type === "logo") {
                 setFormData({ ...formData, 'photo_profile': file });
-                setLogo(file);
+                // setLogo(file);
                 setPreviewLogo(URL.createObjectURL(file));
               } else if (type === "cover") {
                 setFormData({ ...formData, 'pathcover': file });
-                setCover(file);
+                // setCover(file);
                 setPreviewCover(URL.createObjectURL(file));
               }
             }
@@ -76,17 +94,17 @@ export default function edit({id}){
     return(
         <>
         <div className={style.edit}> 
-          <h1>Remplire cette </h1>
+          <h1> Veuillez compléter votre profil</h1>
      <div className={style.photo}>
         
         <div className={style.logo}>
         <h3>Selection une photo profile</h3>
-        <label htmlFor="logo"><img src={previewLogo } alt="logo" /><input type="file" id="logo" style={{display:"none"}}   onChange={(e) => handleImageChange(e, "logo")} /></label>
+        <label htmlFor="logo"><Image width={150} height={150}src={previewLogo } alt="logo"  /><input type="file" id="logo" style={{display:"none"}}   onChange={(e) => handleImageChange(e, "logo")} /></label>
         </div>
 
         <div className={style.background}>
         <h3>Selection une photo profile</h3>
-        <label For="backg" ><img  src={previewCover } alt="Backround" /><input type="file" id="backg" style={{display:"none"}} onChange={(e) => handleImageChange(e,"cover")} /></label>
+        <label htmlFor="backg" ><Image  width={700} height={200}src={previewCover } alt="Backround"  /><input type="file" id="backg" style={{display:"none"}} onChange={(e) => handleImageChange(e,"cover")} /></label>
         </div>
         
      </div> 

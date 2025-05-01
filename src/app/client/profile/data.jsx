@@ -8,10 +8,10 @@ export default function data({id}){
    
   const [enterprises,setEnterprises]=useState([]);
     useEffect(()=>{
-       
         const fetchdata=async()=>{
             const data=await getenterprise();
-            const enter=data.find((data)=>data.identerp===Number(id));
+            
+            const enter=data.find((data)=>data.uid_firebase===id);
           
             // console.log(enter);
             // console.log("card");
@@ -29,8 +29,8 @@ export default function data({id}){
         <>
         
             {enterprises.map ((enterprise)=>{ return ( 
-            <div className={style.data}>
-           <Photo id={id}/><>
+            <div className={style.data} key={enterprise.identerp}>
+           <Photo id={id} key={enterprise.identerp}/><>
             <h1>Description : </h1>
             <p> {enterprise.description_enter}</p>
        

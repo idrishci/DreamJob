@@ -7,12 +7,17 @@ import { useSearchParams } from 'next/navigation';
 
 export default function Page(){
      const [id, setId] = useState(null);  
+     const [uid, setUid] = useState(null);  
+    
   const searchParams = useSearchParams();
          useEffect(() => {
             
             const idoffre = searchParams.get('id');
+            const uidd= searchParams.get('uid');
+            console.log("offre.id_enterp222",uidd);
             console.log("idddddddddd",idoffre);
              setId(idoffre);
+             setUid(uidd);
             
            }, []);
     return (
@@ -20,7 +25,7 @@ export default function Page(){
         <div className={style.prof_entr}>
           
         {/* <Photo /> */}
-        <Profil id={id} />
+        <Profil id={id} uid={uid} />
        
         
         </div></>

@@ -20,8 +20,8 @@ export default function Page(){
 
    const [isConnected,setConnected]=useState('connected');
    const [loading,setLoading]=useState(true);
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async(user) => {
+    useEffect(async () => {
+        const unsubscribe = await onAuthStateChanged(auth, async(user) => {
             if (user) {
                 console.log("is steel connected");
                 setConnected("connected");

@@ -203,8 +203,8 @@ return value;
         <div className={style.offre}>
           {offres.length > 0 ? (
            offres.map((offre)=>{
-            // console.log(offre.idoffre);
-          return  <Link href={`./offre_demploi?id=${offre.idoffre}`} key={offre.idoffre}id={offre.idoffre}  className={style.offre}><Card  id={offre.idoffre} key={offre.idoffre}/></Link> 
+            console.log("offre.id_enterp",offre.id_enterp);
+          return  <Link href={`./offre_demploi?id=${offre.idoffre}&uid=${offre.id_enterp}`} key={offre.idoffre}id={offre.idoffre}  className={style.offre}><Card  id={offre.idoffre} key={offre.idoffre}/></Link> 
            } )
         ): offres.length===0 ? (
             <p> n'existe pas d'offres...</p>

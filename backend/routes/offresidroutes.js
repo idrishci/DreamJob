@@ -3,12 +3,14 @@ import connection from "../config/db.js";
 const router=express.Router();
 //// get all data by id offre
 const getoffrebyId=(req,res)=>{
-    const id=req.params.id;
+ 
+    const id=req.params.id; 
+    console.log("id",id);
     const query="SELECT * FROM offre_demploi INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE offre_demploi.idoffre=?";
  connection.query(query,[id],(err,data)=>{
     if(err){return console.log(err);}
     console.log(data);
-    console.log("hello");
+    // console.log("hello");
     return res.json(data);
 
  ////updata data offre  by id offre   
@@ -19,7 +21,7 @@ const deletoffre=(req,res)=>{
 connection.query(query,[id],(err,data)=>{
   if(err){return console.log(err);}
   console.log(data);
-  console.log("hello");
+  // console.log("hello");
   return res.json(data);
 })}
 ////updata data offre  by id offre 
@@ -27,8 +29,8 @@ connection.query(query,[id],(err,data)=>{
 const postuler=(req,res)=>{
     const {idoffre,identerp,iduser}=req.body;
     console.log(idoffre,identerp,iduser);
-    const query="INSERT INTO postuler (idoffre,identerp,uid_firebase) VALUES (?,?,?)";
-    const values=[idoffre,identerp,iduser];
+    const query="INSERT INTO postuler (idoffre,idcandidat,uid_firebase) VALUES (?,?,?)";
+    const values=[idoffre,iduser,identerp];
     connection.query(query,values,(err,data)=>{
         if(err)return console.log(err);
         return res.json(data);
@@ -40,8 +42,8 @@ const getpostuler=(req,res)=>{
   const identerp=req.query.identerp;
   const iduser=req.query.iduser;
   console.log("fdf",idoffre,identerp,iduser);
-  const query="SELECT * FROM postuler WHERE  idoffre=? AND identerp=? AND uid_firebase=? ";
-  const values=[idoffre,identerp,iduser];
+  const query="SELECT * FROM postuler WHERE  idoffre=? AND idcandidat=? AND uid_firebase=? ";
+  const values=[idoffre,iduser,identerp];
   connection.query(query,values,(err,data)=>{
       if(err)return console.log(err);
       return res.json(data);
