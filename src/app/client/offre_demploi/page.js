@@ -5,7 +5,7 @@ import Profil from "./profil";
 import {useEffect, useState}from "react";
 import { useSearchParams } from 'next/navigation';
 
-export default function page(){
+export default function Page(){
      const [id, setId] = useState(null);  
      const [uid, setUid] = useState(null);  
     

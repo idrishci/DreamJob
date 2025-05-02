@@ -225,7 +225,7 @@ router.post("/addfav",addfavcan);
 router.delete("/deletfav",deletfavcan);
 router.get("/",getinfouser);
 router.get("/getfav/:id",getfavorit);
-router.post("/",postiduser);
+// router.post("/",postiduser);
 router.post("/post",postthepost);
 router.get("/getpost",getthepost);
 router.post("/updateclient",updateinfoclient);

@@ -39,9 +39,12 @@ export default function Home() {
    },[]);
 
    if (loading) {
+console.log("loading")
+
     return <div>Loading...</div>; // or a spinner/loading component
 }
 if (isConnected !== "connected") {
+
     return null; // prevent rendering anything while redirecting
 }
 

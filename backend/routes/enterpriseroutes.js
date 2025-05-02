@@ -20,16 +20,16 @@ const getenterprisebyID=(req,res)=>{
         return res.json(data);
     })
 }
-const postenterprise=(req,res)=>{
-    const query="INSERT INTO enterprise (nom,email,num_telephone,secteur_dactivite,siteweb,linkedin,nombre_demployer,localisation) VALUES(?)";
-    const VALUES=[];
-    connection.query(query,VALUES,(req,res)=>{
-        if(err){return console.log(err);}
-        return res.json(data);
-    })
-}
+// const postenterprise=(req,res)=>{
+//     const query="INSERT INTO enterprise (nom,email,num_telephone,secteur_dactivite,siteweb,linkedin,nombre_demployer,localisation) VALUES(?)";
+//     const VALUES=[];
+//     connection.query(query,VALUES,(req,res)=>{
+//         if(err){return console.log(err);}
+//         return res.json(data);
+//     })
+// }
 
 router.get("/:id",getenterprisebyID);
 router.get("/",getenterprise);
-router.post("/",postenterprise);
+// router.post("/",postenterprise);
 export default router;

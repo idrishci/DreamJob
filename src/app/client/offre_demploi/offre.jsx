@@ -75,7 +75,7 @@ useEffect(() => {
         <div className={style.offre} key={offre.idoffre}>
             <div className={style.first}>
                <h1>{offre.titre}  </h1>
-                    <Image width={40} height={40} src={"/icon/bookmark.png"} alt="icon" className={style.img}/>
+                    <Image width={40} height={40} src={"/icon/unsave.svg"} alt="icon" className={style.img}/>
             </div>
             <div className={style.second}>
                 <label >

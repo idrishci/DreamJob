@@ -54,9 +54,9 @@ export default function Page(){
         <div className={style.page}>
         <div className={Style_nav.nav}>
             <ul>
-        <li onClick={()=>rendercomponent('profile') }>Mon profile</li>
-        <li onClick={()=>rendercomponent('edit')}>Edit</li>
-        <li onClick={()=>rendercomponent('demende')}> Demende demploi</li>
+        <li onClick={()=>rendercomponent('profile') } style={{ color: selectedItem.type === 'profile' ? 'var(--buttoncolor)' : 'black' }}>Mon profile</li>
+        <li onClick={()=>rendercomponent('edit')} style={{ color: selectedItem.type === 'edit' ? 'var(--buttoncolor)' : 'black' }}>Edit</li>
+        <li onClick={()=>rendercomponent('demende')}style={{ color: selectedItem.type === 'demende' ? 'var(--buttoncolor)' : 'black' }}> Demende demploi</li>
 
             </ul> 
              </div>

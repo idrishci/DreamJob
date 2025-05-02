@@ -53,7 +53,27 @@ export default function card({id}){
 //     }
 // }
 // getoffres(); 
-       
+function timeAgo(date) {
+    const now = new Date();
+    const seconds = Math.floor((now - new Date(date)) / 1000);
+  
+    const intervals = {
+      year: 31536000,
+      month: 2592000,
+      day: 86400,
+      hour: 3600,
+      minute: 60,
+      second: 1,
+    };
+  
+    for (let key in intervals) {
+      const interval = Math.floor(seconds / intervals[key]);
+      if (interval > 0) {
+        return `il y a ${interval} ${key}${interval !== 1 ? 's' : ''}`;
+      }
+    }
+    return "à l'instant"; 
+  }   
     return (
 
         <div className={style.offre}>
@@ -62,13 +82,11 @@ export default function card({id}){
              <div className={style.card} key={offre.idoffre}data-aos="fade-up">
 
              <div className={style.first}>
-             <Image src={"/image/sonatrach.png"} width={82} height={82} key={id} alt="logo"/>
+             <Image src={`/image/${offre.photo_profile}`} width={82} height={82} key={id} alt="logo"/>
                  <div className={style.data}>
-                     <h3>{offre.nom}</h3>
-
-                     <h2> {offre.niveau_de_post}</h2>
-
-                     <h5><Image src={"/icon/location-sign.png"} width={18} height={18}  key={id} alt="location"/> {offre.wilaya}  - il y a 17 min {offre.date}</h5>
+                     <h3>{offre.titre}</h3>
+                     <h5><Image src={"/icon/location-sign.png"} width={18} height={18}  key={id} alt="location"/> <span>{offre.wilaya}</span>  </h5>
+                     <h5>{timeAgo(offre.date)} </h5>
                  </div>
                  {/* <div className="save"><Image src={"/icon/bookmark.png"} width={30} height={30} key={id} alt="bookmark"/></div> */}
              </div>

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
 import { postiduser } from "../../services/userserv";
-export default function rolepage(){
+export default function Rolepage(){
   const router =useRouter();
   const [isConnected,setConnected]=useState('connected');
   const [loading,setLoading]=useState(true);
@@ -65,23 +65,21 @@ export default function rolepage(){
       <>
         {isConnected=="connected"&&<>
         <div className={styles.container}>
-        <h1 className={styles.title}>Join as a Freelancer or Client</h1>
+        <h1 className={styles.title}>Rejoignez-nous en tant qu Entreprise ou Candidat</h1>
         <div className={styles.cardGrid}>
           <div  
             className={`${styles.card} `}
          >
-            <h2 className={styles.cardTitle}>I’m client</h2>
-            <p className={styles.cardText}>Find work, showcase your skills, and grow your career.</p>
-            <button className={styles.cardButton} onClick={()=>{handleSelectRole("client")}}> continue </button>
+            <h2 className={styles.cardTitle}>Candidat</h2>
+            <p className={styles.cardText}>Trouvez du travail, mettez en valeur vos compétences et développez votre carrière.</p>
+            <button className={styles.cardButton} onClick={()=>{handleSelectRole("client")}}> continuer </button>
           </div>
           <div 
-            className={`${styles.card}`
-            }
-          >
+            className={`${styles.card}`}>
            
-            <h2 className={styles.cardTitle}>I’m a company</h2>
-            <p className={styles.cardText}>Hire talent, manage projects, and scale your business.</p>
-            <button className={styles.cardButton} onClick={()=>{handleSelectRole("enterprise")}}> continue </button>
+            <h2 className={styles.cardTitle}>Entreprise</h2>
+            <p className={styles.cardText}>Recrutez des talents, gérez des projets et développez votre entreprise.</p>
+            <button className={styles.cardButton} onClick={()=>{handleSelectRole("enterprise")}}> continuer </button>
           </div>
         </div>
       </div>

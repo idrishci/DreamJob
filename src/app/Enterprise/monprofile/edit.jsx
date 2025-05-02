@@ -25,7 +25,7 @@ export default function edit({id}){
       const data=await getEnterprise(id);
       setFormData(data[0]);
       setEnterprises(data ? data[0] : []);
-      setDescription(offres[0]?.description || "");
+      // setDescription(offres[0]?.description || "");
   }
      useEffect(()=>{
             
@@ -97,7 +97,7 @@ export default function edit({id}){
 
                 <label >
                     <h3>Nom de l'enterprise</h3>
-                    <input type="text"  onChange={e => handleChange('nom', e.target.value)} defaultValue={enterprises.nom}/>
+                    <input type="text"  onChange={e => handleChange('nom', e.target.value)} defaultValue={enterprises.nom} required/>
                 </label>
                 <label >
                     <h3>Localisation</h3>
@@ -109,14 +109,16 @@ export default function edit({id}){
                 </label>
                 <label >
                     <h3>Nombre d'employe</h3>
-                    <select name="emplyoe" id="employe" onChange={e => handleChange('nombre_demployer', e.target.value)} >
+                    <select name="emplyoe" id="employe" onChange={e => handleChange('nombre_demployer', e.target.value)} defaultValue={enterprises.nombre_demployer}>
                         <option value={enterprises.nombre_demployer}>{enterprises.nombre_demployer}</option>
-                        <option value="">10 A 20 </option>
-                        <option value="">20 a 50</option>
-                        <option value="">50 A 100</option>
-                        <option value="">100 A 500</option>
-                        <option value="">500 A 1000</option>
-                        <option value="">Plus de 1000</option>
+                        <option value="10 A 20">10 A 20 </option>
+                        <option value="20 a 50">20 a 50</option>
+                        <option value="50 A 100">50 A 100</option>
+                        <option value="100 A 500">100 A 500</option>
+                        <option value="500 A 1000">500 A 1000</option>
+                        <option value="1000 A 2000">1000 A 2000</option>
+                        <option value="2000 A 5000">2000 A 5000</option>
+                        <option value="Plus de 5000">Plus de 5000</option>
                     </select>
                 </label>
                 <label >
@@ -141,7 +143,7 @@ export default function edit({id}){
                 </label>
                 <label className={style.description}>
                     <h3>Description</h3>
-                    <textarea className={style.area}  onChange={e => handleChange('desecription_enter', e.target.value)} value={enterprises.desecription}></textarea>
+                    <textarea className={style.area}  onChange={e => handleChange('description_enter', e.target.value)} defaultValue={enterprises.description_enter}></textarea>
                 </label>
                 
                 

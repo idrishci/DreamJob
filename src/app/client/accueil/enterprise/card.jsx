@@ -1,5 +1,5 @@
 import style from './style.module.css';
-// import Image from 'next/image';
+import Image from 'next/image';
 import {date} from "./post.js"
 import {useState,useEffect}from"react";
 import getenterprise from "../../services/enterpriseserv"
@@ -31,16 +31,17 @@ export default function card({id}){
           {enterprises.map((enterprise)=> (
         <div className={style.card} key={enterprise.identerp}data-aos="fade-up">
 
-            {/* <Image src={props.url}
-                   width={85}
-                   height={120}
+
+            <Image src={enterprise.photo_profile? `/image/${enterprise.photo_profile}`:'/image/account.png'}
+                   width={100}
+                   height={100}
                    alt="logo"
-                   key={enterprise.identerp}
-                   /> */}
+                key={enterprise.identerp}
+                   />
                    
            <h2>{enterprise.nom}</h2>
              
-            {/* <h5>({props.post} post vide)</h5>  //for letter*/}
+            <h5>{enterprise.secteur_dactivite} post vide</h5> 
         </div>
            ))} 
    </>
