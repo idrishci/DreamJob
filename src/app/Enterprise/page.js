@@ -11,6 +11,7 @@ export default function Home() {
   const [isConnected,setConnected]=useState('connected');
   const [loading,setLoading]=useState(true);
   const [iduser,setiduser]=useState(null);
+  const [role,setRole]=useState(null);
   const router = useRouter();
    useEffect(() => {
        const unsubscribe = onAuthStateChanged(auth, async(user) => {
@@ -18,6 +19,10 @@ export default function Home() {
                console.log("is steel connected");
                setConnected("connected");
                setiduser(user.uid);
+               const userDocRef = doc(db, "users", user.uid);
+               const documentt = await getDoc(userDocRef);
+               const lerole = documentt.data().role;
+               setRole(lerole);
            } else {
                setConnected("deconnected");
                router.replace("/auth/signin");
@@ -37,13 +42,17 @@ if (isConnected !== "connected") {
   ////enterprise id
 
   return ( 
-  <>
-  {loading? <div>Loading...</div>: ''}
-    {isConnected &&
-    <section className={style.home} >
-      <Acceuil id={iduser} />
-       <Stat id={iduser}/>
-     </section>}
-     </>
-  );
+    <>
+    {/* {loading? <div>Loading...</div>: ''} */}
+      {(isConnected=="connected" && role==="enterprise")? (
+      <section className={style.home} >
+        <Acceuil id={iduser} />
+         <Stat id={iduser}/>
+       </section>):(<>
+           {  router.push("/")}
+           { alert("Vous n'avez pas l'accès")}
+        </>
+       )}
+       </>
+    );
 }

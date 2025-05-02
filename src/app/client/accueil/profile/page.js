@@ -13,6 +13,7 @@ import{useRouter}from "next/navigation";
 export default function Page(){
     const router=useRouter();
     const [iduser,setiduser]=useState(null);
+    const [role,setRole]=useState(null);
         const [selectedItem, setSelectedItem] = useState({type:'profile'});
         const  rendercomponent = (type)=> {
         setSelectedItem({type});
@@ -20,12 +21,16 @@ export default function Page(){
 
    const [isConnected,setConnected]=useState('connected');
    const [loading,setLoading]=useState(true);
-    useEffect(async () => {
-        const unsubscribe = await onAuthStateChanged(auth, async(user) => {
+    useEffect(() => {
+        const unsubscribe =  onAuthStateChanged(auth, async(user) => {
             if (user) {
                 console.log("is steel connected");
                 setConnected("connected");
                 setiduser(user.uid);
+                 const userDocRef = doc(db, "users", user.uid);
+                const documentt = await getDoc(userDocRef);
+                const lerole = documentt.data().role;
+                setRole(lerole);
             } else {
                 setConnected("deconnected");
                 alert("Vous n'avez pas l'accès");
@@ -44,9 +49,10 @@ export default function Page(){
         return null; // prevent rendering anything while redirecting
     }
     return (<>
-        {isConnected=="connected"&&<>
-<div className={style.page}>
-<div className={Style_nav.nav}>
+        {(isConnected=="connected" && role==="client")?(
+            <>
+        <div className={style.page}>
+        <div className={Style_nav.nav}>
             <ul>
         <li onClick={()=>rendercomponent('profile') } style={{ color: selectedItem.type === 'profile' ? 'var(--buttoncolor)' : 'black' }}>Mon profile</li>
         <li onClick={()=>rendercomponent('edit')} style={{ color: selectedItem.type === 'edit' ? 'var(--buttoncolor)' : 'black' }}>Edit</li>
@@ -58,6 +64,11 @@ export default function Page(){
                {selectedItem.type ==='edit' && <Edit  id={iduser}/> }
                {selectedItem.type ==='demende' && <Demende id={iduser} /> }
 
-</div>  </>} </> );
+        </div> 
+        </>):(<>
+           { router.push("/auth/signin")}
+        </>)
+        } 
+</> );
 
 }

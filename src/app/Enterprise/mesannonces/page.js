@@ -14,6 +14,7 @@ export default function Home() {
   const [iduser,setiduser]=useState(null);
   const router = useRouter();
   const [activeItem, setActiveItem] = useState("item1");
+    const [role,setRole]=useState(null);
     const handleClick = (item) => {
       setActiveItem(item);
     };
@@ -23,6 +24,10 @@ export default function Home() {
                console.log("is steel connected");
                setConnected("connected");
                setiduser(user.uid);
+               const userDocRef = doc(db, "users", user.uid);
+               const documentt = await getDoc(userDocRef);
+               const lerole = documentt.data().role;
+               setRole(lerole);
            } else {
                setConnected("deconnected");
                router.replace("/auth/signin");
@@ -47,7 +52,8 @@ if (isConnected !== "connected") {
     return (
  
         <>
-        {isConnected&& <div className={style.page}>
+         {(isConnected=="connected" && role==="enterprise")? (
+            <div className={style.page}>
                <div className={style.nav}>
             <ul>
         <li onClick={() => handleClick('item1')}style={{ color: activeItem === 'item1' ? 'var(--buttoncolor)' : 'black' }}>Active</li>
@@ -63,7 +69,12 @@ if (isConnected !== "connected") {
              </main>
              
              {/* {selectedItem.type ==='enter' ? <Data />: <Edit /> } */}
-        </div>}</> 
+        </div> ):(<>
+           {  router.push("/")}
+           { alert("Vous n'avez pas l'accès")}
+        </>
+       )}
+        </> 
          
     
     );

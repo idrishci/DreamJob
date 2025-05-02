@@ -15,6 +15,7 @@ import {getinfouser}from"../../services/userserv";
 export default function button(){
       const [isOpen, setIsOpen] = useState(false);
       const [isConnected, setConnected] = useState('connected');
+      const [role, setRole] = useState('client');
       const [userr, setUser] = useState([]);
       const router = useRouter();
       
@@ -25,28 +26,36 @@ const signout=async()=>{
 }
 
 useEffect(() => {
-    const unsubscribe =  onAuthStateChanged(auth, async(user) => {
-        if (user) {
+    const unsubscribe =  onAuthStateChanged(auth, (user) => {
+      const featchdata =async()=>{
+         if (user) {
             // console.log("id of user ", user);
             setConnected("connected");
-            const docref = doc(db, "users", user.uid);
-             const document=await getDoc(docref);
-             
-             const res=await getinfouser(user.uid,document.data().role);
-             await setUser(res);
-            //  console.log("infouserbuton", res);
+            const docref =await doc(db, "users", user.uid);
+            console.log("docref12",docref);
+             const document= await getDoc(docref);
+             setRole(document.data().role);
+             console.log("document",document.data().role);
+             console.log("document rooole",document.data().role);
+             const res= await getinfouser(user.uid,document.data().role);
+              console.log("infouserbuton", res[0]); 
+              setUser(res);
+            
         } else {
           console.log("no user is connected");
             setUser(null);
             setConnected("deconnected");
         }
-    })
+    
+      }
+      featchdata();
+       })
     return ()=>unsubscribe();
 },[]);
 
     return (
         <div className={style.btn}>
-           {isConnected=="deconnected" &&
+           {isConnected=="deconnected" ||role==="enterprise"&&
            <> 
            <button onClick={()=>{router.push("/auth/signup")}}>sign up</button>
             <button onClick={()=>{router.push("/auth/signin")}}>sign in</button>
@@ -68,16 +77,33 @@ useEffect(() => {
 
     } */}
 
-    {isConnected === "connected" && userr[0] &&(
+    {isConnected === "connected"&& role==="client"&& Array.isArray(userr) && userr.length > 0 &&(
   <div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
-    <h2>{userr[0].nom} {userr[0].prenom}</h2>
+    {(userr[0].nom!=null && userr[0].prenom!=null )?(
+      <h2>{userr[0].nom} {userr[0].prenom}</h2>
+    ):(
+      <h2>Undefined</h2>
+    )}
+   {(userr[0].photo_profile!=null )?(
     <Image 
       width={40} 
       height={40} 
+
       alt={userr[0].photo_profile} 
       src={`/public/image/${userr[0].photo_profile}` } 
+
+
       className={style.img}
     />
+  ):(
+    <Image 
+      width={40} 
+      height={40} 
+      alt={"Profile Picture"} 
+      src={"/icon/engineer.png"} 
+      className={style.img}
+    />
+  )}
   </div>
 )}
     {isOpen &&<div className={style.proflist}>
