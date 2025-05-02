@@ -12,6 +12,7 @@ export default function Home(){
   const [iduser,setiduser]=useState(null);
   const router = useRouter();
   const [id, setId] = useState(null);
+  const [role,setRole]=useState(null);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const idFromUrl = urlParams.get("id");
@@ -24,6 +25,10 @@ export default function Home(){
                console.log("is steel connected");
                setConnected("connected");
                setiduser(user.uid);
+               const userDocRef = doc(db, "users", user.uid);
+               const documentt = await getDoc(userDocRef);
+               const lerole = documentt.data().role;
+               setRole(lerole);
            } else {
                setConnected("deconnected");
                router.replace("/auth/signin");
@@ -47,10 +52,15 @@ export default function Home(){
            
   return(
 <>
-    {isConnected &&   
+{(isConnected=="connected" && role==="enterprise")? (  
 <div  className={style.home}>
 <Form id={id}/>
 </div>
-}</>
+):(<>
+  {  router.push("/")}
+  { alert("Vous n'avez pas l'accès")}
+</>
+)}
+</>
   );
 }

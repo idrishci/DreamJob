@@ -4,25 +4,34 @@ import multer from "multer";
 const router=express.Router();
 const postiduser = (req,res) => {
 const id=req.body.uid;
-const user=req.body.user;
-console.log("this is th is ",id,"this is user",user);
-if(user=="client"){
-    const query1="INSERT INTO candidat (idcandidat,email,uid_firebase) VALUES (?,?,?)";
-    const query2="INSERT INTO post (idpost,uid_firebase) VALUES (?,?)";
-   const VALUES1=[2,id];
-    const VALUES=[4,email,id];
-    connection.query(query1,VALUES,(err,data)=>{
-    if(err)return console.log(err);
-    return res.json("user added successfully");
-})
-connection.query(query2,VALUES1,(err,data)=>{
-  if(err)return console.log(err);
-  return res.json("user added successfully");
-})
-}else if(user=="enterprise"){
-    const query="INSERT INTO enterprise (identerp,uid_firebase) VALUES (?,?)";
-//    const VALUES=[4,id];
-const values=[5,id];
+const email=req.body.email;
+const role=req.body.role;
+console.log("this is th is ",id,"this is email",email,"this is role",role);
+if(role=="client"){
+    const query1="INSERT INTO candidat (email,uid_firebase) VALUES (?,?)";
+    const query2="INSERT INTO post (uid_firebase) VALUES (?)";
+  
+    const VALUES=[email,id];
+     const VALUES1=[id];
+
+    connection.query(query1,VALUES,(err,data)=>{if (err) {
+      console.log(err);
+      return res.status(500).json({ error: "Error inserting into candidat" });
+    }
+
+    connection.query(query2, VALUES1, (err, data2) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Error inserting into post" });
+      }
+
+      return res.json({ message: "User added successfully" });
+    });
+  });
+}else 
+if(role=="enterprise"){
+    const query="INSERT INTO enterprise (email,uid_firebase) VALUES (?,?)";
+    const values=[email,id];
     connection.query(query,values,(err,data)=>{
     if(err)return console.log(err);
     return res.json("user added successfully");

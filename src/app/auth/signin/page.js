@@ -18,10 +18,10 @@ import ForgotPassword from './components/ForgotPassword';
 import AppTheme from '../AppTheme';
 import ColorModeSelect from '../ColorModeSelect';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './components/CustomIcons';
-
-import { app,auth,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "../firebase";
+import { onAuthStateChanged } from 'firebase/auth';
+import { app,auth,db,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "../firebase";
 import {useRouter}from"next/navigation";
-
+import {doc,getDoc}from "firebase/firestore";
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -72,6 +72,7 @@ export default function SignIn(props) {
   const [open, setOpen] = React.useState(false);
   const [email,setEmail]= React.useState("");
   const [password,setPassword]=React.useState("");
+  const [lerole,setRole]=React.useState("");
  
 
 const router =useRouter();
@@ -80,7 +81,21 @@ const router =useRouter();
     console.log("password",password);
     try{
       const res=await signInWithEmailAndPassword(auth,email,password);
-      router.push("/");
+      const unsubscribe = onAuthStateChanged(auth, async(user) => {
+                  if (user) {
+                      const userDocRef = doc(db, "users", user.uid);
+                      const documentt = await getDoc(userDocRef);
+                      const role = documentt.data().role;
+                      console.log("document",documentt.data().role);
+                      if(role === "client") {
+                        router.push("/");
+                      }else if(role === "enterprise") {
+                        router.push("/Enterprise");}
+               
+                  }
+              })
+
+      
 
     }catch(error){
       console.log("Error code:", error.code); 

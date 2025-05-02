@@ -51,7 +51,7 @@ export default function rolepage(){
                 createdAt: new Date(),
               });
               postiduser(userr.uid,userr.email,selectedRole);
-              router.push("/");
+              router.push("/Enterprise");
             }
             console.log("conn")
             setConnected("connected");

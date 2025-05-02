@@ -21,10 +21,13 @@ useEffect(() => {
     },[]);
 
     return(<>{userr.map((usere)=>(
-    <div className={style.profile}>
-        
-            <Image width={150} height={150} alt="photo_profile" src={`http://localhost:8800/uploaded/photo/${usere.photo_profile}`} className={style.img}/>
-       
+    <div className={style.profile} key={usere.idcandidat}>
+    {usere.photo_profile ==null ? (
+     
+        <Image width={150} height={150} alt="photo_profile" src={"/icon/engineer.png"}  className={style.img}/>
+    ) : (
+        <Image width={150} height={150} alt="photo_profile" src={`http://localhost:8800/uploaded/photo/${usere.photo_profile}`} className={style.img}/>
+    )}
         <div className={style.data}>
             <label > <h2>Nom :</h2> <h3>{usere.nom}</h3></label>
             <label > <h2>Prenom :</h2> <h3>{usere.prenom}</h3></label>

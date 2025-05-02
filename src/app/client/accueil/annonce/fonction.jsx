@@ -7,6 +7,9 @@ import "aos/dist/aos.css";
 export default function Fonction() {
   useEffect(()=>{
     Aos.init({duration:800});
+    return () => {
+      Aos.refresh(); // or any cleanup if AOS provides one
+    };
 
 },[]);
 

@@ -1,10 +1,11 @@
 import axios from "axios";
 const api_url="http://localhost:8800/api/users";
-export function postiduser(uid,user){
+export function postiduser(uid,email,role){
     try{
  const res=axios.post(api_url,{
     uid:uid,
-    user:user
+    email:email,
+    role:role
  });
 }catch(err){
     console.log(err);

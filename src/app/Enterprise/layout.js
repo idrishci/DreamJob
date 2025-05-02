@@ -10,11 +10,11 @@ export default function RootLayout({children}) {
   
 
   return (
-    <html lang="en">
+    <html lang="en" className={font.className}>
       <head>
         <title>Dream Job</title>
       </head>
-      <body className={font.className}>
+      <body >
       <Navbar/>
       {children}
 

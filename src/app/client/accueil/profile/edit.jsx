@@ -28,10 +28,6 @@ useEffect(()=>{
     const setinfouser = async (e) => {
         const {name,value}=e.target;
        await setInfouser(prev=>({...prev,[name]:value}));
-
-    //   for (let pair of formdata.entries()) {
-    //     console.log(`${pair[0]}:`, pair[1]);
-    //   }
     }
     const updateinfo = async (e) => {
         formdata.append("iduser",iduser.id);
@@ -40,7 +36,6 @@ useEffect(()=>{
        }
        await formdata.append("photo",image);
        await formdata.append("cv",filecv);
-        console.log("fdfd");
        await  updateinfouser(formdata);
     }
     return(
@@ -51,8 +46,12 @@ useEffect(()=>{
 
         <div className={style.lab}>
         <label  className={style.imag} name="image">
+        {infouser.photo_profile ==null ? (
+              <Image width={150} height={150} alt="photo_profile" src={"/icon/engineer.png"}  className={style.img}/>
+             ):(        
         <Image width={150} height={150} alt="User profile photo" src={`http://localhost:8800/uploaded/photo/${infouser.photo_profile}`} className={style.img}/>
-                <input type="file"  id="image" onChange={(e)=>{setImage(e.target.files[0])}}/>
+              )} 
+        <input type="file"  id="image" onChange={(e)=>{setImage(e.target.files[0])}}/>
         </label>
        </div>
 
@@ -62,10 +61,17 @@ useEffect(()=>{
             <label > <h2>Age :</h2> <input type="number" name="age"  placeholder="Age" value={infouser.age||""} onChange={setinfouser}/></label>
             <label >
                  <h2 >Gender :</h2> 
+                 {infouser.gender==null ? (
+                      <select name="gender"  onChange={setinfouser}>
+                      <option value="male" default>Male</option>
+                      <option value="female">Female</option>
+                   </select>
+                   ):( 
                  <select name="gender" value={infouser.gender} onChange={setinfouser}>
                     <option value="male" default>Male</option>
                     <option value="female">Female</option>
                  </select>
+                )}
                  </label>
             <label >
                  <h2>Localisation :</h2> 

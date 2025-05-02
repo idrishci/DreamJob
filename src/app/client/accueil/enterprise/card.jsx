@@ -31,12 +31,12 @@ export default function card({id}){
           {enterprises.map((enterprise)=> (
         <div className={style.card} key={enterprise.identerp}data-aos="fade-up">
 
-            <Image src={props.url}
+            {/* <Image src={props.url}
                    width={85}
                    height={120}
                    alt="logo"
                    key={enterprise.identerp}
-                   />
+                   /> */}
                    
            <h2>{enterprise.nom}</h2>
              
