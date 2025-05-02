@@ -131,7 +131,7 @@ candidat.length > 0?  candidat.map((can)=>(
               width={40}
               height={40}
               src={favoris.includes(can.uid_firebase) ? "/icon/unsave.svg" : "/icon/save.svg"}
-              alt="save"
+              alt={"save"}
               unoptimized
               onClick={ () => toggleSave(can.uid_firebase)}
             />

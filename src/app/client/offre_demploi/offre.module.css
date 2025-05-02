@@ -7,8 +7,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 
 }
+.btn1{
+    position: absolute;
+    top: 30;
+    right: 30;
+    cursor: pointer;
+  
+  }
+  .btn1:hover{
+    transform: scale(1.1);
+  }
 .first{
     width: 100%;
     display: flex;
@@ -75,6 +86,9 @@
     height: 40px;
 }
 @media screen and (width<= 768px) {
+    .offre{
+        width: 90%;
+    }
     .first h1{
         font-size: 24px;
     }

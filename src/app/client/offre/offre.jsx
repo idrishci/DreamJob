@@ -154,6 +154,7 @@ return value;
 
             })
         }
+        const filtredoffre=offres.filter(offres=>offres.situation==="active");
     return (
         <>
          <div className={stylesearch.search_bar}>
@@ -201,8 +202,8 @@ return value;
 
 
         <div className={style.offre}>
-          {offres.length > 0 ? (
-           offres.map((offre)=>{
+          {filtredoffre.length > 0 ? (
+           filtredoffre.map((offre)=>{
             console.log("offre.id_enterp",offre.id_enterp);
           return  <Link href={`./offre_demploi?id=${offre.idoffre}&uid=${offre.id_enterp}`} key={offre.idoffre}id={offre.idoffre}  className={style.offre}><Card  id={offre.idoffre} key={offre.idoffre}/></Link> 
            } )

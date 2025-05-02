@@ -5,6 +5,12 @@
     justify-content: center;
     align-items: center;
 }
+.btn{
+  position: absolute;
+  top: 20;
+  right: 20;
+
+}
 .offre{
     /* width: 90%; */
     position: relative;
@@ -149,12 +155,12 @@
     width: 100%;
   }
 }
-@media screen and (min-height:1024px) {
+/* @media screen and (min-width:1024px) {
     .card{
         width: 30%;
         max-height: 350px;
     }
-}
+} */
 
 @keyframes fadeInUp {
     0% {

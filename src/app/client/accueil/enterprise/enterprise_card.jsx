@@ -28,7 +28,7 @@ export default function page(){
 
       {enterprises.length > 0 ? (
       enterprises.map((enterprise)=>(
-         <Link  key={enterprise.identerp} href={`./client/profile?id=${enterprise.identerp}`} ><Card key={enterprise.identerp} id={enterprise.identerp}  /></Link>
+         <Link  key={enterprise.identerp} href={`./client/profile?uid=${enterprise.uid_firebase}`} ><Card key={enterprise.identerp} id={enterprise.identerp}  /></Link>
        ) )
   
       ) : (

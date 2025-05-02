@@ -261,25 +261,25 @@ const updateinfoclient = (req,res) => {
 }
 const addfavcan=(req,res)=>{
  const{identer,idcandidat}=req.body.params
- console.log(req.body);
-  console.log("66666");
+//  console.log(req.body);
+  // console.log("66666");
   const values=[identer,idcandidat];
-  console.log(values);
+  // console.log(values);
   const query = "INSERT INTO favorit_can_enterp (identerp,idcandidat) VALUES (?,?)";
-  console.log(query);
+  // console.log(query);
   connection.query(query,values,(err,data)=>{
     if(err){return console.log(err);}
     return res.json(data);
 })
 }
 const deletfavcan=(req,res)=>{
-  console.log(req.query);
+  // console.log(req.query);
   const{identer,idcandidat}=req.query
-   console.log("66666");
+  //  console.log("66666");
    const values=[identer,idcandidat];
    console.log(values);
    const query = "DELETE FROM favorit_can_enterp WHERE identerp = ? AND idcandidat = ? ";
-   console.log(query);
+  //  console.log(query);
    connection.query(query,values,(err,data)=>{
      if(err){return console.log(err);}
      return res.json(data);
