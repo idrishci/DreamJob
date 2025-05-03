@@ -7,22 +7,17 @@ import { useEffect, useState } from "react";
 export default function data({id}){
    
   const [enterprises,setEnterprises]=useState([]);
+  ////////////get entreprise
     useEffect(()=>{
         const fetchdata=async()=>{
             const data=await getenterprise();
             
             const enter=data.find((data)=>data.uid_firebase===id);
-          
-            // console.log(enter);
-            // console.log("card");
             setEnterprises(enter ? [enter] : []);
         }
         fetchdata();
     }
     ,[id]);
-    // useEffect(() => {
-    //     console.log("Updated enterprise state of data:", enterprises);
-    //   }, [enterprises]);
 
     
     return (

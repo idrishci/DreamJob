@@ -43,7 +43,8 @@ useEffect(() => {
             return null; // prevent rendering anything while redirecting
         }
     return (
-<>{isConnected&&<div className={style.home}>
+<>{isConnected&&
+<div className={style.home}>
 <Offre id={id}/>
 <h1>person</h1>
 <Person id={id}/>

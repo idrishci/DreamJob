@@ -1,71 +1,105 @@
+
 import Image from "next/image";
 import style from "./offre.module.css";
 import { useEffect, useState } from "react";
 import {getoneoffresentrerp} from "../services/offreserv";
-import { off } from "node:process";
+// import { off } from "node:process";
 import { onAuthStateChanged } from 'firebase/auth';
 import {getDoc }from"firebase/firestore";
 import{ db,doc,auth} from "@/app/auth/firebase";
-import { postpostuler,getpostuler } from "../services/offreserv";
-export default function offre({id,uid}){
+import { useRouter } from "next/navigation";
+import { postpostuler,getpostuler,getfavorit,addfav,deletfav } from "../services/offreserv";
+export default function offre({id}){
+    const router = useRouter();
    const [offres,setOffres]=useState([]);
-   const [idoffre,setIdoffre]=useState(null);
-   const [iduser,setiduser]=useState(null);
-   const [identrep,setIdentreprise]=useState(null);
+   const [iduser,setiduser]=useState('');
    const [isConnected,setConnected]=useState('connected');
    const [ispostuler,setispostuler]=useState(false);
-   const [isuid,setUid]=useState(null); 
+   
+  const [save,setsave]=useState([])
+  /////////get id user
     useEffect(() => {
         const unsubscribe =  onAuthStateChanged(auth, async(user) => {
             if (user) {
                 setConnected("connected");
-                console.log("user",user.uid);
+                // console.log("user",user.uid);
                 setiduser(user.uid);
                 
             } else {
+                setiduser('')
                 setConnected("deconnected");
             }
         })
         return ()=>unsubscribe();
     },[]);
 
+    /////////////////get offre of entreprise
  useEffect(()=>{
-   
         const fetchdata=async()=>{  
-            console.log("id of offre222 ", id);
-            setUid(uid);
+            // setUid(uid);
+            // console.log("hello "+id )
             const offre=await getoneoffresentrerp(id);
-            setOffres(offre); 
-            // console.log("offre2221212",offre);
-            console.log("user",iduser);
-            console.log("iddd",id);
-            console.log("uidddd",uid);
-            console.log("offre11111k",id,uid,iduser);
-            if(id &&uid&& iduser){
-            const postulerr=await getpostuler(id,uid,iduser);
-            // console.log("postulerr",postulerr[0].identerp);
-            
-            if(postulerr.length>0){
-                setispostuler(true);
-                console.log("already postuler");
-            }}
-           
-               
+            setOffres(offre);      
         };
          
         fetchdata();
-    },[id,uid,iduser]);
+    },[id,iduser]);
 useEffect(() => {
        
     }, []);
-
+///////////////postuler
     const postuler=async()=>{
-        console.log("id of uid", uid);
+        if (!iduser) {
+            router.replace("/auth/signin");
+            return;
+          }
         setispostuler(true);
-        console.log("isistpostuler",ispostuler);
-        await postpostuler(id,isuid,iduser);
+        await postpostuler(id,iduser);
         
     }
+    // gettt postuler
+       useEffect(() => {
+        if (iduser) {
+            const fetchPostuler = async () => {
+              const data = await getpostuler(id,iduser);
+              console.log("this id hhhhhhhhhh: " + data);
+              setispostuler(data.length>0? true :false);
+            //   console.log("already postuler");
+            };
+            fetchPostuler();
+          }
+        }, [iduser]);
+                   //////////////get favorit
+                   useEffect(() => {
+                    if (iduser) {
+                      const fetchFavoris = async () => {
+                        const data = await getfavorit(iduser);
+                        console.log("this id user: " + iduser);
+                        console.log(data);
+                        setsave(data.map((dat) => dat.idoffre));
+                      };
+                      fetchFavoris();
+                    }
+                  }, [iduser]);
+                  //////////////save ou unsave
+              const toggleSave = async (idoffre) => {
+                if (!iduser) {
+                    router.replace("/auth/signin");
+                    return;
+                  }
+                const ids={idoffre:idoffre,idcandidat:iduser}
+                console.log(save);
+                if (!save.includes(idoffre)) {
+                  await addfav(ids); // تسجيل في قاعدة البيانات
+                  setsave((prev) => [...prev, idoffre]);
+
+                } else { 
+                    await deletfav(ids);   
+                  // هنا يمكنك إضافة خاصية حذف لو تريد
+                  setsave((prev) => prev.filter(idoffre => idoffre !== idoffre));
+
+                }
+              };                  
 
     return(
         <>
@@ -73,9 +107,18 @@ useEffect(() => {
             offres.map((offre) => (  
                
         <div className={style.offre} key={offre.idoffre}>
+            <div className={style.btn1}><Image 
+                      src={save.includes(offre.idoffre)? "/icon/unsave.svg" :"/icon/save.svg"}
+                      width={30}
+                      height={30}
+                      alt={"save"}
+                      unoptimized
+                      onClick={ () => toggleSave(offre.idoffre)}
+                      />
+            </div>
             <div className={style.first}>
                <h1>{offre.titre}  </h1>
-                    <Image width={40} height={40} src={"/icon/unsave.svg"} alt="icon" className={style.img}/>
+
             </div>
             <div className={style.second}>
                 <label >
@@ -130,16 +173,15 @@ useEffect(() => {
             {offre.description_offre}
             </p>
             </div>
-            {isConnected?(
-            ispostuler?(
+         
+           { ispostuler?(
                 <div className={style.btn}> <span><h3>vous postulez deja</h3></span></div>
             ):(
                
                 <div className={style.btn}><button onClick={()=>postuler()}>postuler</button></div>
-            )
-            ):(
-                <div className={style.btn}><button onClick={()=>alert("Veuillez vous connecter pour postuler. Merci !")}>postuler</button></div>
             )}
+            
+            
         </div>
         )
 

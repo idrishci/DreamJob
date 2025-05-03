@@ -17,8 +17,8 @@ export default function profile(){
     const [userr, setUserr] = useState([]);
     const router = useRouter();
     const signout=async()=>{  
-        await await signOut(auth);
-        router.push("/auth/signin")
+        await signOut(auth);
+        router.push("/")
       
         // setUser(null);
     }

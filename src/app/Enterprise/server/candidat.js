@@ -18,7 +18,16 @@ export async function getcandidat(){
        }catch(err){
    
        }
-      }
+      } 
+        export async function getfavorit(id){
+        try{
+           const res=await axios.get(`http://localhost:8800/api/users/getfav/${id}`);
+              console.log("data",res.data);
+               return res.data;
+        }catch(err){
+    
+        }
+       }
       export async function addfav(ids){
         try{
            const res=await axios.post("http://localhost:8800/api/users/addfav",{params:ids});
@@ -28,15 +37,7 @@ export async function getcandidat(){
     
         }
        }
-       export async function getfavorit(id){
-        try{
-           const res=await axios.get(`http://localhost:8800/api/users/getfav/${id}`);
-              console.log("data",res.data);
-               return res.data;
-        }catch(err){
     
-        }
-       }
        export async function deletfav(ids){
         try{
            const res=await axios.delete("http://localhost:8800/api/users/deletfav",{params:ids});

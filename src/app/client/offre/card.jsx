@@ -2,25 +2,64 @@
 "use client";
 import style from "./offre.module.css"
 import Image from "next/image";
-import {getoffres} from "../services/offreserv";
+import {getoffres,getfavorit} from "../services/offreserv";
 import getenterprise from "../services/enterpriseserv";
 import { useEffect, useState } from "react";
 import data from "../profile/data";
+import { onAuthStateChanged } from 'firebase/auth';
+import{auth} from "@/app/auth/firebase";
+
 
 import Aos from "aos";
 import "aos/dist/aos.css";
 
 export default function card({id}){
+
+  const [save,setsave]=useState([])
+  const [iduser,setiduser]=useState('');
+  const [offres,setOffres]=useState([]);
+ ///////////////get iduser from firebase
+ useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      setiduser(user.uid);
+    } else {
+      setiduser('');
+    }
+  });
+  return () => unsubscribe();
+}, []);
+///////////animation
     useEffect(()=>{
         Aos.init({duration:800});
     
     },[]);
 
-    const [offres,setOffres]=useState([]);
+  
    
-   
+               //////////////get favorit
+               useEffect(() => {
+                if (iduser) {
+                  const fetchFavoris = async () => {
+                    const data = await getfavorit(iduser);
+                    console.log("this id user: " + iduser);
+                    console.log(data);
+                    setsave(data.map((dat) => dat.idoffre));
+                  };
+                  fetchFavoris();
+                }
+              }, [iduser]);
+              //////////////toglle save
+
+
+              /////////////////get offre
+            // useEffect(() => {
+              
+            //     fetchFavoris();
+            //   }, []);
     useEffect(()=>{
         const fetchdata=async()=>{
+         
             const data1=await getoffres();
             // const data2=await getenterprise();
             console.log(id);
@@ -35,9 +74,9 @@ export default function card({id}){
         fetchdata();
         // console.log("Updated offers state:", offres);
     },[]);
-    useEffect(() => {
-        console.log("Updated offers state of card:", offres);
-      }, [offres]); 
+    // useEffect(() => {
+    //     console.log("Updated offers state of card:", offres);
+    //   }, [offres]); 
 
     // console.log(offres.map((offre)=>offre.title));
     
@@ -79,8 +118,17 @@ function timeAgo(date) {
         <div className={style.offre}>
              
                 {offres.map((offre) => (
-             <div className={style.card} key={offre.idoffre}data-aos="fade-up">
 
+             <div className={style.card} key={offre.idoffre}data-aos="fade-up">
+<div className={style.btn}><Image 
+                      src={save.includes(offre.idoffre)? "/icon/unsave.svg" :"/icon/save.svg"}
+                      width={30}
+                      height={30}
+                      alt={"save"}
+                      unoptimized
+
+                      />
+</div>
              <div className={style.first}>
              <Image src={`/image/${offre.photo_profile}`} width={82} height={82} key={id} alt="logo"/>
                  <div className={style.data}>

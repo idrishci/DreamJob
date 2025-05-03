@@ -6,7 +6,7 @@ const getoffrebyId=(req,res)=>{
  
     const id=req.params.id; 
     console.log("id",id);
-    const query="SELECT * FROM offre_demploi INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE offre_demploi.idoffre=?";
+    const query="SELECT * FROM offre_demploi INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE offre_demploi.idoffre=? ";
  connection.query(query,[id],(err,data)=>{
     if(err){return console.log(err);}
     console.log(data);
@@ -27,23 +27,22 @@ connection.query(query,[id],(err,data)=>{
 ////updata data offre  by id offre 
 
 const postuler=(req,res)=>{
-    const {idoffre,identerp,iduser}=req.body;
-    console.log(idoffre,identerp,iduser);
-    const query="INSERT INTO postuler (idoffre,idcandidat,uid_firebase) VALUES (?,?,?)";
-    const values=[idoffre,iduser,identerp];
+    const {idoffre,iduser}=req.body;
+    console.log(idoffre,iduser);
+    const query="INSERT INTO postuler (idoffre,idcandidat) VALUES (?,?)";
+    const values=[idoffre,iduser];
     connection.query(query,values,(err,data)=>{
         if(err)return console.log(err);
         return res.json(data);
     })
 }
 const getpostuler=(req,res)=>{
-  // const {idoffre,identerp,iduser}=req.params;
+  console.log("fdf",req.params);
   const idoffre=req.query.idoffre;
-  const identerp=req.query.identerp;
   const iduser=req.query.iduser;
-  console.log("fdf",idoffre,identerp,iduser);
-  const query="SELECT * FROM postuler WHERE  idoffre=? AND idcandidat=? AND uid_firebase=? ";
-  const values=[idoffre,iduser,identerp];
+ 
+  const query="SELECT * FROM postuler WHERE  idoffre=? AND idcandidat=?  ";
+  const values=[idoffre,iduser];
   connection.query(query,values,(err,data)=>{
       if(err)return console.log(err);
       return res.json(data);
@@ -158,10 +157,48 @@ const updateoffre=(req,res)=>{
       return res.status(201).json({ message: "Offre créée avec succès", data: result });
     });
   };
+  const getfavorit=(req,res)=>{
+    // const {idoffre,identerp,iduser}=req.params;
+    const id=req.params.id
+    console.log("hi",req.params);
+    const query="SELECT * FROM favorit_offre_can WHERE idcandidat=?  ";
   
+    connection.query(query,[id],(err,data)=>{
+        if(err)return console.log(err);
+        return res.json(data);
+    })
+  }
+  const addfav=(req,res)=>{
+    const{idoffre,idcandidat}=req.body.params
+    // console.log(req.body);
+    //  console.log("66666");
+     const values=[idoffre,idcandidat];
+    //  console.log(values);
+     const query = "INSERT INTO favorit_offre_can (idoffre,idcandidat) VALUES (?,?)";
+    //  console.log(query);
+     connection.query(query,values,(err,data)=>{
+       if(err){return console.log(err);}
+       return res.json(data);
+   })
+   }
+   const deletfav=(req,res)=>{
+    //  console.log(req.query);
+     const{idoffre,idcandidat}=req.query
+      // console.log("66666");
+      const values=[idoffre,idcandidat];
+      // console.log(values);
+      const query = "DELETE FROM favorit_offre_can WHERE idoffre = ? AND idcandidat = ? ";
+      // console.log(query);
+      connection.query(query,values,(err,data)=>{
+        if(err){return console.log(err);}
+        return res.json(data);
+    })
+    }
+  router.post("/addfav",addfav);
+router.delete("/deletfav",deletfav);
   router.post("/postuler",postuler);
-  router.get("/postuler",getpostuler);
-
+  router.get("/getpostuler",getpostuler);
+  router.get("/getfavorit/:id",getfavorit);
   router.put("/updateoffre/:id", updateoffre);
 router.get("/:id",getoffrebyId);
 router.post("/creeoffre/:id",postoffres);

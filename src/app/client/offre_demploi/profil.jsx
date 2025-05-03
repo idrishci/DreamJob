@@ -19,7 +19,7 @@ export default function profile({id,uid}){
       
             </ul> 
              </div>
-             {selectedItem.type ==='offre' ? <Offre id={id}uid={uid} />:<Data id={uid} />  }
+             {selectedItem.type ==='offre' ? <Offre id={id}  />:<Data id={uid} />  }
         </div>
     );
 }

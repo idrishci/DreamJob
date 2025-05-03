@@ -69,11 +69,11 @@ export default function edit({id}){
             if (file) {
               if (type === "logo") {
                 setFormData({ ...formData, 'photo_profile': file });
-                setLogo(file);
+                // setLogo(file);
                 setPreviewLogo(URL.createObjectURL(file));
               } else if (type === "cover") {
                 setFormData({ ...formData, 'pathcover': file });
-                setCover(file);
+                // setCover(file);
                 setPreviewCover(URL.createObjectURL(file));
               }
             }

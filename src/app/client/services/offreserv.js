@@ -28,7 +28,7 @@ export async function getoffresentrerp(id){
 
    export async function getoneoffresentrerp(idoffre){
     try{
-        console.log("idoffreone",idoffre);
+        // console.log("idoffreone",idoffre);
    const res=await axios.get(`http://localhost:8800/api/offresid/:id/${idoffre}`);
    console.log(res.data);
    return res.data
@@ -48,12 +48,11 @@ export async function getoffresentrerp(id){
 
     }
    }
-   export async function postpostuler(idoffre,identerp,iduser){
+   export async function postpostuler(idoffre,iduser){
     try{
-     console.log("offreesee",idoffre,identerp,iduser);
+     console.log("offreesee",idoffre,iduser);
        const res=await axios.post("http://localhost:8800/api/offre/postuler/",{
         idoffre:idoffre,
-        identerp:identerp,
         iduser:iduser
      });
           console.log("datapostuler",res.data[0].idpostuler);
@@ -64,15 +63,42 @@ export async function getoffresentrerp(id){
     }
    }
 
-   export async function getpostuler(idoffre,identerp,iduser){
+   export async function getpostuler(idoffre,iduser){
     try{
-     console.log("offreesee",idoffre,identerp,iduser);
-       const res=await axios.get("http://localhost:8800/api/offre/postuler/",{params:{
+     console.log("offreesee",idoffre,iduser);
+       const res=await axios.get("http://localhost:8800/api/offre/getpostuler/",{params:{
         idoffre:idoffre,
-        identerp:identerp,
         iduser:iduser
      }});
           console.log("data",res.data);
+           return res.data;
+    }catch(err){
+
+    }
+   }
+   export async function getfavorit(id){
+    try{
+    //  console.log("offreesee",id);
+       const res=await axios.get(`http://localhost:8800/api/offre/getfavorit/${id}`)
+        //   console.log("data",res.data);
+           return res.data;
+    }catch(err){
+
+    }
+   }
+   export async function addfav(ids){
+    try{
+       const res=await axios.post("http://localhost:8800/api/offre/addfav",{params:ids});
+          console.log("data",res.data);
+           return res.data;
+    }catch(err){
+
+    }
+   }
+
+   export async function deletfav(ids){
+    try{
+       const res=await axios.delete("http://localhost:8800/api/offre/deletfav",{params:ids});
            return res.data;
     }catch(err){
 

@@ -3,7 +3,7 @@ import connection from "../config/db.js";
 const router=express.Router();
 
 const getoffres=(req,res)=>{
-    const query="SELECT * FROM offre_demploi INNER JOIN enterprise ON offre_demploi.id_enterp=enterprise.uid_firebase ";
+    const query="SELECT * FROM offre_demploi INNER JOIN enterprise ON offre_demploi.id_enterp=enterprise.uid_firebase ORDER BY offre_demploi.date DESC";
     connection.query(query,(err,data)=>{
         if(err){return console.log(err);}
         return res.json(data);
@@ -35,7 +35,7 @@ const getoffres=(req,res)=>{
     const getoffresenterp= (req,res)=>{
         const id=req.params.id;
         console.log("id of enterp3333",id);
-        const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE offre_demploi.id_enterp=?";
+        const query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE offre_demploi.id_enterp=? ORDER BY offre_demploi.date DESC";
         connection.query(query,[id],(err,data)=>{
             if(err){return console.log(err);}
             // console.log(data);
