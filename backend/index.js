@@ -44,6 +44,7 @@ app.use("/api/users/getpost",userroutes);
 app.use("/api/addusers",adduser)
 
 app.use("/api/offres/search",searchroutes);
+app.use("/api/enterprise/search",searchroutes);
 app.use("/api/enterprise",enterpriseroutes);
 app.use("/api/getenterprise",enterpriseroutes);
 app.use("/api/offres",offreroutes);

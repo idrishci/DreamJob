@@ -1,7 +1,7 @@
 
 "use client";
 import style from "./profile.module.css"
-import getenterprise from "../services/enterpriseserv";
+import {getenterprise} from "../services/enterpriseserv";
 import Photo from "./photo"
 import { useEffect, useState } from "react";
 export default function data({id}){

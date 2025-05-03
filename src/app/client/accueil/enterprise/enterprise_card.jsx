@@ -6,7 +6,7 @@ import style from "./style.module.css"
 import { useRouter } from 'next/navigation';
 import Card from "./card.jsx"
 import {useState,useEffect}from"react";
-import getenterprise from "../../services/enterpriseserv"
+import {getenterprise} from "../../services/enterpriseserv";
 export default function page(){
   const Router=useRouter();
   const [enterprises,setEnterprises]=useState([]);

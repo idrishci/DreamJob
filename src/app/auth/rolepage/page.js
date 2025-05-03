@@ -42,7 +42,8 @@ export default function Rolepage(){
               });
               
               postiduser(userr.uid,userr.email,selectedRole);
-              router.push("/");
+              router.push(`/auth/formulaire?role=candidat&id=${userr.uid}`);
+
             }
             else if (selectedRole === "enterprise") {
               await setDoc(doc(db, "users", userr.uid), {
@@ -51,7 +52,8 @@ export default function Rolepage(){
                 createdAt: new Date(),
               });
               postiduser(userr.uid,userr.email,selectedRole);
-              router.push("/Enterprise");
+              router.push(`/auth/formulaire?role=${"entreprise"}&id=${userr.uid}`);
+              
             }
             console.log("conn")
             setConnected("connected");

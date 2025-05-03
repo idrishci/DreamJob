@@ -1,6 +1,6 @@
 import axios from "axios";
 const api_url="http://localhost:8800/api/enterprise";
-const getenterprise=async()=>{
+export async function getenterprise(){
     try{
     const res=await axios.get(api_url);
     
@@ -11,4 +11,13 @@ const getenterprise=async()=>{
         return [];
     }
 }
-export default getenterprise;
+export async function getenterprisesearch(text,localisation){
+    try{
+        const res=await axios.get("http://localhost:8800//api/enterprise/search/enterprise",{params:{text,localisation}});
+        console.log(res.data);
+        return res.data;
+    }catch(err){
+        console.log(err);
+        return [];
+    }
+}

@@ -2,6 +2,27 @@ import express from "express";
 import connection from "../config/db.js";
 const router=express.Router();
 
+
+const getenterprisesearch=(req,res)=>{
+    const {text,localisation}=req.query; 
+    let params=[];
+    let query="SELECT * FROM enterprise   WHERE 1=1" ;
+    if(text){
+        query += " AND (titre LIKE ? OR fonction LIKE ? OR nom LIKE ? OR secteur_dactivite LIKE ?)";
+        params.push(`%${text}%`, `%${text}%`, `%${text}%`, `%${text}%`);
+    }
+    if(localisation){
+        query += " AND localisation=?";
+        console.log(localisation);
+        params.push(localisation);
+    }
+    connection.query(query,params,(err,data)=>{
+        if(err){return console.log(err);}
+        console.log("Data fetched:", data);
+        return res.json(data);
+    })
+
+}
 const getoffresearch=(req,res)=>{
   
     const {text,localisation,wilaya,secteur,fonction,niveau,experiance,contrat,lieu}=req.query;
@@ -84,4 +105,5 @@ const getoffresearch=(req,res)=>{
         })}
     router.get("/",getoffresearch);
     router.get("/candidat",getcandidatsearch);
+    router.get("/enterprise",getenterprisesearch);
     export default router;
