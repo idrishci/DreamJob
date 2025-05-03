@@ -14,14 +14,14 @@ import {useRouter}from"next/navigation";
 import {getinfouser}from"../../services/userserv";
 export default function button(){
       const [isOpen, setIsOpen] = useState(false);
-      const [isConnected, setConnected] = useState('connected');
+      const [isConnected, setConnected] = useState('');
       const [role, setRole] = useState('client');
       const [userr, setUser] = useState([]);
       const router = useRouter();
       
    
 const signout=async()=>{
-    await await signOut(auth);
+    await signOut(auth);
     // setUser(null);
 }
 
@@ -32,7 +32,7 @@ useEffect(() => {
             // console.log("id of user ", user);
             setConnected("connected");
             const docref =await doc(db, "users", user.uid);
-            console.log("docref12",docref);
+            console.log("docref12",user.uid);
              const document= await getDoc(docref);
              setRole(document.data().role);
              console.log("document",document.data().role);
@@ -55,7 +55,7 @@ useEffect(() => {
 
     return (
         <div className={style.btn}>
-           {isConnected=="deconnected" ||role==="enterprise"&&
+           {(isConnected=="deconnected" ||role==="enterprise")&&
            <> 
            <button onClick={()=>{router.push("/auth/signup")}}>sign up</button>
             <button onClick={()=>{router.push("/auth/signin")}}>sign in</button>
@@ -77,7 +77,7 @@ useEffect(() => {
 
     } */}
 
-    {isConnected === "connected"&& role==="client"&& Array.isArray(userr) && userr.length > 0 &&(
+    {isConnected === "connected" && role==="client"&& Array.isArray(userr) && userr.length > 0 &&(
   <div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
     {(userr[0].nom!=null && userr[0].prenom!=null )?(
       <h2>{userr[0].nom} {userr[0].prenom}</h2>
@@ -90,7 +90,7 @@ useEffect(() => {
       height={40} 
 
       alt={userr[0].photo_profile} 
-      src={`/public/image/${userr[0].photo_profile}` } 
+      src={`/image/${userr[0].photo_profile}` } 
 
 
       className={style.img}
