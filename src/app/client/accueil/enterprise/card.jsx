@@ -2,7 +2,7 @@ import style from './style.module.css';
 import Image from 'next/image';
 import {date} from "./post.js"
 import {useState,useEffect}from"react";
-import getenterprise from "../../services/enterpriseserv"
+import {getenterprise} from "../../services/enterpriseserv"
 
 import Aos from "aos";
 import "aos/dist/aos.css";

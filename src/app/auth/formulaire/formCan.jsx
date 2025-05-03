@@ -6,12 +6,13 @@ import Image from "next/image"
 import {setcandidat} from "../../services/userserv"
 import {secteur,niveau,experiance} from "@/app/file_json/data.js"
 import { useState,useEffect } from "react";
-
+import { useRouter } from 'next/navigation';
 export default function FormEnter({id}){
-  console.log("hhhh"+id);
+    const router = useRouter();
+  // console.log("hhhh"+id);
     //  const [enterprises,setEnterprises]=useState('');
      const [formData, setFormData] = useState({});
-     const [previewLogo, setPreviewLogo] = useState('');
+     const [previewLogo, setPreviewLogo] = useState('/icon/engineer.png');
      const [previewCover, setPreviewCover] = useState('');
      const requiredFields = [
       "nom",
@@ -78,8 +79,8 @@ export default function FormEnter({id}){
             // console.log("pathcover type:", typeof formData.pathcover);
            const result = await setcandidat( formDataToSend);
               if (result) {
-                alert("Offre modifiée avec succès !");
-                fetchdata();
+             router.push("/");
+
               } else {
                 alert("Erreur lors de la modification.");
               }

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import style from "./profile.module.css";
 import {useState,useEffect} from "react";
-import getenterprise from "../services/enterpriseserv";
+import {getenterprise} from "../services/enterpriseserv";
 const img={
     src:"/images/1.jpg",
     width: "80%",

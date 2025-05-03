@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import style from "./enter.module.css";
-import getenterprise from "../services/enterpriseserv";
+import {getenterprise} from "../services/enterpriseserv"
 import { useEffect, useState } from "react";
 export default function card({id}){
     const [enterprises,setEnterprises]=useState([]);

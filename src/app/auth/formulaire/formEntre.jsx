@@ -6,12 +6,13 @@ import Image from "next/image"
 import {setenterprise} from "../../services/userserv"
 import {secteur} from "@/app/file_json/data.js"
 import { useState,useEffect } from "react";
-
+import { useRouter } from 'next/navigation';
 export default function FormEnter({id}){
   console.log("hhhh"+id);
+  const router = useRouter();
     //  const [enterprises,setEnterprises]=useState('');
      const [formData, setFormData] = useState({});
-     const [previewLogo, setPreviewLogo] = useState('');
+     const [previewLogo, setPreviewLogo] = useState('/icon/account.png');
      const [previewCover, setPreviewCover] = useState('');
      const requiredFields = [
       "nom",
@@ -70,8 +71,8 @@ export default function FormEnter({id}){
             // console.log("pathcover type:", typeof formData.pathcover);
            const result = await setenterprise( formDataToSend);
               if (result) {
-                alert("Offre modifiée avec succès !");
-                fetchdata();
+                // alert(" modifiée avec succès !");
+                router.push("/Enterprise");
               } else {
                 alert("Erreur lors de la modification.");
               }
@@ -113,19 +114,19 @@ export default function FormEnter({id}){
            
 
                 <label >
-                    <h3>Nom de l'enterprise</h3>
+                    <h3>Nom de l'enterprise*</h3>
                     <input type="text"  onChange={e => handleChange('nom', e.target.value)}  required/>
                 </label>
                 <label >
-                    <h3>Localisation</h3>
+                    <h3>Localisation*</h3>
                     <input type="text" onChange={e => handleChange('localisation', e.target.value)} />
                 </label>
                 <label >
-                    <h3>Numero Telephone</h3>
+                    <h3>Numero Telephone*</h3>
                     <input type="text"onChange={e => handleChange('num_telephone', e.target.value)} />
                 </label>
                 <label >
-                    <h3>Nombre d'employe</h3>
+                    <h3>Nombre d'employe*</h3>
                     <select name="emplyoe" id="employe" onChange={e => handleChange('nombre_demployer', e.target.value)}>
                         <option value="10 A 20">10 A 20 </option>
                         <option value="20 a 50">20 a 50</option>
@@ -138,7 +139,7 @@ export default function FormEnter({id}){
                     </select>
                 </label>
                 <label >
-                    <h3>Secteur d'activite</h3>
+                    <h3>Secteur d'activite*</h3>
                      <select name="" id="" onChange={e => handleChange('secteur_dactivite', e.target.value)} >
                                     <option value="">secteur d'activite</option>
                                     {secteur.map((secteur) =>  (<option key={secteur.id} value={secteur.name} > {secteur.name}</option>))}
@@ -154,11 +155,11 @@ export default function FormEnter({id}){
                     <input type="link" onChange={e => handleChange('linkedin', e.target.value)} />
                 </label>
                 <label >
-                    <h3>Email de l'enterprise</h3>
+                    <h3>Email de l'enterprise*</h3>
                     <input type="email"   placeholder="@gmail.com" onChange={e => handleChange('email', e.target.value)}  />
                 </label>
                 <label className={style.description}>
-                    <h3>Description</h3>
+                    <h3>Description*</h3>
                     <textarea className={style.area}  onChange={e => handleChange('description_enter', e.target.value)} ></textarea>
                 </label>
                 

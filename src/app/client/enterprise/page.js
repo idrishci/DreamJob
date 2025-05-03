@@ -4,14 +4,12 @@
 import React from 'react'
 import Link from 'next/link'
 import style from "./enter.module.css"
-import Search from "./search-bar.jsx"
 import Hr from "@/app/component/hr/line"
 import Card from "./card.jsx"
 import {useEffect,useState} from "react"
-import getenterprise from "../services/enterpriseserv"
+import {getenterprise,getenterprisesearch} from "../services/enterpriseserv"
 import {wilaya} from "@/app/file_json/wilaya";
 import {secteur} from "@/app/file_json/data.js";
-import {getoffresearch}from"../services/offreserv.js";
 export default function Page(){
    const [enterprises,setEnterprises]=useState([]);
    useEffect(()=>{
@@ -40,7 +38,8 @@ export default function Page(){
         };
       
         console.log("the update",updatedFilters);
-      const res= await getoffresearch(updatedFilters); 
+      
+      const res= await getenterprisesearch(updatedFilters); 
        setEnterprises(res);
         console.log("Updated filters:",res);
     });
