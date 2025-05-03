@@ -18,9 +18,9 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let folder;
     if (file.fieldname === 'photo_profile') {
-      folder = path.join(__dirname, '../../public/image');
+      folder = path.join(__dirname, '../uploaded/photo');
     } else {
-      folder = path.join(__dirname, '../../public/file');
+      folder = path.join(__dirname, '../uploaded/cv');
     }
     cb(null, folder); // مهم جداً
   },
@@ -52,7 +52,7 @@ router.post('/adduser', upload.fields([
     description_can
   } = req.body;
 
-  const requiredFields = [nom, prenom,age,gender, num_telephone, niveau_detude, secteur_dactivite, email, description_can,wilaya,exper];
+  const requiredFields = [nom, prenom,age,gender, num_telephone, niveau_detude, secteur_dactivite, email,wilaya,exper];
   if (requiredFields.some(field => !field)) {
     return res.status(400).json({ error: "Tous les champs obligatoires doivent être remplis." });
   }
@@ -75,7 +75,7 @@ router.post('/adduser', upload.fields([
             "email",
             "description_can",
   ];
-  console.log(1)
+  const VALUES1=[uid_firebase];
   const values = [
     uid_firebase,
     nom,
@@ -104,12 +104,19 @@ router.post('/adduser', upload.fields([
 
   const placeholders = columns.map(() => "?").join(", ");
   const query = `INSERT INTO candidat (${columns.join(", ")}) VALUES (${placeholders})`;
-
+  const query2="INSERT INTO post (uid_firebase) VALUES (?)";
+console.log("Query:", query);
+  console.log("Values:", values);
   connection.query(query, values, (err, result) => {
     if (err) {
       console.error("Erreur lors de l'ajout :", err);
       return res.status(500).json({ error: "Erreur lors de l'ajout." });
     }
+    connection.query(query2, VALUES1, (err, data2) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Error inserting into post" });
+      }})
     res.status(200).json({ success: true, message: "candidat ajoutée avec succès", id: result.insertId });
   });
 });

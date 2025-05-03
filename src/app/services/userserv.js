@@ -19,11 +19,7 @@ export function updateinfouser(formdata){
       }
         // console.log("the user info ",user);
  const res=axios.post("http://localhost:8800/api/users/updateclient",formdata
-    // {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data"
-    //     }
-    //   }
+ 
  );
 }catch(err){
     console.log(err);

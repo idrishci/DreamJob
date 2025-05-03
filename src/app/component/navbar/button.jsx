@@ -90,7 +90,7 @@ useEffect(() => {
       height={40} 
 
       alt={userr[0].photo_profile} 
-      src={`/public/image/${userr[0].photo_profile}` } 
+      src={`http://localhost:8800/uploaded/photo/${userr[0].photo_profile}`}
 
 
       className={style.img}

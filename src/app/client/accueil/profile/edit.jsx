@@ -34,7 +34,7 @@ useEffect(()=>{
         for (let key in infouser) {
          formdata.append(key, infouser[key]);
        }
-       await formdata.append("photo",image);
+       await formdata.append("photo_profile",image);
        await formdata.append("cv",filecv);
        await  updateinfouser(formdata);
     }

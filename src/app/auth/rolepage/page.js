@@ -41,7 +41,7 @@ export default function Rolepage(){
                 createdAt: new Date(),
               });
               
-              postiduser(userr.uid,userr.email,selectedRole);
+              // postiduser(userr.uid,userr.email,selectedRole);
               router.push(`/auth/formulaire?role=candidat&id=${userr.uid}`);
 
             }
@@ -51,7 +51,7 @@ export default function Rolepage(){
                 role: selectedRole,
                 createdAt: new Date(),
               });
-              postiduser(userr.uid,userr.email,selectedRole);
+              // postiduser(userr.uid,userr.email,selectedRole);
               router.push(`/auth/formulaire?role=${"entreprise"}&id=${userr.uid}`);
               
             }
