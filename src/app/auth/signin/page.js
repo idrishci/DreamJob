@@ -90,7 +90,9 @@ const router =useRouter();
                       if(role === "client") {
                         router.push("/");
                       }else if(role === "enterprise") {
-                        router.push("/Enterprise");}
+                        router.push("/Enterprise");
+                      }else if(role === "admin") {
+                          router.push("/admin");}
                
                   }
               })

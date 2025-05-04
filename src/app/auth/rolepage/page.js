@@ -1,7 +1,7 @@
 "use client";
 import styles from "./style.module.css";
 import { userAgent } from "next/server";
-import {addDoc,db,auth,collection, createUserWithEmailAndPassword}from "../firebase";
+import {addDoc ,db,auth,getDoc}from "../firebase";
 import {getFirestore,doc,setDoc}from "firebase/firestore";
 import { ClassNames } from "@emotion/react";
 import { Sync } from "@mui/icons-material";
@@ -11,25 +11,42 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { postiduser } from "../../services/userserv";
 export default function Rolepage(){
   const router =useRouter();
-  const [isConnected,setConnected]=useState('connected');
+  const [isConnected,setConnected]=useState(null);
   const [loading,setLoading]=useState(true);
   const [userr, setUser] = useState(null);
+  // const [role,setRole]=useState(null);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async(user) => {
-            if (user) {
-              await setUser(user);
-                console.log("is steel connected");
-                setConnected("connected");
-            } else {
-                setConnected("deconnected");
-                alert("Vous n'avez pas l'accès");
-                router.push("/auth/signin");
-            }
-            setLoading(false);
-        })
-        return ()=>unsubscribe();
-    },[]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        alert("Vous n'avez pas l'accès");
+        router.push("/auth/signin");
+        return;
+      }
+
+      setUser(user);
+      const userDocRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userDocRef);
+      const lerole = docSnap.data()?.role || "";
+
+      // ✅ Redirect immediately if role is already set
+      if (lerole === "admin") {
+        router.push("/admin");
+        return;
+      } else if (lerole === "client") {
+        router.push("/");
+        return;
+      } else if (lerole === "enterprise") {
+        router.push("/Enterprise");
+        return;
+      }
+
+      setLoading(false);  // no role found, so show the role selection UI
+    });
+
+    return () => unsubscribe();
+  }, [router]);
 
     const handleSelectRole = async(selectedRole) => {
           if (userr) {
@@ -62,10 +79,11 @@ export default function Rolepage(){
             return null;
           }  
      }
- 
+     if (loading) return <p>Loading...</p>;
+    //  if (isConnected === "deconnected") return null;
     return(
-      <>
-        {isConnected=="connected"&&<>
+
+        
         <div className={styles.container}>
         <h1 className={styles.title}>Rejoignez-nous en tant qu Entreprise ou Candidat</h1>
         <div className={styles.cardGrid}>
@@ -86,6 +104,6 @@ export default function Rolepage(){
         </div>
       </div>
    
-    </>} </> 
+    
     );
 } 

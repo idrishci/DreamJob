@@ -14,7 +14,7 @@ import {useRouter}from"next/navigation";
 import {getinfouser}from"../../services/userserv";
 export default function button(){
       const [isOpen, setIsOpen] = useState(false);
-      const [isConnected, setConnected] = useState('connected');
+      const [isConnected, setConnected] = useState(null);
       const [role, setRole] = useState('client');
       const [userr, setUser] = useState([]);
       const router = useRouter();
