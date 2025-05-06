@@ -82,7 +82,8 @@ useEffect(() => {
       height={40} 
 
       alt={userr[0].photo_profile} 
-      src={`/image/${userr[0].photo_profile}` } 
+      src={`http://localhost:8800/uploaded/photo/${userr[0].photo_profile}`} 
+      
 
 
       className={style.img}
@@ -99,10 +100,11 @@ useEffect(() => {
   </div>
 )}
     {isOpen &&<div className={style.proflist}>
-      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}>Mon profile</li> 
+      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}><Image src={"/icon/account.png"} width={20} height={20} /> Mon profile</li> 
          <hr />
+         
         <li onClick={()=>{setIsOpen(false); 
-          signout()}}>deconected</li>
+          signout()}}> <Image src={"/icon/logout.png"} width={20} height={20}/> deconected</li>
 </div>}
         </div>
     );
