@@ -25,6 +25,20 @@ export function updateinfouser(formdata){
     console.log(err);
     return [];}
 }
+export async function checkemailandphone(email,phone,role){
+    try{
+ const res=await axios.get("http://localhost:8800/api/users/checkemailandphone",{
+    params:{
+        email:email,
+        phone:phone,
+        role:role}
+    
+ });
+ return res.data;
+}catch(err){
+    console.log(err);}}
+
+
 export async function  getinfouser(uid,role){
     try{
  const res=await axios.get(api_url,{

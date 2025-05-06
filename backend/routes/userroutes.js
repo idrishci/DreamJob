@@ -244,7 +244,20 @@ const getfavorit=(req,res)=>{
     return res.json(data);
 })
 }
-
+const checkemailandphone=(req,res)=>{
+  const { email, phone, role } = req.query;
+  console.log("email",email,"phone",phone,"role",role);
+  let query = "SELECT * FROM candidat WHERE email = ? OR num_telephone = ?";
+  if (role === "enterprise") {
+    query = "SELECT * FROM enterprise WHERE email = ? OR num_telephone = ?";
+  }
+  const values = [email, phone];
+  connection.query(query, values, (err, data) => {
+    if (err) return console.log(err);
+    return res.json(data);
+  });
+}
+router.get("/checkemailandphone",checkemailandphone);
 router.post("/addfav",addfavcan);
 router.delete("/deletfav",deletfavcan);
 router.get("/",getinfouser);

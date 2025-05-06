@@ -7,11 +7,22 @@ import {setcandidat} from "../../services/userserv"
 import {secteur,niveau,experiance} from "@/app/file_json/data.js"
 import { useState,useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import {getinfouser} from "../../services/userserv"
 import {wilaya} from "@/app/file_json/wilaya";
+import {checkemailandphone} from "../../services/userserv"
 export default function FormEnter({id}){
-    const router = useRouter();
-  // console.log("hhhh"+id);
-    //  const [enterprises,setEnterprises]=useState('');
+const router = useRouter();
+const [user, setUser] = useState([]);
+  // useEffect(()=>{
+  //   const featchdata=async()=>{
+  //   const res= await getinfouser(id,"client");
+  
+  // }
+  //     setUser(res);
+  //   featchdata();
+  // },[]);
+    
+
      const [formData, setFormData] = useState({
       gender: "Male",
      });
@@ -24,11 +35,26 @@ export default function FormEnter({id}){
 
 
         ///////////////////
-        const handleChange = (field, value) => {
-            setFormData({ ...formData, [field]: value });};
+        const handleChange = async (field, value) => {
+            setFormData({ ...formData, [field]: value });
+          if (field === "email") {
+            if (value) {
+   
+            }
+          }
+          };
           /////
         const handleSubmit = async () => {
-     
+
+          const ress=await checkemailandphone(formData["email"],formData["num_telephone"],"client");
+          if(ress.length>0) {
+          if (ress[0].email==formData["email"]) {
+            alert("l'email existe deja");
+            return;
+
+          }if (ress[0].num_telephone==formData["num_telephone"]) {
+            alert("le numero de telephone existe deja");}
+          }
           const formDataToSend = new FormData();
           formDataToSend.append('uid_firebase', id);
           console.log("this"+formDataToSend.uid_firebase)
