@@ -103,15 +103,15 @@ const getinfouser = (req,res) => {
                 return res.json(data);
             })
         }
-        else if(role=="admin"){
-            const query="SELECT * FROM admin WHERE uid_firebase=?";
-            const values=[uid];
-            connection.query(query,values,(err,data)=>{
-                if(err)return console.log(err);
-                console.log(data);
-                return res.json(data);
-            })
-    }
+        // else if(role=="admin"){
+        //     const query="SELECT * FROM admin WHERE uid_firebase=?";
+        //     const values=[uid];
+        //     connection.query(query,values,(err,data)=>{
+        //         if(err)return console.log(err);
+        //         console.log(data);
+        //         return res.json(data);
+        //     })
+    // }
     
     
 }

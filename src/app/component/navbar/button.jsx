@@ -64,7 +64,7 @@ useEffect(() => {
 }, [userid, role, userr]);
     return (
         <div className={style.btn}>
-           {(isConnected=="deconnected" ||role==="enterprise")&&
+           {(isConnected=="deconnected" ||role==="enterprise"||role==="admin")&&
            <> 
            <button onClick={()=>{router.push("/auth/signup")}}>sign up</button>
             <button onClick={()=>{router.push("/auth/signin")}}>sign in</button>
@@ -103,11 +103,11 @@ useEffect(() => {
   </div>
 )}
     {isOpen &&<div className={style.proflist}>
-      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}><Image src={"/icon/account.png"} width={20} height={20} /> Mon profile</li> 
+      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}><Image src={"/icon/account.png"} alt="icon"width={20} height={20} /> Mon profile</li> 
          <hr />
          
         <li onClick={()=>{setIsOpen(false); 
-          signout()}}> <Image src={"/icon/logout.png"} width={20} height={20}/> deconected</li>
+          signout()}}> <Image src={"/icon/logout.png"}alt="icon" width={20} height={20}/> deconected</li>
 </div>}
         </div>
     );
