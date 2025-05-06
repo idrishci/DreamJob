@@ -109,6 +109,7 @@ const getallcandidat=(req,res)=>{
 const updateinfoclient = (req,res) => {
     const formdata=req.body;
     const files = req.files;
+    console.log("dsffsddf "+req.files)
     const iduser=req.body.iduser;
     let fields = [];
   let values = [];

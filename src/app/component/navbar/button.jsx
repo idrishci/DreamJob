@@ -52,6 +52,9 @@ useEffect(() => {
        })
     return ()=>unsubscribe();
 },[]);
+useEffect(() => {
+  console.log("Updated userr:", userr);
+}, [userr]);
 
     return (
         <div className={style.btn}>
