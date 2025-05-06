@@ -16,7 +16,7 @@ const router = express.Router();
 // إعداد multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../../public/image'));
+    cb(null, path.join(__dirname, '../uploaded/photo'));
   },
   filename: (req, file, cb) => {
     const uniqueName = Date.now() + path.extname(file.originalname);
@@ -103,7 +103,7 @@ router.post('/add', upload.fields([
   } = req.body;
 
   // التحقق من الحقول الإجبارية
-  const requiredFields = [nom, localisation, num_telephone, nombre_demployer, secteur_dactivite, email, description_enter];
+  const requiredFields = [nom, localisation, num_telephone, nombre_demployer, secteur_dactivite, email];
   if (requiredFields.some(field => !field)) {
     return res.status(400).json({ error: "Tous les champs obligatoires doivent être remplis." });
   }

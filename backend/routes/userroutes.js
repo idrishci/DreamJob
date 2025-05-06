@@ -1,7 +1,30 @@
 import express from 'express';
 import connection from '../config/db.js';
 import multer from "multer";
+import path from "path";
+import { fileURLToPath } from "url";
 const router=express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    let folder;
+    if (file.fieldname === 'photo_profile') {
+      folder = path.join(__dirname, '../uploaded/photo');
+    } else {
+      folder = path.join(__dirname, '../uploaded/cv');
+    }
+    cb(null, folder); // مهم جداً
+  },
+  filename: (req, file, cb) => {
+    const uniqueName = Date.now() + path.extname(file.originalname);
+    cb(null, uniqueName);
+  }
+});
+const upload = multer({ storage: storage });
+// app.use("/uploads/photo", express.static(path.join(__dirname, "uploaded/photo")));
+
+
 const postiduser = (req,res) => {
 const id=req.body.uid;
 const email=req.body.email;
@@ -26,7 +49,8 @@ if(role=="client"){
       }
 
       return res.json({ message: "User added successfully" });
-    });
+    }
+  );
   });
 }else 
 if(role=="enterprise"){
@@ -156,15 +180,15 @@ const updateinfoclient = (req,res) => {
     fields.push("secteur_dactivite= ?");
     values.push(formdata.secteur_activite);
   }
-  if (files.photo) {
+  if (files.photo_profile) {
     fields.push("photo_profile= ?");
-    const photoName = files.photo[0].filename; 
+    const photoName = files.photo_profile[0].filename; 
     values.push(photoName );
   }
 
   if (files.cv) {
     fields.push("cv = ?");
-    const cvName = files.photo[0].filename; 
+    const cvName = files.cv[0].filename; 
     values.push(cvName);
   }
 
@@ -221,7 +245,20 @@ const getfavorit=(req,res)=>{
     return res.json(data);
 })
 }
-
+const checkemailandphone=(req,res)=>{
+  const { email, phone, role } = req.query;
+  console.log("email",email,"phone",phone,"role",role);
+  let query = "SELECT * FROM candidat WHERE email = ? OR num_telephone = ?";
+  if (role === "enterprise") {
+    query = "SELECT * FROM enterprise WHERE email = ? OR num_telephone = ?";
+  }
+  const values = [email, phone];
+  connection.query(query, values, (err, data) => {
+    if (err) return console.log(err);
+    return res.json(data);
+  });
+}
+router.get("/checkemailandphone",checkemailandphone);
 router.post("/addfav",addfavcan);
 router.delete("/deletfav",deletfavcan);
 router.get("/",getinfouser);
@@ -229,7 +266,10 @@ router.get("/getfav/:id",getfavorit);
 // router.post("/",postiduser);
 router.post("/post",postthepost);
 router.get("/getpost",getthepost);
-router.post("/updateclient",updateinfoclient);
 router.get("/candidat",getcandidat);
 router.get("/allcandidat",getallcandidat);
+router.post("/updateclient", upload.fields([
+  { name: 'photo_profile', maxCount: 1 },
+  { name: 'cv', maxCount: 1 }
+]), updateinfoclient);
 export default router;

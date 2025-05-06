@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp,getApps,getApp } from "firebase/app";
 import { getAuth,GoogleAuthProvider, signInWithPopup, signOut,sendPasswordResetEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { initializeFirestore,getFirestore,doc,setDoc, collection, addDoc} from "firebase/firestore";
+import { initializeFirestore,getFirestore,doc,setDoc,getDoc, collection, addDoc} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey : process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -19,5 +19,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth= getAuth(app);
 const db = getFirestore(app);
-export {app, auth,db,initializeFirestore,doc,setDoc, collection, addDoc, GoogleAuthProvider, signInWithPopup,sendPasswordResetEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword } ;
+export {app, auth,db,initializeFirestore,doc,setDoc, getDoc,collection, addDoc, GoogleAuthProvider, signInWithPopup,sendPasswordResetEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword } ;
 

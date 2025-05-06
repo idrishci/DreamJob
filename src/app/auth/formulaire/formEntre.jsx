@@ -7,22 +7,13 @@ import {setenterprise} from "../../services/userserv"
 import {secteur} from "@/app/file_json/data.js"
 import { useState,useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import {wilaya} from "@/app/file_json/wilaya";
 export default function FormEnter({id}){
-  console.log("hhhh"+id);
   const router = useRouter();
     //  const [enterprises,setEnterprises]=useState('');
      const [formData, setFormData] = useState({});
      const [previewLogo, setPreviewLogo] = useState('/icon/account.png');
      const [previewCover, setPreviewCover] = useState('');
-     const requiredFields = [
-      "nom",
-      "localisation",
-      "num_telephone",
-      "nombre_demployer",
-      "secteur_dactivite",
-      "email",
-      "description_enter",
-    ];
        
      
      ////get info
@@ -44,7 +35,6 @@ export default function FormEnter({id}){
             "nombre_demployer",
             "secteur_dactivite",
             "email",
-            "description_enter",
 
           ];
         
@@ -119,7 +109,10 @@ export default function FormEnter({id}){
                 </label>
                 <label >
                     <h3>Localisation*</h3>
-                    <input type="text" onChange={e => handleChange('localisation', e.target.value)} />
+                   <select name="localisation" id=""  onChange={e => handleChange('localisation', e.target.value)} >
+                                       <option value="">wilaya</option>
+                                    {wilaya.map (wilaya => <option key={wilaya.name}value={wilaya.name}  > {wilaya.name}</option>)}
+                                    </select>
                 </label>
                 <label >
                     <h3>Numero Telephone*</h3>
@@ -128,6 +121,7 @@ export default function FormEnter({id}){
                 <label >
                     <h3>Nombre d'employe*</h3>
                     <select name="emplyoe" id="employe" onChange={e => handleChange('nombre_demployer', e.target.value)}>
+                        <option value="">Nombre d'employe</option>
                         <option value="10 A 20">10 A 20 </option>
                         <option value="20 a 50">20 a 50</option>
                         <option value="50 A 100">50 A 100</option>
@@ -159,14 +153,11 @@ export default function FormEnter({id}){
                     <input type="email"   placeholder="@gmail.com" onChange={e => handleChange('email', e.target.value)}  />
                 </label>
                 <label className={style.description}>
-                    <h3>Description*</h3>
+                    <h3>Description</h3>
                     <textarea className={style.area}  onChange={e => handleChange('description_enter', e.target.value)} ></textarea>
                 </label>
                 
-                
-               
-            
-                {/* <Mssg/> */}
+        
             </div>
             <hr />
             <button onClick={handleSubmit} >Engestrer</button>

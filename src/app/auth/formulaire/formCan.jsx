@@ -7,37 +7,54 @@ import {setcandidat} from "../../services/userserv"
 import {secteur,niveau,experiance} from "@/app/file_json/data.js"
 import { useState,useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import {getinfouser} from "../../services/userserv"
+import {wilaya} from "@/app/file_json/wilaya";
+import {checkemailandphone} from "../../services/userserv"
 export default function FormEnter({id}){
-    const router = useRouter();
-  // console.log("hhhh"+id);
-    //  const [enterprises,setEnterprises]=useState('');
-     const [formData, setFormData] = useState({});
+const router = useRouter();
+const [user, setUser] = useState([]);
+  // useEffect(()=>{
+  //   const featchdata=async()=>{
+  //   const res= await getinfouser(id,"client");
+  
+  // }
+  //     setUser(res);
+  //   featchdata();
+  // },[]);
+    
+
+     const [formData, setFormData] = useState({
+      gender: "Male",
+     });
      const [previewLogo, setPreviewLogo] = useState('/icon/engineer.png');
      const [previewCover, setPreviewCover] = useState('');
-     const requiredFields = [
-      "nom",
-      "prenom",
-      "age",
-      "gender",
-      "wilaya",
-      "exper",
-      "num_telephone",
-      "niveau_detude",
-      "secteur_dactivite",
-      "email",
-      "description_can",
-    ];
+
        
      
      ////get info
 
 
         ///////////////////
-        const handleChange = (field, value) => {
-            setFormData({ ...formData, [field]: value });};
+        const handleChange = async (field, value) => {
+            setFormData({ ...formData, [field]: value });
+          if (field === "email") {
+            if (value) {
+   
+            }
+          }
+          };
           /////
         const handleSubmit = async () => {
-     
+
+          const ress=await checkemailandphone(formData["email"],formData["num_telephone"],"client");
+          if(ress.length>0) {
+          if (ress[0].email==formData["email"]) {
+            alert("l'email existe deja");
+            return;
+
+          }if (ress[0].num_telephone==formData["num_telephone"]) {
+            alert("le numero de telephone existe deja");}
+          }
           const formDataToSend = new FormData();
           formDataToSend.append('uid_firebase', id);
           console.log("this"+formDataToSend.uid_firebase)
@@ -45,14 +62,12 @@ export default function FormEnter({id}){
             "nom",
             "prenom",
             "age",
-            "gender",
             "wilaya",
             "exper",
             "num_telephone",
             "niveau_detude",
             "secteur_dactivite",
             "email",
-            "description_can",
 
           ];
         
@@ -78,6 +93,7 @@ export default function FormEnter({id}){
             // console.log("photo_profile type:", typeof formData.photo_profile);
             // console.log("pathcover type:", typeof formData.pathcover);
            const result = await setcandidat( formDataToSend);
+           console.log("resul23232t");
               if (result) {
              router.push("/");
 
@@ -128,15 +144,18 @@ export default function FormEnter({id}){
                     <input type="number" onChange={e => handleChange('age', e.target.value)} />
                 </label>
                 <label >
-                    <h3>genre*</h3>
-                    <select name="" id="" onChange={e => handleChange('gender', e.target.value)}>
-                        <option value="Male">Male </option>
+                    <h3>Genre*</h3>
+                    <select name="gender" id="" onChange={e => handleChange('gender', e.target.value)}>
+                        <option value="Male" default >Male </option>
                         <option value="Female">Female</option>
                     </select>
                 </label>
                 <label >
-                    <h3>Adress*</h3>
-                    <input type="text" onChange={e => handleChange('wilaya', e.target.value)} />
+                    <h3>Wilaya*</h3>
+                   <select name="wilaya" id=""  onChange={e => handleChange('wilaya', e.target.value)} >
+                                       <option value="">wilaya</option>
+                                    {wilaya.map (wilaya => <option key={wilaya.name}value={wilaya.name}  > {wilaya.name}</option>)}
+                                    </select>
                 </label>
                 <label >
                     <h3>Numero Telephone*</h3>
@@ -171,7 +190,7 @@ export default function FormEnter({id}){
                     <input type="email"   placeholder="@gmail.com" onChange={e => handleChange('email', e.target.value)}  />
                 </label>
                 <label className={style.description}>
-                    <h3>Description*</h3>
+                    <h3>Description</h3>
                     <textarea className={style.area}  onChange={e => handleChange('description_can', e.target.value)} ></textarea>
                 </label>
       

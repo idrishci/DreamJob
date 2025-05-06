@@ -17,6 +17,7 @@ export default function button(){
       const [isConnected, setConnected] = useState('');
       const [role, setRole] = useState('client');
       const [userr, setUser] = useState([]);
+      const[userid,setUserId]=useState(null);
       const router = useRouter();
       
    
@@ -35,10 +36,10 @@ useEffect(() => {
             console.log("docref12",user.uid);
              const document= await getDoc(docref);
              setRole(document.data().role);
-             console.log("document",document.data().role);
+            //  console.log("document",document.data().role);
              console.log("document rooole",document.data().role);
              const res= await getinfouser(user.uid,document.data().role);
-              console.log("infouserbuton", res[0]); 
+              // console.log("infouserbuton", res[0]); 
               setUser(res);
             
         } else {
@@ -56,6 +57,11 @@ useEffect(() => {
   console.log("Updated userr:", userr);
 }, [userr]);
 
+useEffect(() => {
+  if (isConnected === "connected" && role === "client" && Array.isArray(userr) && userr.length == 0) {
+    router.push(`/auth/formulaire?role=candidat&id=${userid}`);
+  }
+}, [userid, role, userr]);
     return (
         <div className={style.btn}>
            {(isConnected=="deconnected" ||role==="enterprise")&&
@@ -64,21 +70,7 @@ useEffect(() => {
             <button onClick={()=>{router.push("/auth/signin")}}>sign in</button>
             </>
         }
-      
-     {/* {isConnected=="connected" && 
-     <>
-     <div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
-     {userr.map((use)=>( 
-      <>
-      
-    <h2> {use.nom }{use.prenom }</h2>
-     <Image width={40} height={40} alt={"photo profile"} src={use.photo_profile?`/image/${use.photo_profile}`:"/image/account.png"} className={style.img}/>
-     </>
-    ))} 
-     </div>
-     </>
-
-    } */}
+{/* && Array.isArray(userr) && userr.length > 0 && */}
 
     {isConnected === "connected" && role==="client"&& Array.isArray(userr) && userr.length > 0 &&(
   <div className={style.profile} onClick={() => setIsOpen(!isOpen)}>
@@ -93,7 +85,8 @@ useEffect(() => {
       height={40} 
 
       alt={userr[0].photo_profile} 
-      src={`/image/${userr[0].photo_profile}` } 
+      src={`http://localhost:8800/uploaded/photo/${userr[0].photo_profile}`} 
+      
 
 
       className={style.img}
@@ -110,10 +103,11 @@ useEffect(() => {
   </div>
 )}
     {isOpen &&<div className={style.proflist}>
-      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}>Mon profile</li> 
+      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}><Image src={"/icon/account.png"} width={20} height={20} /> Mon profile</li> 
          <hr />
+         
         <li onClick={()=>{setIsOpen(false); 
-          signout()}}>deconected</li>
+          signout()}}> <Image src={"/icon/logout.png"} width={20} height={20}/> deconected</li>
 </div>}
         </div>
     );

@@ -25,10 +25,12 @@ useEffect(() => {
     {usere.photo_profile ==null ? (
      
         <Image width={150} height={150} alt="photo_profile" src={"/icon/engineer.png"}  className={style.img}/>
-    ) : (
+    ) : (<>
+        {console.log("Photo filename:", usere.photo_profile)}
         <Image width={150} height={150} alt="photo_profile" src={`http://localhost:8800/uploaded/photo/${usere.photo_profile}`} className={style.img}/>
-    )}
+    </>)}
         <div className={style.data}>
+        
             <label > <h2>Nom :</h2> <h3>{usere.nom}</h3></label>
             <label > <h2>Prenom :</h2> <h3>{usere.prenom}</h3></label>
             <label > <h2>Age :</h2> <h3>{usere.age}</h3></label>
