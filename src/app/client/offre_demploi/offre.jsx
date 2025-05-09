@@ -15,7 +15,7 @@ export default function offre({id}){
    const [iduser,setiduser]=useState('');
    const [isConnected,setConnected]=useState('connected');
    const [ispostuler,setispostuler]=useState(false);
-   
+   const [role, setRole] = useState('');
   const [save,setsave]=useState([])
   /////////get id user
     useEffect(() => {
@@ -24,6 +24,10 @@ export default function offre({id}){
                 setConnected("connected");
                 // console.log("user",user.uid);
                 setiduser(user.uid);
+                const docref =await doc(db, "users", user.uid);
+                console.log("docref12",user.uid);
+                 const document= await getDoc(docref);
+                 setRole(document.data().role);
                 
             } else {
                 setiduser('')
@@ -107,7 +111,7 @@ useEffect(() => {
             offres.map((offre) => (  
                
         <div className={style.offre} key={offre.idoffre}>
-            <div className={style.btn1}><Image 
+          { (role!="admin" && role!="enterprise") &&   <div className={style.btn1}><Image 
                       src={save.includes(offre.idoffre)? "/icon/unsave.svg" :"/icon/save.svg"}
                       width={30}
                       height={30}
@@ -115,7 +119,7 @@ useEffect(() => {
                       unoptimized
                       onClick={ () => toggleSave(offre.idoffre)}
                       />
-            </div>
+            </div>}
             <div className={style.first}>
                <h1>{offre.titre}  </h1>
 
@@ -174,12 +178,13 @@ useEffect(() => {
             </p>
             </div>
          
-           { ispostuler?(
+          { (role!=="admin" && role!=="enterprise") &&
+           <> {ispostuler?(
                 <div className={style.btn}> <span><h3>vous postulez deja</h3></span></div>
             ):(
                
                 <div className={style.btn}><button onClick={()=>postuler()}>postuler</button></div>
-            )}
+            )}</>}
             
             
         </div>

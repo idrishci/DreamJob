@@ -32,7 +32,7 @@ const role=req.body.role;
 console.log("this is th is ",id,"this is email",email,"this is role",role);
 if(role=="client"){
     const query1="INSERT INTO candidat (email,uid_firebase) VALUES (?,?)";
-    const query2="INSERT INTO post (uid_firebase) VALUES (?)";
+    const query2="INSERT INTO demande (uid_firebase) VALUES (?)";
   
     const VALUES=[email,id];
      const VALUES1=[id];
@@ -66,7 +66,7 @@ if(role=="enterprise"){
 const postthepost = (req,res) => {
   const { sujet, titre, uid } = req.body;
   console.log("sujet ",sujet,"titre",titre,"id",uid);
-  const query = "UPDATE post SET titre = ?, sujet = ? WHERE uid_firebase = ?";
+  const query = "UPDATE demande SET titre = ?, sujet = ? WHERE uid_firebase = ?";
   const VALUES=[titre,sujet,uid];
   connection.query(query,VALUES,(err,data)=>{
   if(err)return console.log(err);
@@ -76,7 +76,7 @@ const postthepost = (req,res) => {
 const getthepost = (req,res) => {
   const {uid}  = req.query;
   console.log("id uid",uid);
-  const query="SELECT * FROM post  WHERE post.uid_firebase=?";
+  const query="SELECT * FROM demande  WHERE demande.uid_firebase=?";
   connection.query(query,uid,(err,data)=>{
   if(err)return console.log(err);
   return res.json(data);
@@ -117,7 +117,7 @@ const getinfouser = (req,res) => {
 }
 
 const getcandidat=(req,res)=>{
-  const query = "SELECT * FROM candidat INNER JOIN post ON candidat.uid_firebase = post.uid_firebase ";
+  const query = "SELECT * FROM candidat INNER JOIN demande ON candidat.uid_firebase = demande.uid_firebase ";
   connection.query(query,(err,data)=>{
     if(err){return console.log(err);}
     return res.json(data);
@@ -130,10 +130,15 @@ const getallcandidat=(req,res)=>{
     return res.json(data);
 })
 }
-const updateinfoclient = (req,res) => {
+router.put('/updateclient', upload.fields([
+  { name: 'photo_profile', maxCount: 1 },
+  { name: 'cv', maxCount: 1 }
+]), async(req,res) => {
     const formdata=req.body;
     const files = req.files;
-    console.log("dsffsddf "+req.files)
+    console.log(req.body);
+    const logo = req.files['photo_profile'] ? req.files['photo_profile'][0].filename : null;
+    const cv = req.files['cv'] ? req.files['cv'][0].filename : null;
     const iduser=req.body.iduser;
     let fields = [];
   let values = [];
@@ -180,14 +185,17 @@ const updateinfoclient = (req,res) => {
     fields.push("secteur_dactivite= ?");
     values.push(formdata.secteur_activite);
   }
+  if (formdata.description_can) {
+    fields.push("description_can= ?");
+    values.push(formdata.description_can );
+  }
   if (files.photo_profile) {
     fields.push("photo_profile= ?");
     const photoName = files.photo_profile[0].filename; 
     values.push(photoName );
   }
-
-  if (files.cv) {
-    fields.push("cv = ?");
+   if (files.cv) {
+    fields.push("cv= ?");
     const cvName = files.cv[0].filename; 
     values.push(cvName);
   }
@@ -200,7 +208,7 @@ const updateinfoclient = (req,res) => {
 
   const query = `UPDATE candidat SET ${fields.join(", ")} WHERE uid_firebase = ?`;
   values.push(iduser); // UID is last
-
+ console.log(query)
   connection.query(query, values, (err, result) => {
     if (err) {
       console.error(err);
@@ -209,7 +217,7 @@ const updateinfoclient = (req,res) => {
     res.json({ success: true, result });
   });
 
-}
+});
 const addfavcan=(req,res)=>{
  const{identer,idcandidat}=req.body.params
 //  console.log(req.body);
@@ -245,20 +253,8 @@ const getfavorit=(req,res)=>{
     return res.json(data);
 })
 }
-const checkemailandphone=(req,res)=>{
-  const { email, phone, role } = req.query;
-  console.log("email",email,"phone",phone,"role",role);
-  let query = "SELECT * FROM candidat WHERE email = ? OR num_telephone = ?";
-  if (role === "enterprise") {
-    query = "SELECT * FROM enterprise WHERE email = ? OR num_telephone = ?";
-  }
-  const values = [email, phone];
-  connection.query(query, values, (err, data) => {
-    if (err) return console.log(err);
-    return res.json(data);
-  });
-}
-router.get("/checkemailandphone",checkemailandphone);
+
+
 router.post("/addfav",addfavcan);
 router.delete("/deletfav",deletfavcan);
 router.get("/",getinfouser);
@@ -268,8 +264,5 @@ router.post("/post",postthepost);
 router.get("/getpost",getthepost);
 router.get("/candidat",getcandidat);
 router.get("/allcandidat",getallcandidat);
-router.post("/updateclient", upload.fields([
-  { name: 'photo_profile', maxCount: 1 },
-  { name: 'cv', maxCount: 1 }
-]), updateinfoclient);
+
 export default router;

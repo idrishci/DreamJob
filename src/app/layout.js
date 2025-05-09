@@ -14,14 +14,11 @@ import Footer from "./component/footer/Footer";
 export default function RootLayout({children}) {
   return (
     <html lang="en" className={font.className}>
-       <head>
+       <head >
         <title>Dream Job</title>
       </head>
-      <body >
-      <Navbar/>
-      {children}
-        <Footer/>
-        
+      <body className={font.className}>
+      {children} 
       </body>
     </html>
   );

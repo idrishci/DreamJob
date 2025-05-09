@@ -32,7 +32,7 @@ export default function card({id}){
         <div className={style.card} key={enterprise.identerp}data-aos="fade-up">
 
 
-            <Image src={enterprise.photo_profile? `/image/${enterprise.photo_profile}`:'/image/account.png'}
+            <Image src={enterprise.photo_profile? `http://localhost:8800/uploaded/photo/${enterprise.photo_profile}`:'/image/account.png'}
                    width={100}
                    height={100}
                    alt="logo"

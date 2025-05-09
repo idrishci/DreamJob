@@ -76,7 +76,7 @@ favoris.length > 0?  favoris.map((can)=>(
             />
         {/* <Button uid_firebase={can.uid_firebase} identer={3} key={can.idcandidat}  /> */}
     </div>
-        <Image width={100} height={100} alt="photo" src={`/image/${can.photo_profile}`} className={style.img} key={can.idcandidat}/>
+        <Image width={100} height={100} alt="photo" src={`http://localhost:8800/uploaded/photo/${can.photo_profile}`} className={style.img} key={can.idcandidat}/>
         <div className={style.data}>
             <h1>{can.titre}</h1>
             <label > <h2>Nom :</h2> <h3>{can.nom}</h3></label>
@@ -89,7 +89,7 @@ favoris.length > 0?  favoris.map((can)=>(
             <label > <h2>Niveau d’etude :</h2> <h3>{can.niveau_detude}</h3></label>
             <label > <h2>Secteur d'activité :</h2> <h3>{can.secteur_dactivite}</h3></label>
             
-            <label > <a href={`/file/${can.cv}`} target="_blank" rel="noopener noreferrer"><h3>mon cv</h3></a></label>
+            <label > <a href={`http://localhost:8800/uploaded/cv/${can.cv}`} target="_blank" rel="noopener noreferrer"><h3>mon cv</h3></a></label>
         </div>
         <hr/>
   

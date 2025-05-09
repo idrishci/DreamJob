@@ -50,7 +50,7 @@ if (isConnected !== "connected") {
        <Statiq/>
      </section>
      ):(<>
-        {  router.push("/")}
+        {  router.push("/client/")}
         { alert("Vous n'avez pas l'accès")}
      </>
     )}</>

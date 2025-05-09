@@ -17,8 +17,8 @@ export default function menu() {
            alt="menu"  />
     </div>
     {isOpen && <div className={style.menulist}>
-    <Link href="../Enterprise"><li onClick={() => setIsOpen(!isOpen)}>acceuil</li></Link>
-            <Link href="../Enterprise/mesannonces/"><li onClick={() => setIsOpen(!isOpen)}>Mes post</li></Link>
+    <Link href="../Enterprise"><li onClick={() => setIsOpen(!isOpen)}>accueil</li></Link>
+            <Link href="../Enterprise/mesannonces/"><li onClick={() => setIsOpen(!isOpen)}>Mes offres</li></Link>
             <Link href="../Enterprise/Candidat/"><li onClick={() => setIsOpen(!isOpen)}>Candidat</li></Link>
         </div>
         }

@@ -8,7 +8,7 @@ host:'localhost' ,
 user:'root',
 
 password:'',
-database:'offreemploi',
+database:'offre',
 
 // port:process.env.DB_PORT ,
 });

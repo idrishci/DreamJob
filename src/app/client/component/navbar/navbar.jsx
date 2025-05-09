@@ -1,13 +1,22 @@
-import Link from "next/link";
-import style from "./nabar.module.css"
-export default function nav(){
+
+// import  "./navbar.css"
+import styles from "./navbar.module.css";
+import Logo from "./logo"
+import Button from "./button"
+import List from "./list"
+import Menu from "./menu"
+import Link from "next/link"
+import Profile from "./profile"
+export default function page(){
     return (
-        <div className={style.nav}>
-            <ul>
-        <Link href={""}><li>Enterprise</li></Link>
-        <Link href={""}><li>Offres d'emploi</li></Link>
-      
-            </ul>
+        <div className={styles.navb}>
+         <Menu/>
+        <Link href="../../client/"> <Logo/></Link>
+        <List/>
+  
+        <Button/>
+        
+        
         </div>
     );
 }

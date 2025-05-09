@@ -3,8 +3,7 @@ import Photo from "./photo"
 import style from "./edit.module.css"
 
 import Image from "next/image"
-
-import Mssg from "./message"
+import {wilaya} from "@/app/file_json/wilaya";
 import {secteur} from "@/app/file_json/data.js"
 import FroalaEditor from "react-froala-wysiwyg"
 import "froala-editor/css/froala_style.min.css";
@@ -21,8 +20,9 @@ export default function edit({id}){
      
      ////get info
      const fetchdata=async()=>{
-    
+   
       const data=await getEnterprise(id);
+      // console.log("this is id :" +id);
       setFormData(data[0]);
       setEnterprises(data ? data[0] : []);
       // setDescription(offres[0]?.description || "");
@@ -56,8 +56,9 @@ export default function edit({id}){
             console.log("photo_profile type:", typeof formData.photo_profile);
             console.log("pathcover type:", typeof formData.pathcover);
            const result = await updateenterprise(id, formDataToSend);
+           console.log('the result '+result);
               if (result) {
-                alert("Offre modifiée avec succès !");
+                alert("Profile modifiée avec succès !");
                 fetchdata();
               } else {
                 alert("Erreur lors de la modification.");
@@ -84,10 +85,10 @@ export default function edit({id}){
      <div className={style.photo}>
         
         <div className={style.logo}>
-        <label htmlFor="logo"><img src={previewLogo || `/image/${ enterprises.photo_profile}`} alt="logo" /></label><input type="file" id="logo" style={{display:"none"}}   onChange={(e) => handleImageChange(e, "logo")} />
+        <label htmlFor="logo"><img src={previewLogo || `http://localhost:8800/uploaded/photo/${ enterprises.photo_profile}`} alt="logo" /></label><input type="file" id="logo" style={{display:"none"}}   onChange={(e) => handleImageChange(e, "logo")} />
         </div>
         <div className={style.background}>
-        <label For="backg" ><Image width={140} height={140} src={previewCover || `/image/${ enterprises.pathcover}`}/></label><input type="file" id="backg" style={{display:"none"}} onChange={(e) => handleImageChange(e,"cover")} />
+        <label For="backg" ><Image width={140} height={140} src={previewCover || `http://localhost:8800/uploaded/photo/${ enterprises.pathcover}`}/></label><input type="file" id="backg" style={{display:"none"}} onChange={(e) => handleImageChange(e,"cover")} />
         </div>
         
      </div> 
@@ -97,20 +98,24 @@ export default function edit({id}){
 
                 <label >
                     <h3>Nom de l'enterprise</h3>
-                    <input type="text"  onChange={e => handleChange('nom', e.target.value)} defaultValue={enterprises.nom} required/>
+                    <input type="text"  onChange={e => handleChange('nom', e.target.value)} defaultValue={enterprises.nom} placeholder="Nom"/>
                 </label>
                 <label >
                     <h3>Localisation</h3>
-                    <input type="text" onChange={e => handleChange('localisation', e.target.value)} defaultValue={enterprises.localisation}/>
+                   <select name="localisation" id=""  onChange={e => handleChange('localisation', e.target.value)} defaultValue={enterprises.localisation}>
+                      <option value="">wilaya</option>
+                  {wilaya.map (wilaya => <option key={wilaya.name}value={wilaya.name}  > {wilaya.name}</option>)}
+                  </select>
                 </label>
                 <label >
                     <h3>Numero Telephone</h3>
-                    <input type="text"onChange={e => handleChange('num_telephone', e.target.value)} defaultValue={enterprises.num_telephone}/>
+                    <input type="text"onChange={e => handleChange('num_telephone', e.target.value)} defaultValue={enterprises.num_telephone}
+                    placeholder="Numero telephone"/>
                 </label>
                 <label >
                     <h3>Nombre d'employe</h3>
                     <select name="emplyoe" id="employe" onChange={e => handleChange('nombre_demployer', e.target.value)} defaultValue={enterprises.nombre_demployer}>
-                        <option value={enterprises.nombre_demployer}>{enterprises.nombre_demployer}</option>
+                        {/* <option value={enterprises.nombre_demployer}>{enterprises.nombre_demployer}</option> */}
                         <option value="10 A 20">10 A 20 </option>
                         <option value="20 a 50">20 a 50</option>
                         <option value="50 A 100">50 A 100</option>
@@ -131,11 +136,11 @@ export default function edit({id}){
                 
                 <label >
                     <h3>Site web</h3>
-                    <input type="text" onChange={e => handleChange('siteweb', e.target.value)} defaultValue={enterprises.siteweb} />
+                    <input type="text" onChange={e => handleChange('siteweb', e.target.value)} defaultValue={enterprises.siteweb} placeholder="Site web"/>
                 </label>
                 <label >
                     <h3>Linkedin</h3>
-                    <input type="link" onChange={e => handleChange('linkedin', e.target.value)} defaultValue={enterprises.linkedin}/>
+                    <input type="link" onChange={e => handleChange('linkedin', e.target.value)} defaultValue={enterprises.linkedin} placeholder="Linkedin"/>
                 </label>
                 <label >
                     <h3>Email de l'enterprise</h3>
@@ -143,7 +148,7 @@ export default function edit({id}){
                 </label>
                 <label className={style.description}>
                     <h3>Description</h3>
-                    <textarea className={style.area}  onChange={e => handleChange('description_enter', e.target.value)} defaultValue={enterprises.description_enter}></textarea>
+                    <textarea className={style.area}  onChange={e => handleChange('description_enter', e.target.value)} defaultValue={enterprises.description_enter}placeholder="description"></textarea>
                 </label>
                 
                 

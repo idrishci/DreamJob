@@ -40,7 +40,7 @@ useEffect(() => {
             <label > <h2>Email :</h2> <h3>{usere.email}</h3></label>
             <label > <h2>Niveau d’etude :</h2> <h3>{usere.niveau_detude}</h3></label>
             <label > <h2>Secteur d'activité :</h2> <h3>{usere.secteur_dactivite}</h3></label>
-            <label > <h3>Mon cv</h3></label>
+            <label > <a href={`http://localhost:8800/uploaded/cv/${usere.cv}`} target="blanc"><h3>Mon cv</h3></a></label>
 
         </div>
         

@@ -18,7 +18,7 @@ export default function profile(){
     const router = useRouter();
     const signout=async()=>{  
         await signOut(auth);
-        router.push("/")
+        router.push("/client/")
       
         // setUser(null);
     }
@@ -57,7 +57,7 @@ export default function profile(){
   <h2>undifiened</h2>
 )}
                 {userr && userr[0] && userr[0].photo_profile ? (
-  <Image width={50} height={50} src={`/image/${userr[0].photo_profile}`} alt="profile" className={style.img}/> 
+  <Image width={50} height={50} src={`http://localhost:8800/uploaded/photo/${userr[0].photo_profile}`} alt="profile" className={style.img}/> 
 
 ) : (
     <Image width={50} height={50} src={`/icon/account.png`} alt="profile" className={style.img}/> 
@@ -69,9 +69,9 @@ export default function profile(){
    
        
  {isOpen &&<div className={style.proflist}>
-   <Link href={"../../Enterprise/monprofile"}><li onClick={()=>setIsOpen(!isOpen)}><Image src={"/icon/account.png"} width={20} height={20} /><h4>Mon profile</h4></li> </Link>
+   <Link href={"../../Enterprise/monprofile"} className={style.li}><li onClick={()=>setIsOpen(!isOpen)}><Image src={"/icon/account.png"} width={20} height={20} /><h3>Mon profile</h3></li> </Link>
       <hr />
-     <li onClick={ ()=>{setIsOpen(!isOpen);signout()}}><Image src={"/icon/logout.png"} width={20} height={20}/><h4>deconected</h4></li>
+     <li onClick={ ()=>{setIsOpen(!isOpen);signout()}}><Image src={"/icon/logout.png"} width={20} height={20}/><h3>deconected</h3></li>
 </div>} </div>
 
     );

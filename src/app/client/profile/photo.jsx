@@ -36,17 +36,17 @@ export default function photo({id}){
        {enterprises.map((enterprise)=>{ return (
        <>  
        <div className={style.second}>
-        <img src={`/image/${enterprise.pathcover}`} alt="cover"  />
+        <img src={`http://localhost:8800/uploaded/photo/${enterprise.pathcover}`} alt="cover"  />
 
         
         </div> 
            <div className={style.first}>
 
-               <Image src={`/image/${enterprise.photo_profile}`} width={130} height={130} alt="logo" className={style.logo}/>
+               <Image src={`http://localhost:8800/uploaded/photo/${enterprise.photo_profile}`} width={130} height={130} alt="logo" className={style.logo}/>
                <div className={style.social}>
-                   <div className={style.back}> <Image src={"/icon/mail.png"} onClick={() => enterprise.email && window.open(enterprises.email, "_blank")} width={30} height={30} alt="mail" /></div>
-                   <div className={style.back}><Image src={"/icon/linkedin.png"} onClick={() => enterprise.linkedin && window.open(enterprises.linkedin, "_blank")} width={30} height={30} alt="linkedin" /></div>
-                   <div className={style.back}><Image src={"/icon/internet (1).png"} onClick={() => enterprise.siteweb && window.open(enterprises.siteweb, "_blank")} width={30} height={30} alt="siteweb" /></div>
+                   <a href={`mailto:${enterprise.email}`} target="_blank" rel="noopener noreferrer"><div className={style.back}> <Image src={"/icon/mail.png"}  width={30} height={30} alt="mail" /></div></a>
+                   <a href={`https://${enterprise.linkedin}`}target="_blank"rel="noopener noreferrer"><div className={style.back}><Image src={"/icon/linkedin.png"}  width={30} height={30} alt="linkedin" /></div></a>
+                  <a href={`https://${enterprise.siteweb}`}target="_blank"rel="noopener noreferrer">  <div className={style.back}><Image src={"/icon/internet (1).png"} width={30} height={30} alt="siteweb" /></div></a>
                </div>
                <h1> {enterprise.nom}</h1>
         </div>

@@ -22,7 +22,7 @@ return(
 person.map((per)=>{return ( 
 
          <div className={style.profile} data-aos="zoom-in">
-        <Image width={100} height={100} alt="photo" src={per.photo_profile? `/image/${per.photo_profile}`:''} className={style.img}/>
+        <Image width={100} height={100} alt="photo" src={per.photo_profile? `http://localhost:8800/uploaded/photo/${per.photo_profile}`:''} className={style.img}/>
         <div className={style.data}>
             <label > <h2>Nom :</h2> <h3>{per.nom}</h3></label>
             <label > <h2>Prenom :</h2> <h3>{per.prenom}</h3></label>

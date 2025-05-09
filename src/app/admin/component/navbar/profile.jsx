@@ -5,14 +5,14 @@ import style from "./navbar.module.css"
 import { useState } from 'react';
 import { signOut } from "firebase/auth";
 import {useRouter}from"next/navigation";
+import{ db,doc,auth} from "@/app/auth/firebase";
 export default function Profile(){
         const [isOpen, setIsOpen] = useState(false);
         const router = useRouter();
          const signout=async()=>{  
             console.log("hhhhhh");
                  await signOut(auth);
-                
-                router.push("/");
+                router.push("/client/");
               
                 // setUser(null);
             }

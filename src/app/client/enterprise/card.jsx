@@ -29,7 +29,7 @@ export default function card({id}){
             <div className={style.background} >
 
             <div className={style.logo}>
-                <Image src={`/image/${enterprise.photo_profile}`} width={100} height={80} key={1} alt="logo"/>
+                <Image src={`http://localhost:8800/uploaded/photo/${enterprise.photo_profile}`} width={100} height={80} key={1} alt="logo"/>
             </div>
             <h1>{enterprise.nom}</h1>
             </div>

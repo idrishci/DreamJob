@@ -88,7 +88,7 @@ const router =useRouter();
                       const role = documentt.data().role;
                       console.log("document",documentt.data().role);
                       if(role === "client") {
-                        router.push("/");
+                        router.push("/client/");
                       }else if(role === "enterprise") {
                         router.push("/Enterprise");
                       }else if(role === "admin") {

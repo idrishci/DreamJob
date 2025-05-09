@@ -11,9 +11,9 @@ export async function getenterprise(){
         return [];
     }
 }
-export async function getenterprisesearch(text,localisation){
+export async function getenterprisesearch(updatedFilters){
     try{
-        const res=await axios.get("http://localhost:8800//api/enterprise/search/enterprise",{params:{text,localisation}});
+        const res=await axios.get("http://localhost:8800/api/enterprise/search/enterprise",{params:updatedFilters});
         console.log(res.data);
         return res.data;
     }catch(err){

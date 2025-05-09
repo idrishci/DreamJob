@@ -100,7 +100,7 @@ function timeAgo(date) {
       year: 31536000,
       month: 2592000,
       day: 86400,
-      hour: 3600,
+      heurs: 3600,
       minute: 60,
       second: 1,
     };
@@ -110,27 +110,20 @@ function timeAgo(date) {
       if (interval > 0) {
         return `il y a ${interval} ${key}${interval !== 1 ? 's' : ''}`;
       }
+      
     }
     return "à l'instant"; 
   }   
     return (
 
-        <div className={style.offre}>
+        <>
              
                 {offres.map((offre) => (
 
              <div className={style.card} key={offre.idoffre}data-aos="fade-up">
-<div className={style.btn}><Image 
-                      src={save.includes(offre.idoffre)? "/icon/unsave.svg" :"/icon/save.svg"}
-                      width={30}
-                      height={30}
-                      alt={"save"}
-                      unoptimized
 
-                      />
-</div>
              <div className={style.first}>
-             <Image src={`/image/${offre.photo_profile}`} width={82} height={82} key={id} alt="logo"/>
+             <Image src={`http://localhost:8800/uploaded/photo/${offre.photo_profile}`} width={82} height={82} key={id} alt={"logo"}/>
                  <div className={style.data}>
                      <h3>{offre.titre}</h3>
                      <h5><Image src={"/icon/location-sign.png"} width={18} height={18}  key={id} alt="location"/> <span>{offre.wilaya}</span>  </h5>
@@ -151,7 +144,7 @@ function timeAgo(date) {
         
         }
 
-       </div >
+       </>
 
       
     );

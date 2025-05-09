@@ -1,5 +1,7 @@
 .table{
     width: 100%;
+    position: relative;
+    overflow-x: scroll;
     }
     .table table{
         padding: 10px;

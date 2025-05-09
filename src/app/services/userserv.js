@@ -12,15 +12,18 @@ export function postiduser(uid,email,role){
     return [];}
 }
 
-export function updateinfouser(formdata){
+export async function updateinfouser(formdata){
     try{
          for (let pair of formdata.entries()) {
         console.log("userinfooo",`${pair[0]}:`, pair[1]);
       }
         // console.log("the user info ",user);
- const res=axios.post("http://localhost:8800/api/users/updateclient",formdata
- 
- );
+ const res=axios.put("http://localhost:8800/api/users/updateclient",formdata,{
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }
+});
+ return res;
 }catch(err){
     console.log(err);
     return [];}
@@ -58,6 +61,7 @@ export async function  getinfouser(uid,role){
 export async function postthepost(data){
     try{
  const res=await axios.post("http://localhost:8800/api/users/post",data);
+ return res;
 }catch(err){
     console.log(err);
     return [];}

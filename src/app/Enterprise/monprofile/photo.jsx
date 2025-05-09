@@ -15,16 +15,16 @@ console.log(logo)
         <div className={style.photo}>
 
             <div className={style.second}>
-        <img src={"/image/"+cover} alt="cover"  />
+        <img src={"http://localhost:8800/uploaded/photo/"+cover} alt="cover"  />
         
     </div> 
             <div className={style.first}>
-            <div className={style.logo}><Image src={"/image/"+logo} width={120} height={120} alt="logo"/></div>
+            <div className={style.logo}><Image src={"http://localhost:8800/uploaded/photo/"+logo} width={120} height={120} alt="logo"/></div>
 
             <div className={style.social}>
-                <Link href={email}><div className={style.back}><Image src={"/icon/mail.png"} width={30} height={30} alt="mail"/></div></Link>
-                <Link href={linkedin}><div className={style.back}><Image src={"/icon/linkedin.png"} width={30} height={30} alt="linkedin"/></div></Link>
-                <Link href={siteweb}><div className={style.back}><Image src={"/icon/internet (1).png"} width={30} height={30} alt="site"/></div></Link>
+                <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer"><div className={style.back}><Image src={"/icon/mail.png"} width={30} height={30} alt="mail"/></div></a>
+                <a href={`https://${linkedin}`}target="_blank"rel="noopener noreferrer"><div className={style.back}><Image src={"/icon/linkedin.png"} width={30} height={30} alt="linkedin"/></div></a>
+                <a href={`https://${siteweb}`}target="_blank"rel="noopener noreferrer"><div className={style.back}><Image src={"/icon/internet (1).png"} width={30} height={30} alt="site"/></div></a>
             </div>
             </div>
             

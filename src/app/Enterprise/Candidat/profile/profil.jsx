@@ -25,28 +25,30 @@ export default function profile({identer}){
        if(name==="wilaya"){
         setselect(value);
        }
-        setFilters(async( prevFilters) => {
+        
           const updatedFilters = {
-            ...prevFilters,
+            ...filters,
             [name]: value,
           };
+          setFilters(updatedFilters);
+          console.log("the update",updatedFilters);
          const res= await getcandidatsearch(updatedFilters); 
          setcandidat(res);
-        });
+        
         return res;
         }
         ////////////get fav 
 
   
-////////add fav candidat
-
-// function virifier(idcandidat,identerp){
-//     const sauv=fav.find((av)=>(av.idcandidat===id&&av.identerp===identerp));
-//     sauv? setsave(true):setsave(false);
-//     ()=>{setsave(!save);add(can.idcandidat)}
-
-
-// }
+        const reset=async()=>{
+          const updatedFilters={}
+      setFilters(updatedFilters); 
+      document.getElementById("secteur").value = "";
+      document.getElementById("motcle").value="";
+      const res= await getcandidatsearch(updatedFilters); 
+      setcandidat(res);
+      setselect('');
+        }
 /////////////get candidat
  useEffect(()=>{
 const fetchdata=async()=>{
@@ -67,16 +69,17 @@ Aos.init({duration:800});
       const handleclicksearch=async()=>{
                 const text=document.getElementById("motcle");
                 console.log(text.value);
-                setFilters(async(prevFilters)=>{
+                
                     const updatedFilters = {
-                        ...prevFilters,
+                        ...filters,
                         ['text']: text.value,
                     };
+                    setFilters(updatedFilters)
                     const res= await getcandidatsearch(updatedFilters); 
                     setcandidat(res);
                     return res;
     
-                })
+                
             }
             //////////////get favorit
             const fetchFavoris = async () => {
@@ -112,11 +115,16 @@ const toggleSave = async (uid_firebase) => {
                             <option value="">Region</option>
                              {wilaya.map((wilaya) =>  (<option key={wilaya.id} value={wilaya.name} > {wilaya.name}</option>))}
                         </select>
-            <select name="secteur" id="" onChange={handlelechange}>
+            <select name="secteur" id="secteur" onChange={handlelechange}>
                             <option value="">secteur d'activite</option>
                             {secteur.map((secteur) =>  (<option key={secteur.id} value={secteur.name} > {secteur.name}</option>))}
                         </select>
         <button onClick={handleclicksearch}>recherche</button>
+     {filters && Object.keys(filters).length > 0 && (
+       <div className={style.filter}>
+         <h3 onClick={reset}>supprimer le filter</h3>
+       </div>
+     )}
         <hr />
         </div>
 {/* //////////// */}
@@ -137,7 +145,7 @@ candidat.length > 0?  candidat.map((can)=>(
             />
         {/* <Button uid_firebase={can.uid_firebase} identer={3} key={can.idcandidat}  /> */}
     </div>
-        <Image width={100} height={100} alt="photo" src={`/image/${can.photo_profile}`} className={style.img} key={can.idcandidat}/>
+        <Image width={100} height={100} alt="photo" src={`http://localhost:8800/uploaded/photo/${can.photo_profile}`} className={style.img} key={can.idcandidat}/>
         <div className={style.data}>
             <h1>{can.titre}</h1>
             <label > <h2>Nom :</h2> <h3>{can.nom}</h3></label>
@@ -150,7 +158,7 @@ candidat.length > 0?  candidat.map((can)=>(
             <label > <h2>Niveau d’etude :</h2> <h3>{can.niveau_detude}</h3></label>
             <label > <h2>Secteur d'activité :</h2> <h3>{can.secteur_dactivite}</h3></label>
             
-            <label > <a href={`/file/${can.cv}`} target="_blank" rel="noopener noreferrer"><h3>mon cv</h3></a></label>
+            <label > <a href={`http://localhost:8800/uploaded/cv/${can.cv}`} target="_blank" rel="noopener noreferrer"><h3>mon cv</h3></a></label>
         </div>
         <hr/>
         <div className={style.desc}>

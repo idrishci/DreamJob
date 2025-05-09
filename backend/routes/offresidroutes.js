@@ -161,7 +161,7 @@ const updateoffre=(req,res)=>{
     // const {idoffre,identerp,iduser}=req.params;
     const id=req.params.id
     console.log("hi",req.params);
-    const query="SELECT * FROM favorit_offre_can WHERE idcandidat=?  ";
+    const query="SELECT * FROM favorit_offre_can INNER JOIN offre_demploi ON favorit_offre_can.idoffre=offre_demploi.idoffre WHERE idcandidat=?  ";
   
     connection.query(query,[id],(err,data)=>{
         if(err)return console.log(err);

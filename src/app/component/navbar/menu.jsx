@@ -19,9 +19,9 @@ export default function menu() {
            alt="menu"  />
     </div>
     {isOpen && <div className={style.menulist}>
-    <Link href="../"><li>Accueil</li></Link>
-            <Link href="/client/offre"><li >Offre d_emploi</li></Link>
-            <Link href="../../client/enterprise"><li >Enterprise</li></Link>
+    <Link href="../"><li onClick={() => setIsOpen(!isOpen)}>Accueil</li></Link>
+            <Link href="/client/offre"><li onClick={() => setIsOpen(!isOpen)}>Offre d'emploi</li></Link>
+            <Link href="../../client/enterprise"><li onClick={() => setIsOpen(!isOpen)}>Entreprise</li></Link>
         </div>
         }
     </>

@@ -16,8 +16,8 @@ export default function profile({id}){
                <div className={Style_nav.nav}>
             <ul>
         <li onClick={()=>rendercomponent('enter') } style={{ color: selectedItem.type === 'enter' ? 'var(--buttoncolor)' : 'black' }}>Mon profile</li>
-        <li onClick={()=>rendercomponent('edit')}style={{ color: selectedItem.type === 'edit' ? 'var(--buttoncolor)' : 'black' }}>Edit</li>
-        <li onClick={()=>rendercomponent('fav')}style={{ color: selectedItem.type === 'fav' ? 'var(--buttoncolor)' : 'black' }}>Favorit</li>
+        <li onClick={()=>rendercomponent('edit')}style={{ color: selectedItem.type === 'edit' ? 'var(--buttoncolor)' : 'black' }}>Modification</li>
+        <li onClick={()=>rendercomponent('fav')}style={{ color: selectedItem.type === 'fav' ? 'var(--buttoncolor)' : 'black' }}>Favoris</li>
             </ul> 
              </div>
              {selectedItem.type ==='enter' && <Data id={id}/>  }

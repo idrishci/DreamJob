@@ -57,13 +57,7 @@ export default function offre({id}){
         <div className={style.offre}  key={offre.idoffre}> 
               <Link href={`./offre_demploi?id=${offre.idoffre}&uid=${id}`} key={offre.idoffre} className={style.link}>
         <div className={style.card}>
-        <div className={style.btn}><Image 
-                      src={save.includes(offre.idoffre)? "/icon/unsave.svg" :"/icon/save.svg"}
-                      width={30}
-                      height={30}
-                      alt={"save"}
-                      />
-            </div>
+
         <div className={style.title}>{offre.titre}</div>
         <div className={style.option}>
         {offre.type_de_lieu_de_travail? <h2><Image src={"/icon/office-building.png"} width={18} height={18} alt="location" key={id}/><span>{offre.type_de_lieu_de_travail}</span></h2>:''}

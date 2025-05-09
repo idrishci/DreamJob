@@ -103,11 +103,11 @@ useEffect(() => {
   </div>
 )}
     {isOpen &&<div className={style.proflist}>
-      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}><Image src={"/icon/account.png"} alt="icon"width={20} height={20} /> Mon profile</li> 
+      <li onClick={()=>{router.push("/client/accueil/profile");setIsOpen(false)}}><Image src={"/icon/account.png"} alt="icon"width={20} height={20} /><h3> Mon profile</h3></li> 
          <hr />
          
         <li onClick={()=>{setIsOpen(false); 
-          signout()}}> <Image src={"/icon/logout.png"}alt="icon" width={20} height={20}/> deconected</li>
+          signout()}}> <Image src={"/icon/logout.png"}alt="icon" width={20} height={20}/> <h3>deconected</h3></li>
 </div>}
         </div>
     );

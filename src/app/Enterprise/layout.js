@@ -3,8 +3,8 @@ import { Poppins } from "next/font/google";
 const font= Poppins({ subsets: ["latin"] ,weight:["100","200","300","400","600","700","800","900"] });
 // import "./globals.css";
 import Navbar from "./component/navbar/Navbar";
-import Footer from "@/app/component/footer/Footer";
-
+import Footer from "./component/footer/Footer";
+import style from "./page.module.css"
 // import { useEffect } from "react";
 export default function RootLayout({children}) {
   
@@ -16,8 +16,10 @@ export default function RootLayout({children}) {
       </head>
       <body >
       <Navbar/>
+       <section className={style.section} >
       {children}
-
+      </section>
+      <Footer/>
         
       </body>
     </html>

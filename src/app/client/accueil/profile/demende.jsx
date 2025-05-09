@@ -38,13 +38,18 @@ useEffect(()=>{
     }
     const updatethepost=async()=>{
         console.log("lademande",lademande);
-        await postthepost(lademande);
+        const res=await postthepost(lademande);
+        if(res){
+            alert("Succès !")
+        }else{
+            alert("Erreur");
+        }
         
     }
     return(
 
         <div className={style.edit}>
-    <div className={style.data}>
+    <div className={style.demende}>
     <label > <h2>Titre</h2> <input type="text" name="titre"   id="name"   value={lademande.titre || ""} onChange={handlelechange }></input></label>
   
 
@@ -53,8 +58,7 @@ useEffect(()=>{
         
         <h2>Sujet</h2>
        {/* <textarea className={style.textarea} > */}
-        <textarea name="sujet" id="sujet" className={style.textarea}   value={lademande.sujet || ""} onChange={handlelechange
-    }></textarea>
+        <textarea name="sujet" id="sujet" className={style.textarea}   value={lademande.sujet || ""} onChange={handlelechange}></textarea>
     </div>
     <button onClick={updatethepost}>demende</button>
         </div>

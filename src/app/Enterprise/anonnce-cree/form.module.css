@@ -65,6 +65,7 @@
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.123);
     border-radius: 25;
     margin: 10 5;
+    padding: 15;
 }
 
 .form::backdrop{

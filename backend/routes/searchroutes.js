@@ -4,17 +4,23 @@ const router=express.Router();
 
 
 const getenterprisesearch=(req,res)=>{
-    const {text,localisation}=req.query; 
+    const {text,localisation,secteur_dactivite}=req.query;
+    console.log("this   "+secteur_dactivite) 
     let params=[];
     let query="SELECT * FROM enterprise   WHERE 1=1" ;
     if(text){
-        query += " AND (titre LIKE ? OR fonction LIKE ? OR nom LIKE ? OR secteur_dactivite LIKE ?)";
-        params.push(`%${text}%`, `%${text}%`, `%${text}%`, `%${text}%`);
+        query += " AND (nom LIKE ?  OR description_enter LIKE ? OR secteur_dactivite LIKE ?)";
+        params.push(`%${text}%`, `%${text}%`,`%${text}%`);
     }
     if(localisation){
         query += " AND localisation=?";
         console.log(localisation);
         params.push(localisation);
+    }
+    if(secteur_dactivite){
+        query += " AND secteur_dactivite=?";
+        console.log(secteur_dactivite);
+        params.push(secteur_dactivite);
     }
     connection.query(query,params,(err,data)=>{
         if(err){return console.log(err);}
@@ -28,7 +34,7 @@ const getoffresearch=(req,res)=>{
     const {text,localisation,wilaya,secteur,fonction,niveau,experiance,contrat,lieu}=req.query;
  
     let params=[];
-    let query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.identerp WHERE 1=1" ;
+    let query="SELECT * FROM offre_demploi  INNER JOIN enterprise  ON offre_demploi.id_enterp=enterprise.uid_firebase WHERE 1=1  " ;
     if(text){
         query += " AND (titre LIKE ? OR fonction LIKE ? OR nom LIKE ? OR secteur_dactivite LIKE ?)";
         params.push(`%${text}%`, `%${text}%`, `%${text}%`, `%${text}%`);
@@ -69,7 +75,7 @@ const getoffresearch=(req,res)=>{
         query += " AND type_de_lieu_de_travail=?";
         params.push(lieu);
     }
-  
+  query+="ORDER BY offre_demploi.date DESC"
     console.log("Final query:", query);
     console.log("With params:", params);
     connection.query(query,params,(err,data)=>{

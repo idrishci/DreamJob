@@ -17,9 +17,9 @@ export default function menu() {
            alt="menu"  />
     </div>
     {isOpen && <div className={style.menulist}>
-    <Link href="../admin"><li>acceuil</li></Link>
-    <Link href="../admin/mesannonces/"><li >Anonnces</li></Link>
-    <Link href="../admin/users/"><li >Users</li></Link>
+    <Link href="../admin"><li>accueil</li></Link>
+    <Link href="../admin/mesannonces/"><li >Les offres</li></Link>
+    <Link href="../admin/users/"><li >Les utilisateurs</li></Link>
         </div>
         }
     </>

@@ -32,8 +32,8 @@
     align-items: center;
     flex-wrap: wrap;
 
-    overflow: auto;
-    scroll-snap-type: x mandatory y;
+    /* overflow: auto; */
+    /* scroll-snap-type: x mandatory y; */
     padding: 10;
     width: 100%;
 

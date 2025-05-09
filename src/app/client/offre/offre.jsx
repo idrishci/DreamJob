@@ -16,122 +16,156 @@ import stylesearch from "@/app/component/search-bar/search.module.css";
 
 export default function page(){
    
-    
+    const [filters, setFilters] = useState({});
       const [selected, setSelected] = useState({});
       const inputref=useRef(null);
       
  const searchParams=useSearchParams();
  const namee = searchParams.get("name");
- const name1=searchParams.get("namee");
+ const name1=searchParams.get("name");
  const valuee = searchParams.get("value");
  const text = searchParams.get("mocle");
-    console.log("this is useparams",name1,"value",text);
+ 
+    console.log("this is useparams",name1,"value",valuee);
+    /////////////set value
  useEffect(() => {
     if (namee ==="fonction"  ) {
       setSelected(valuee);
-      handlefunctionacceil({ target: { name: "fonction", value: valuee } });
+      handlelechange( { target: { name: "fonction", value: valuee } })
+    //   handlefunctionacceil({ target: { name: "fonction", value: valuee } });
     }
     if (namee ==="wilaya"  ) {
         setSelected(valuee);
-        handlefunctionacceil({ target: { name: "wilaya", value: valuee } });
-      }
-      if(name1==="motcle"){
-        // setmot(text);
-        if (inputref.current) inputref.current.value=text;
-        handleregionacceil({ target: { name: "motcle", value: text } });
+        handlelechange( { target: { name: "wilaya", value: valuee }})
+        // handlefunctionacceil({ target: { name: "wilaya", value: valuee } });
       }
   }, [valuee]);
-    
-  const  handleregionacceil=(e)=>{ 
-    console.log("this is the inpurref",inputref.current);
-    console.log("hjhjh");
- 
-      const { name, value } = e.target;
-      console.log("this is useparams",namee,"value",valuee);
-     if(value==null){
-             // setSelected(valuee);
-         console.log("this is the value",valuee);
-         setFilters(async( prevFilters) => {
-             const updatedFilters = {
-             ...prevFilters,
-             [namee]: valuee,
-             };
-         const res= await getoffresearch(updatedFilters); 
-         setOffres(res);
-             console.log("Updated filters:",res);
-         });
-         }else{
- 
-             setSelected(value);
-             setFilters(async( prevFilters) => {
-                 const updatedFilters = {
-                 ...prevFilters,
-                 [name]: value,
-                 };
-             const res= await getoffresearch(updatedFilters); 
-             setOffres(res);
-                 console.log("Updated filters:",res);
-             });
-         }
- return value;
-     }
-   const  handlefunctionacceil=(e)=>{ 
-   console.log("hjhjh");
+  const reset=()=>{
+    setFilters({});
+    document.getElementById('wilaya').value='';
+    document.getElementById('fonction').value='';
+    document.getElementById('contrat').value='';
+    document.getElementById('niveau').value='';
+    document.getElementById('exper').value='';
+    document.getElementById('lieu').value='';
+    document.getElementById('secteur').value='';
+    document.getElementById('text').value='';
+    setSelected('');
 
-     const { name, value } = e.target;
-     console.log("this is useparams",namee,"value",valuee);
-    if(value==null){
-            // setSelected(valuee);
-        console.log("this is the value",valuee);
-        setFilters(async( prevFilters) => {
-            const updatedFilters = {
-            ...prevFilters,
-            [namee]: valuee,
-            };
-        const res= await getoffresearch(updatedFilters); 
-        setOffres(res);
-            console.log("Updated filters:",res);
-        });
-        }else{
+  }
+    ///////////////get by region in acceuil
+//   const  handleregionacceil=(e)=>{ 
+//     console.log("this is the inpurref",inputref.current);
+//     console.log("hjhjh");
+ 
+//       const { name, value } = e.target;
+//       console.log("this is useparams",namee,"value",valuee);
+//      if(value==null){
+//              // setSelected(valuee);
+//          console.log("this is the value",valuee);
+//          setFilters(async( prevFilters) => {
+//              const updatedFilters = {
+//              ...prevFilters,
+//              [namee]: valuee,
+//              };
+//          const res= await getoffresearch(updatedFilters); 
+//          setOffres(res);
+//              console.log("Updated filters:",res);
+//          });
+//          }else{
+ 
+//              setSelected(value);
+//              setFilters(async( prevFilters) => {
+//                  const updatedFilters = {
+//                  ...prevFilters,
+//                  [name]: value,
+//                  };
+//              const res= await getoffresearch(updatedFilters); 
+//              setOffres(res);
+//                  console.log("Updated filters:",res);
+//              });
+//          }
+//  return value;
+//      }
+     ////////////////by fonction
+//    const  handlefunctionacceil=(e)=>{ 
+//    console.log("hjhjh");
 
-            setSelected(value);
-            setFilters(async( prevFilters) => {
-                const updatedFilters = {
-                ...prevFilters,
-                [name]: value,
-                };
-            const res= await getoffresearch(updatedFilters); 
-            setOffres(res);
-                console.log("Updated filters:",res);
-            });
-        }
-return value;
-    }
+//      const { name, value } = e.target;
+//      console.log("this is useparams",namee,"value",valuee);
+//     if(value==null){
+//             // setSelected(valuee);
+//         console.log("this is the value",valuee);
+//         setFilters(async( prevFilters) => {
+//             const updatedFilters = {
+//             ...prevFilters,
+//             [namee]: valuee,
+//             };
+//         const res= await getoffresearch(updatedFilters); 
+//         setOffres(res);
+//             console.log("Updated filters:",res);
+//         });
+//         }else{
+
+//             setSelected(value);
+//             setFilters(async( prevFilters) => {
+//                 const updatedFilters = {
+//                 ...prevFilters,
+//                 [name]: value,
+//                 };
+//             const res= await getoffresearch(updatedFilters); 
+//             setOffres(res);
+//                 console.log("Updated filters:",res);
+//             });
+//         }
+// return value;
+//     }
+    ////////////////get offre
     const [offres,setOffres]=useState([]);
-    useEffect(()=>{
+    // useEffect(()=>{
        
-       const fetchdata=async()=>{
-            const data=await getoffres();
-            setOffres(data);
-        } 
-        fetchdata();
+    //    const fetchdata=async()=>{
+    //         const data=await getoffres();
+    //         setOffres(data);
+    //     } 
+    //     fetchdata();
        
-    },[]);
-
-     const [filters, setFilters] = useState({});
+    // },[]);
+    useEffect(() => {
+        if (Object.keys(filters).length === 0) {
+            const fetchAll = async () => {
+              const all = await getoffres();
+              setOffres(all);
+            };
+            fetchAll();
+          } else {
+            // Sinon → appliquer les filtres
+            const fetchFiltered = async () => {
+              const data = await getoffresearch(filters);
+              setOffres(data);
+            };
+            fetchFiltered();
+          }
+        }
+      , [filters]);
+//////////////////set filter
+   
    
         const  handlelechange = async(e) => {
+            setSelected(valuee);
           const { name, value } = e.target;
          
-          setFilters(async( prevFilters) => {
+         
             const updatedFilters = {
-              ...prevFilters,
+              ...filters,
               [name]: value,
             };
+            setFilters(updatedFilters);
+            console.log("Updated filters:",updatedFilters);
            const res= await getoffresearch(updatedFilters); 
            setOffres(res);
-            console.log("Updated filters:",res);
-        });
+          
+    
            
             return res;
           
@@ -139,28 +173,29 @@ return value;
 
       
         const handleclicksearch=async()=>{
-            const text=document.getElementById("motcle");
+            const text=document.getElementById("text");
             console.log(text.value);
             
-            setFilters(async(prevFilters)=>{
+          
                 const updatedFilters = {
-                    ...prevFilters,
+                    ...filters,
                     ['text']: text.value,
                 };
+                setFilters(updatedFilters);
                 const res= await getoffresearch(updatedFilters); 
                 setOffres(res);
                 console.log("Updated filters2:",res);
                 return res;
 
-            })
+        
         }
         const filtredoffre=offres.filter(offres=>offres.situation==="active");
     return (
         <>
          <div className={stylesearch.search_bar}>
-                    <input type="text" name="search-bar"   placeholder="motcle,post" />
+                    <input type="text" name="search-bar" id="text"  placeholder="motcle,post" />
 
-                       <select name="wilaya" id="" value={selected} onChange={handleregionacceil}>
+                       <select name="wilaya" id="wilaya" value={selected} onChange={handlelechange}>
                                 <option value="">Region</option>
                                  {wilaya.map((wilaya) =>  (<option key={wilaya.id}  > {wilaya.name}</option>))}
                             </select>
@@ -169,30 +204,35 @@ return value;
 
           <div className={style.search}>
 
-                    <select name="secteur" id="" onChange={handlelechange}>
+                    <select name="secteur" id="secteur" onChange={handlelechange}>
                         <option value="">secteur d'activite</option>
                         {secteur.map((secteur) =>  (<option key={secteur.id} value={secteur.name} > {secteur.name}</option>))}
                     </select>
-                    <select name="fonction" id="" value={selected} onChange={handlefunctionacceil}>
+                    <select name="fonction" id="fonction" value={selected} onChange={handlelechange}>
                         <option value="">fonction</option>
                         {fonction.map((fonction) =>  (<option key={fonction.id} value={fonction.name} > {fonction.name}</option>))}
                     </select>
-                    <select name="niveau" id="" onChange={handlelechange}>
+                    <select name="niveau" id="niveau" onChange={handlelechange}>
                         <option value="">Niveau de Carier</option>
                         {niveau.map((niveau) =>  (<option key={niveau.id} value={niveau.name}> {niveau.name}</option>))}
                     </select>
-                    <select name="experiance" id="" onChange={handlelechange}>
+                    <select name="experiance" id="exper" onChange={handlelechange}>
                         <option value="">experience</option>
                         {experiance.map((experiance) =>  (<option key={experiance.id} value={experiance.name}> {experiance.name}</option>))}
                     </select>
-                    <select name="contrat" id="" onChange={handlelechange} value={filters.contrat}>
+                    <select name="contrat" id="contrat" onChange={handlelechange} value={filters.contrat}>
                         <option value="">type de contrat</option>
                         {contrat.map((contrat) =>  (<option key={contrat.id} value={contrat.name}> {contrat.name}</option>))}
                     </select>
-                    <select name="lieu" id="" onChange={handlelechange}>
-                        <option value="function">Lieu de travail</option>
+                    <select name="lieu" id="lieu" onChange={handlelechange}>
+                        <option value="">Lieu de travail</option>
                         {lieu.map((lieu) =>  (<option key={lieu.id} value={lieu.name}> {lieu.name}</option>))}
                     </select> 
+                    {filters && Object.keys(filters).length > 0 && (
+  <div className={style.filter}>
+    <h3 onClick={reset}>supprimer le filter</h3>
+  </div>
+)}
                     <Hr />
                     <div className="affiche">
                         {/* <h1>{region}</h1> */}
@@ -204,8 +244,8 @@ return value;
         <div className={style.offre}>
           {filtredoffre.length > 0 ? (
            filtredoffre.map((offre)=>{
-            console.log("offre.id_enterp",offre.id_enterp);
-          return  <Link href={`./offre_demploi?id=${offre.idoffre}&uid=${offre.id_enterp}`} key={offre.idoffre}id={offre.idoffre}  className={style.offre}><Card  id={offre.idoffre} key={offre.idoffre}/></Link> 
+           
+          return  <Link href={`./offre_demploi?id=${offre.idoffre}&uid=${offre.id_enterp}`} key={offre.idoffre}id={offre.idoffre}  className={style.link}><Card  id={offre.idoffre} key={offre.idoffre}/></Link> 
            } )
         ): offres.length===0 ? (
             <p> n'existe pas d'offres...</p>

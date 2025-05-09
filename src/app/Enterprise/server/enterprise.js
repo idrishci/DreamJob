@@ -21,7 +21,7 @@ export async function updateenterprise(id, updateenterprise) {
         }
       });  // تعديل المسار هنا
      
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     } catch (err) {
       console.log(err);

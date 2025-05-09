@@ -12,7 +12,7 @@
 
 }
 .offre{
-    /* width: 90%; */
+    /* width: 95%; */
     position: relative;
     display: flex;
     flex-direction: row;
@@ -21,12 +21,10 @@
     align-items: center;
     padding:10 10px;
     margin: 5;
-
     overflow: hidden;
 
 }
 .card{
-
     width: 350px;
     height: 350px;
     display: flex;
@@ -34,7 +32,7 @@
     background-color: var(--forgencolor);
     border-radius: 20px;
     padding: 10;
-    margin: 0px;
+    margin: 10px;
 
     /* animation: fadeInUp 0.5s ease-out forwards; */
     /* transition: all 0.5s 0.2s ease-in-out; */
@@ -47,6 +45,10 @@
     transform:translateY(-10) ;
     transition:all  0.2s ease-in-out;
 }
+.link{
+  margin: 0;
+  position: relative;
+}
 .first{
     display: flex;
     flex-direction: row;
@@ -56,25 +58,39 @@
 }
 .data{
     margin:1px 15px;
+    width: 50%;
 }
 
 .data h3{
     font-size: 16;
     font-weight: 700;
     margin: 5 5;
-
 }
 .data h5{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     color: rgb(0, 0, 0);
     margin: 5 5;
 }
 .data h5 span{
   margin: 0 5;
 }
-
+.filter{
+  display: flex;
+flex-direction:row;
+align-items:center;
+justify-content: center;
+cursor: pointer;
+}
+.filter h3{
+  background-color: red;
+  color: white;
+  font-size: 10;
+  border-radius: 50;
+  padding: 5;
+  margin: 5;
+}
 .second{
     display: flex;
     flex-direction: row;
@@ -122,16 +138,15 @@
 @media screen and (max-width:768px) {
   .offre{
     width: 100%;
-    display: flex;
-    flex-direction: row;
 
-    justify-content: center;
-    align-items: center;
+    position: relative;
   } 
-  .card{
-
+  .link{
     width: 90%;
-    height: 300px;
+  }
+  .card{
+    width: 90%;
+    height: 320px;
   } 
   .card .first{
     flex-direction: row;

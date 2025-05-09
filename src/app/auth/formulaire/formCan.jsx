@@ -26,7 +26,7 @@ const [user, setUser] = useState([]);
      const [formData, setFormData] = useState({
       gender: "Male",
      });
-     const [previewLogo, setPreviewLogo] = useState('/icon/engineer.png');
+     const [previewLogo, setPreviewLogo] = useState('/icon/account.png');
      const [previewCover, setPreviewCover] = useState('');
 
        
@@ -46,15 +46,7 @@ const [user, setUser] = useState([]);
           /////
         const handleSubmit = async () => {
 
-          const ress=await checkemailandphone(formData["email"],formData["num_telephone"],"client");
-          if(ress.length>0) {
-          if (ress[0].email==formData["email"]) {
-            alert("l'email existe deja");
-            return;
-
-          }if (ress[0].num_telephone==formData["num_telephone"]) {
-            alert("le numero de telephone existe deja");}
-          }
+        
           const formDataToSend = new FormData();
           formDataToSend.append('uid_firebase', id);
           console.log("this"+formDataToSend.uid_firebase)
@@ -95,7 +87,7 @@ const [user, setUser] = useState([]);
            const result = await setcandidat( formDataToSend);
            console.log("resul23232t");
               if (result) {
-             router.push("/");
+             router.push("/client/");
 
               } else {
                 alert("Erreur lors de la modification.");

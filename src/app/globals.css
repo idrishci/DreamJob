@@ -23,6 +23,7 @@ body {
   padding: 0;
   position: relative;
   color: black;
+  box-sizing:border-box;
 
 }
 

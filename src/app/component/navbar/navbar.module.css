@@ -88,8 +88,9 @@
         justify-content: center;
         align-items: center;
         animation: open 0.3s ease-in-out;
-        transition: all 0.1s ease-in-out;
-        box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.164);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+        border-radius: 20;
         
     }
     .proflist{
@@ -107,14 +108,24 @@
         background-color: var(--forgencolor);  
        
         animation: open 0.3s ease-in-out;
-        /* transition: all 0.2s ease-in-out; */
-        box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.164); 
+        transition: all 0.2s ease-in-out;
+        box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.20); 
+        border-radius: 20;
     }
     .proflist li{
-        text-align: center;
+        /* text-align: center; */
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
         position: relative;
         height: 40;
+        width :100%;
         cursor: pointer;
+        padding: 5 20;
+    }
+    .proflist li h3{
+        margin: 0 10;
     }
     .proflist li:hover{
         font-weight: 700;

@@ -18,7 +18,7 @@ export default function Form({ id }) {
     Aos.init({ duration: 800 });
   }, []);
   const currentDate = new Date();
-  const formattedDate = currentDate.toISOString().split('T')[0];
+  const formattedDate = currentDate.toISOString();
   const [formData, setFormData] = useState({
     titre: '',
     fonction: '',
@@ -53,11 +53,11 @@ export default function Form({ id }) {
 
   return (
     <div className={style.form} data-aos="fade-up">
-      <h1>Créer une annonce d'emploi</h1>
+      <h1>Créer un offre d'emploi</h1>
       <h5>Renseignez les champs suivants pour publier votre offre d'emploi.</h5>
 
       <label>
-        <h3>Titre de Post :</h3>
+        <h3>Titre d' offre :</h3>
         <input type="text" onChange={e => handleChange('titre', e.target.value)} required />
       </label>
 
@@ -132,7 +132,7 @@ export default function Form({ id }) {
       </label>
 
       <label className={style.area}>
-        <h3>Description du post</h3>
+        <h3>Description d'offre</h3>
         <textarea
           onModelChange={(newContent) => handleChange('description', newContent)}
         ></textarea>

@@ -10,7 +10,7 @@
     width: 80%;
     background-color: var(--forgencolor);
     border-radius: 25;
-    padding: 20 5;
+    padding: 20 10;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,7 +106,7 @@
     padding: 5; 
 }
 .edit textarea{
-    width: 90%;
+    width: 95%;
     height: 100px;
 
     margin: 5 10;
@@ -117,10 +117,40 @@
     
 
 }
+
 .edit button{
     width: 200px;
     height: 40;
 }
+.demende{
+    width: 100%;
+}
+.demende label{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width:100%;
+    margin: 5;
+    padding: 5;
+}
+.demende h2{
+    /* font-size: 20; */
+    font-weight:700 ;
+    margin: 5;
+}
+.demende input{
+    margin: 5;
+    width: 95%;
+    height: 50;
+    padding: 5;
+    border: none;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.123);
+    border-radius: 25;
+    cursor: pointer;
+}
+
 
 .imag{
     position: relative;
