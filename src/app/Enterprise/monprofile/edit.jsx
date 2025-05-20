@@ -97,7 +97,7 @@ export default function edit({id}){
            
 
                 <label >
-                    <h3>Nom de l'enterprise</h3>
+                    <h3>Nom de l'entreprise</h3>
                     <input type="text"  onChange={e => handleChange('nom', e.target.value)} defaultValue={enterprises.nom} placeholder="Nom"/>
                 </label>
                 <label >
@@ -143,7 +143,7 @@ export default function edit({id}){
                     <input type="link" onChange={e => handleChange('linkedin', e.target.value)} defaultValue={enterprises.linkedin} placeholder="Linkedin"/>
                 </label>
                 <label >
-                    <h3>Email de l'enterprise</h3>
+                    <h3>Email de l'entreprise</h3>
                     <input type="email"   placeholder="@gmail.com" onChange={e => handleChange('email', e.target.value)} defaultValue={enterprises.email} />
                 </label>
                 <label className={style.description}>
@@ -157,7 +157,7 @@ export default function edit({id}){
                 {/* <Mssg/> */}
             </div>
             <hr />
-            <button onClick={handleSubmit} >Engestrer</button>
+            <button onClick={handleSubmit} >Enregistrer</button>
          </div>} 
         </>
     );

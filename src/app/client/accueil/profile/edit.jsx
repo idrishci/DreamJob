@@ -139,7 +139,7 @@ export default function edit ({id}){
             </label>
             <div className={style.lab}>
             
-            <label name="cv" className={style.button} >upload mon cv  
+            <label name="cv" className={style.button} >Ajouter mon CV
            
             <input type="file" id="cv"  onChange={(e) => handleFileChange(e,"cv")} />
             </label> 

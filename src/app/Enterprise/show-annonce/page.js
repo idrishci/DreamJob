@@ -46,7 +46,7 @@ useEffect(() => {
 <>{isConnected&&
 <div className={style.home}>
 <Offre id={id}/>
-<h1>person</h1>
+<h1>Candidatures reçues</h1>
 <Person id={id}/>
         </div>}</>
 

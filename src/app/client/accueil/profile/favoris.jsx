@@ -77,7 +77,7 @@ export default function offre({id}){
 
 ))
 :(
-    <p>Loading offers...</p> // ✅ Display message while fetching
+    <p>Offre en cours de chargement...</p> // ✅ Display message while fetching
   )
   }
 </>

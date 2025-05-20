@@ -199,7 +199,7 @@ export default function page(){
                                 <option value="">Region</option>
                                  {wilaya.map((wilaya) =>  (<option key={wilaya.id}  > {wilaya.name}</option>))}
                             </select>
-                    <button onClick={handleclicksearch}>search</button>
+                    <button onClick={handleclicksearch}>Rechercher</button>
                 </div>
 
           <div className={style.search}>

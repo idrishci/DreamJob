@@ -21,7 +21,7 @@ export default function Profile(){
         <h1>Admin</h1>
         {isOpen &&<div className={style.proflist}>
       <hr />
-     <li onClick={ ()=>{setIsOpen(!isOpen);signout()}}><Image src={"/icon/logout.png"} width={20} height={20}/><h4>deconected</h4></li>
+     <li onClick={ ()=>{setIsOpen(!isOpen);signout()}}><Image src={"/icon/logout.png"} width={20} height={20}/><h4>Déconnexion</h4></li>
 </div>}
         </div>
     );

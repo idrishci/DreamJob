@@ -19,13 +19,14 @@ export default function offre({id}){
     
     },[]);
      const [offres,setOffres]=useState([]);
-     ///////////////get offre by id enterprise
-        useEffect(()=>{
-            const fetchdata=async()=>{
+     ///////////////get offre by id enterprise 
+     const fetchdata=async()=>{
                 const data1=await getoffresentrerp(id);
               const  offre =data1;
                setOffres(offre ? offre : []);  
             };
+        useEffect(()=>{
+           
             fetchdata();
         },[]);
 ////////////////////delet annonce
@@ -34,7 +35,9 @@ export default function offre({id}){
 
             if(delet){
                 setShowDeleteId(null);
-                alert('offre delet')
+                alert('offre delet');
+                
+            fetchdata();
             }else{
                 alert('Failed to delete offre');
             }

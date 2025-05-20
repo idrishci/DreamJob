@@ -24,7 +24,7 @@ export default function Enterprise(){
             <thead>
                 <tr>
                     <td>id</td>
-                    <td>Nom d'enterprise</td>
+                    <td>Nom d'entreprise</td>
                     <td>Localisation</td>
                     <td>Secteur d'activite</td>
                     <td>Email</td>

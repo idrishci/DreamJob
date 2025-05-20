@@ -11,9 +11,9 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { postOffre } from "../server/offre";
 import dynamic from "next/dynamic";
-
+import { useRouter } from "next/navigation";
 export default function Form({ id }) {
-
+ const router = useRouter();
   useEffect(() => {
     Aos.init({ duration: 800 });
   }, []);
@@ -46,6 +46,7 @@ export default function Form({ id }) {
     const result = await postOffre(id, formData);
     if (result) {
       alert("Offre est créée !");
+      router.push("/Enterprise");
     } else {
       alert("Erreur lors de la création.");
     }
@@ -57,7 +58,7 @@ export default function Form({ id }) {
       <h5>Renseignez les champs suivants pour publier votre offre d'emploi.</h5>
 
       <label>
-        <h3>Titre d' offre :</h3>
+        <h3>Titre de l'offre :</h3>
         <input type="text" onChange={e => handleChange('titre', e.target.value)} required />
       </label>
 
@@ -134,7 +135,7 @@ export default function Form({ id }) {
       <label className={style.area}>
         <h3>Description d'offre</h3>
         <textarea
-          onModelChange={(newContent) => handleChange('description', newContent)}
+         onChange={e => handleChange('description_offre', e.target.value)}
         ></textarea>
       </label>
 

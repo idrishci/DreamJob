@@ -162,7 +162,7 @@ const  handleSignupgoogle=async()=>{
             variant="h4"
             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
           >
-            Sign in
+          Connexion
           </Typography>
           <Box
             component="form"
@@ -183,7 +183,7 @@ const  handleSignupgoogle=async()=>{
                 id="email"
                 type="email"
                 name="email"
-                placeholder="your@email.com"
+                placeholder="@email.com"
                 autoComplete="email"
                 autoFocus
                 required
@@ -195,7 +195,7 @@ const  handleSignupgoogle=async()=>{
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel htmlFor="password">Mot de passe</FormLabel>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
@@ -215,7 +215,7 @@ const  handleSignupgoogle=async()=>{
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Se souvenir de moi"
             />
             <ForgotPassword open={open} handleClose={handleClose} />
             <Button
@@ -225,7 +225,7 @@ const  handleSignupgoogle=async()=>{
 
               onClick={()=>{handleSignin()}}
             >
-              Sign in
+              Connexion
             </Button>
             <Link
               component="button"
@@ -234,10 +234,10 @@ const  handleSignupgoogle=async()=>{
               variant="body2"
               sx={{ alignSelf: 'center' }}
             >
-              Forgot your password?
+              Mot de passe oublié ?
             </Link>
           </Box>
-          <Divider>or</Divider>
+          <Divider>ou</Divider>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Button
               fullWidth
@@ -245,7 +245,7 @@ const  handleSignupgoogle=async()=>{
               onClick={() => handleSignupgoogle()}
               startIcon={<GoogleIcon />}
             >
-              Sign in with Google
+              	Connexion avec Google
             </Button>
             {/* <Button
               fullWidth
@@ -256,13 +256,14 @@ const  handleSignupgoogle=async()=>{
               Sign in with Facebook
             </Button> */}
             <Typography sx={{ textAlign: 'center' }}>
-              Don&apos;t have an account?{' '}
+              Vous n&apos;êtes pas inscrit(e) ?{' '}
+              
               <Link
                 href="../auth/signup/"
                 variant="body2"
                 sx={{ alignSelf: 'center' }}
               >
-                Sign up
+               Inscription
               </Link>
             </Typography>
           </Box>

@@ -7,11 +7,13 @@ import "froala-editor/css/froala_editor.pkgd.min.css";
 import style from "./form.module.css"
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { getoffrebyId, updateOffre } from "../server/offre.js"
 import Aos from "aos";
 import "aos/dist/aos.css";
 
 export default function Form({id}) {
+   const router = useRouter();
   useEffect(() => {
     Aos.init({duration:800});
   }, []);
@@ -38,6 +40,7 @@ export default function Form({id}) {
     const result = await updateOffre(id, formData);
     if (result) {
       alert("Offre modifiée avec succès !");
+      router.push("/Enterprise/mesannonces");
     } else {
       alert("Erreur lors de la modification.");
     }
@@ -48,11 +51,11 @@ export default function Form({id}) {
     <>
       {offre && (
         <div className={style.form} data-aos="fade-up">
-          <h1>Modifier l'annonce d'emploi</h1>
+          <h1>Modifier l'offre d'emploi</h1>
           <h5>Renseignez les champs suivants pour publier votre offre d'emploi.</h5>
 
           <label>
-            <h3>Titre de Post :</h3>
+            <h3>Titre de l'offre :</h3>
             <input type="text" placeholder="ex : Comptable junior" defaultValue={offre.titre} onChange={e => handleChange('titre', e.target.value)} />
           </label>
 
@@ -115,7 +118,7 @@ export default function Form({id}) {
           </label>
 
           <label className={style.area}>
-            <h3>Description du post</h3>
+            <h3>Description du l'offre</h3>
             <textarea
               
               defaultValue={offre.description_offre}

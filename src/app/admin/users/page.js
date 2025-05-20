@@ -34,7 +34,7 @@ export default function Home() {
    },[]);
 
    if (loading) {
-    return <div>Loading...</div>; // or a spinner/loading component
+    return <div> en cours de chargement...</div>; // or a spinner/loading component
 }
 if (isConnected !== "connected") {
     return null; // prevent rendering anything while redirecting
@@ -46,7 +46,7 @@ if (isConnected !== "connected") {
                <div className={style.nav}>
             <ul>
         <li onClick={() => handleClick('item1')} style={{ color: activeItem === 'item1' ? 'var(--buttoncolor)' : 'black' }}>candidat</li>
-        <li onClick={() => handleClick('item2') }  style={{ color: activeItem === 'item2' ? 'var(--buttoncolor)' : 'black' }}>enterprise</li>
+        <li onClick={() => handleClick('item2') }  style={{ color: activeItem === 'item2' ? 'var(--buttoncolor)' : 'black' }}>entreprise</li>
             </ul> 
              </div>
              <main>

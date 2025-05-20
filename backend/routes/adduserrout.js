@@ -104,7 +104,7 @@ router.post('/adduser', upload.fields([
 
   const placeholders = columns.map(() => "?").join(", ");
   const query = `INSERT INTO candidat (${columns.join(", ")}) VALUES (${placeholders})`;
-  const query2="INSERT INTO post (uid_firebase) VALUES (?)";
+  const query2="INSERT INTO demande (uid_firebase) VALUES (?)";
 console.log("Query:", query);
   console.log("Values:", values);
   connection.query(query, values, (err, result) => {

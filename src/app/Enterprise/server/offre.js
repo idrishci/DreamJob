@@ -48,6 +48,18 @@ export async function getoffresentrerp(id){
            return [];
        }
    }
+    export async function getcan(id){
+    try{
+        
+   const res=await axios.get(`http://localhost:8800/api/offres/cand/${id}`);
+   console.log("result =" + res.data);
+   return res.data
+       }catch(err){
+   
+           console.log(err);
+           return [];
+       }
+   }
    export async function updateOffre(id, updatedOffre) {
     try {
       const res = await axios.put(`http://localhost:8800/api/offre/updateoffre/${id}`, updatedOffre);  // تعديل المسار هنا

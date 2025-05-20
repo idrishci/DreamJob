@@ -132,11 +132,11 @@ function timeAgo(date) {
                  {/* <div className="save"><Image src={"/icon/bookmark.png"} width={30} height={30} key={id} alt="bookmark"/></div> */}
              </div>
              <div className={style.second}>
-                 <h3><Image src={"/icon/office-building.png"} width={26} height={26} key={id}  alt="icon"/><span> {offre.type_de_lieu_de_travail} </span></h3>
-                <h3><Image src={"/icon/form.png"} width={26} height={26}key={id} alt="icon"/><span> {offre.type_de_contrat}</span></h3>
-               <h3><Image src={"/icon/graduation-cap.png"} width={26} height={26}key={id} alt="icon"/><span> {offre.niveau_detude}</span></h3>
-                <h3><Image src={"/icon/audience.png"} width={26} height={26}key={id} alt="icon"/><span>  {offre.nombre_de_post}</span></h3>
-                <h3><Image src={"/icon/verify.png"} width={26} height={26}key={id} alt="icon"/> <span> {offre.annees_dexper} </span></h3>
+                 {offre.type_de_lieu_de_travail &&<h3><Image src={"/icon/office-building.png"} width={26} height={26} key={id}  alt="icon"/><span> {offre.type_de_lieu_de_travail} </span></h3>}
+              {offre.type_de_contrat&&  <h3><Image src={"/icon/form.png"} width={26} height={26}key={id} alt="icon"/><span> {offre.type_de_contrat}</span></h3>}
+               {offre.niveau_detude&&<h3><Image src={"/icon/graduation-cap.png"} width={26} height={26}key={id} alt="icon"/><span> {offre.niveau_detude}</span></h3>}
+             {  offre.niveau_detude&& <h3><Image src={"/icon/audience.png"} width={26} height={26}key={id} alt="icon"/><span>  {offre.nombre_de_post}</span></h3>}
+               { offre.annees_dexper&&<h3><Image src={"/icon/verify.png"} width={26} height={26}key={id} alt="icon"/> <span> {offre.annees_dexper} </span></h3>}
              </div>
          </div>
             

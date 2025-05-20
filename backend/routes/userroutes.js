@@ -25,43 +25,7 @@ const upload = multer({ storage: storage });
 // app.use("/uploads/photo", express.static(path.join(__dirname, "uploaded/photo")));
 
 
-const postiduser = (req,res) => {
-const id=req.body.uid;
-const email=req.body.email;
-const role=req.body.role;
-console.log("this is th is ",id,"this is email",email,"this is role",role);
-if(role=="client"){
-    const query1="INSERT INTO candidat (email,uid_firebase) VALUES (?,?)";
-    const query2="INSERT INTO demande (uid_firebase) VALUES (?)";
-  
-    const VALUES=[email,id];
-     const VALUES1=[id];
 
-    connection.query(query1,VALUES,(err,data)=>{if (err) {
-      console.log(err);
-      return res.status(500).json({ error: "Error inserting into candidat" });
-    }
-
-    connection.query(query2, VALUES1, (err, data2) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({ error: "Error inserting into post" });
-      }
-
-      return res.json({ message: "User added successfully" });
-    }
-  );
-  });
-}else 
-if(role=="enterprise"){
-    const query="INSERT INTO enterprise (email,uid_firebase) VALUES (?,?)";
-    const values=[email,id];
-    connection.query(query,values,(err,data)=>{
-    if(err)return console.log(err);
-    return res.json("user added successfully");
-})
-}
-}
 
 const postthepost = (req,res) => {
   const { sujet, titre, uid } = req.body;
@@ -76,7 +40,7 @@ const postthepost = (req,res) => {
 const getthepost = (req,res) => {
   const {uid}  = req.query;
   console.log("id uid",uid);
-  const query="SELECT * FROM demande  WHERE demande.uid_firebase=?";
+  const query="SELECT * FROM demande  WHERE demande.uid_firebase=? ";
   connection.query(query,uid,(err,data)=>{
   if(err)return console.log(err);
   return res.json(data);

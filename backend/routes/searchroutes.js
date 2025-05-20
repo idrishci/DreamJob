@@ -88,7 +88,7 @@ const getoffresearch=(req,res)=>{
         const {text,secteur,wilaya}=req.query;
      
         let params=[];
-        let query="SELECT * FROM candidat  INNER JOIN post  ON candidat.uid_firebase=post.uid_firebase WHERE 1=1" ;
+        let query="SELECT * FROM candidat  INNER JOIN demande  ON candidat.uid_firebase=demande.uid_firebase WHERE 1=1" ;
         if(text){
             query += " AND (titre LIKE ? OR sujet LIKE ? OR nom LIKE ? OR prenom LIKE ? OR email LIKE ? )";
             params.push(`%${text}%`, `%${text}%`, `%${text}%`, `%${text}%`,`%${text}%`);

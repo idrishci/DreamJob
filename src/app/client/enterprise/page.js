@@ -91,8 +91,12 @@ const handlelechange = async (e) => {
           <option value="">Region</option>
           {wilaya.map((wilaya) =>  (<option key={wilaya.id}  value={wilaya.name} > {wilaya.name}</option>))}
           </select>
-          <button onClick={handleclick}>search</button>
-         <> {button &&  <Image width={40} height={40} src={"/image/undo.png"} onClick={reset} />}</>
+          <button onClick={handleclick}>Rechercher</button>
+      {filters && Object.keys(filters).length > 0 && (
+  <div className={style.filter}>
+    <h3 onClick={reset}>supprimer le filter</h3>
+  </div>
+)}
           
       </div>
       

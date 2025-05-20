@@ -193,7 +193,7 @@ const  handleSignupgoogle=async()=>{
             variant="h4"
             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
           >
-            Sign up
+            Inscription
           </Typography>
           <Box
             component="form"
@@ -222,7 +222,7 @@ const  handleSignupgoogle=async()=>{
                 required
                 fullWidth
                 id="email"
-                placeholder="your@email.com"
+                placeholder="@email.com"
                 name="email"
                 autoComplete="email"
                 variant="outlined"
@@ -234,7 +234,7 @@ const  handleSignupgoogle=async()=>{
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel htmlFor="password">Mot de passe</FormLabel>
               <TextField
                 required
                 fullWidth
@@ -253,7 +253,7 @@ const  handleSignupgoogle=async()=>{
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="allowExtraEmails" color="primary" />}
-              label="I want to receive updates via email."
+              label="Je veux recevoir les nouveautés par email."
             />
             {/* <Link href='/rolepage'> */}
             <Button
@@ -266,12 +266,12 @@ const  handleSignupgoogle=async()=>{
               }}
              
             >
-              Sign up
+             Inscription
             </Button>
             {/* </Link> */}
           </Box>
           <Divider>
-            <Typography sx={{ color: 'text.secondary' }}>or</Typography>
+            <Typography sx={{ color: 'text.secondary' }}>ou</Typography>
           </Divider>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Button
@@ -280,7 +280,7 @@ const  handleSignupgoogle=async()=>{
               onClick={() => handleSignupgoogle()}
               startIcon={<GoogleIcon />}
             >
-              Sign up with Google
+              Inscription avec Google
             </Button>
             {/* <Button
               fullWidth
@@ -291,13 +291,13 @@ const  handleSignupgoogle=async()=>{
               Sign up with Facebook
             </Button> */}
             <Typography sx={{ textAlign: 'center' }}>
-              Already have an account?{' '}
+             Déjà inscrit(e) ?{' '}
               <Link
                 href="../auth/signin/"
                 variant="body2"
                 sx={{ alignSelf: 'center' }}
               >
-                Sign in
+               	Connexion
               </Link>
             </Typography>
           </Box>

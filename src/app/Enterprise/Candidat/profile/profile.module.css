@@ -61,6 +61,7 @@
 }
 .data h1{
     width: 80%;
+    margin: 5 5 20;
 }
 .data h2{
     font-size: 15;
@@ -79,7 +80,7 @@
 }
 .desc h2{
     font-weight: 700;
-    margin: 0 5;
+    margin: 10 5;
 }
 .desc p{
     margin: 0 10;
@@ -94,24 +95,8 @@
     cursor: pointer;
 
 }
-.edit label {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 45%;
-    margin: 5;
-    padding: 5; 
-}
-.edit textarea{
-    width: 90%;
-    height: 100px;
-}
-.edit button{
-    width: 200px;
-    height: 40;
-}
+
+
 .search{
     width: 90%;
     display: flex;

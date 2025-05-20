@@ -41,12 +41,12 @@ export default function Data({id}){
 
 <>
 
-<h1>Nom d'enterprise :</h1>
+<h1>Nom d'entreprise :</h1>
 <p>{enterprises.nom}</p>
 {/* //////////// */}
 <h1> Numero Telephone :</h1>
 <p>{enterprises.num_telephone}</p>
-<h1>Secteur :</h1>
+<h1>Secteur d'activite:</h1>
 <p>{enterprises.secteur_dactivite}</p>
 {/* //////////// */}
 <h1>Nomber d’employés :</h1>

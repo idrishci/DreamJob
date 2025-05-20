@@ -35,7 +35,7 @@ export default function offre({id}){
             <div className={style.second}>
                 <label >
                     <Image width={20} height={20} src={"/icon/office-building.png"} alt="icon"/>
-                    <span><h3>Lieu de travaille :</h3></span>
+                    <span><h3>Lieu de travail :</h3></span>
                     <h3>{offre.wilaya}</h3>
                 </label>
                 <label >

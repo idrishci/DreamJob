@@ -17,7 +17,7 @@ export default function acceuil({id}){
             <section >
                 <h1>Bienvenue sur notre plateforme de recrutement</h1>
                 <p>De nouvelles énergies, de réelles opportunités, des résultats impressionnants.</p>
-                <Link href={`./Enterprise/anonnce-cree?id=${id}`}><button>cree une annonce</button></Link>
+                <Link href={`./Enterprise/anonnce-cree?id=${id}`}><button>Créer un offre</button></Link>
             </section>
             <section data-aos="fade-left">
                 <Image src="/image/enter.png" width={350} height={500} alt={"photo"} />

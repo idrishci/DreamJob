@@ -71,7 +71,7 @@ export default function profile(){
  {isOpen &&<div className={style.proflist}>
    <Link href={"../../Enterprise/monprofile"} className={style.li}><li onClick={()=>setIsOpen(!isOpen)}><Image src={"/icon/account.png"} width={20} height={20} /><h3>Mon profile</h3></li> </Link>
       <hr />
-     <li onClick={ ()=>{setIsOpen(!isOpen);signout()}}><Image src={"/icon/logout.png"} width={20} height={20}/><h3>deconected</h3></li>
+     <li onClick={ ()=>{setIsOpen(!isOpen);signout()}}><Image src={"/icon/logout.png"} width={20} height={20}/><h3>Déconnexion</h3></li>
 </div>} </div>
 
     );

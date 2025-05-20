@@ -18,6 +18,20 @@
     flex-wrap: wrap;
     padding: 5;
     position: relative;
+}.filter{
+  display: flex;
+flex-direction:row;
+align-items:center;
+justify-content: center;
+cursor: pointer;
+}
+.filter h3{
+  background-color: red;
+  color: white;
+  font-size: 10;
+  border-radius: 50;
+  padding: 5;
+  margin: 5;
 }
 
 

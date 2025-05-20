@@ -66,8 +66,8 @@ useEffect(() => {
         <div className={style.btn}>
            {(isConnected=="deconnected" ||role==="enterprise"||role==="admin")&&
            <> 
-           <button onClick={()=>{router.push("/auth/signup")}}>sign up</button>
-            <button onClick={()=>{router.push("/auth/signin")}}>sign in</button>
+           <button onClick={()=>{router.push("/auth/signup")}}>Inscription</button>
+            <button onClick={()=>{router.push("/auth/signin")}}>Connexion</button>
             </>
         }
 {/* && Array.isArray(userr) && userr.length > 0 && */}
@@ -107,7 +107,7 @@ useEffect(() => {
          <hr />
          
         <li onClick={()=>{setIsOpen(false); 
-          signout()}}> <Image src={"/icon/logout.png"}alt="icon" width={20} height={20}/> <h3>deconected</h3></li>
+          signout()}}> <Image src={"/icon/logout.png"}alt="icon" width={20} height={20}/> <h3>Déconnexion</h3></li>
 </div>}
         </div>
     );

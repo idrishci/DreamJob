@@ -18,7 +18,7 @@ export default function Person({id}){
             }
             ,[]);
 return(
-  <>{person?
+  <>{person.length>0?
 person.map((per)=>{return ( 
 
          <div className={style.profile} data-aos="zoom-in">

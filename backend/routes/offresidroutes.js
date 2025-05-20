@@ -110,10 +110,10 @@ const updateoffre=(req,res)=>{
     } = req.body;
   
     // Vérification des champs requis
-    if (!titre || !fonction || !type_de_lieu_de_travail || !annees_dexper || !wilaya ||
-        !niveau_detude || !salaire || !type_de_contrat || !nombre_de_post ) {
-      return res.status(400).json({ error: "Tous les champs sont requis." });
-    }
+    // if (!titre || !fonction || !type_de_lieu_de_travail || !annees_dexper || !wilaya ||
+    //     !niveau_detude || !salaire || !type_de_contrat || !nombre_de_post ) {
+    //   return res.status(400).json({ error: "Tous les champs sont requis." });
+    // }
   const situation="attent"
     const query = `
      INSERT INTO offre_demploi (

@@ -160,7 +160,7 @@ export default function FormEnter({id}){
         
             </div>
             <hr />
-            <button onClick={handleSubmit} >Engestrer</button>
+            <button onClick={handleSubmit} >Enregistrer</button>
          </div>
         </>
     );

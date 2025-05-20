@@ -32,15 +32,15 @@ export default function statistiq(){
         <div className={Style.main}>
             <section>
                 <div className={Style.block} data-aos="zoom-in" >
-                    <h2>Nomber des offers</h2>
+                    <h2>Nombre des offres</h2>
                     <span>{offres.length}</span>
                 </div>
                 <div className={Style.block} data-aos="zoom-in">
-                    <h2>Nomber des Enterprise</h2>
+                    <h2>Nombre des Entreprise</h2>
                     <span>{enterprise.length}</span>
                 </div>
                 <div className={Style.block} data-aos="zoom-in">
-                    <h2>Nombers des candidat :</h2>
+                    <h2>Nombre des candidats :</h2>
                     <span>{candidat.length}</span>
                 </div>
             </section>
