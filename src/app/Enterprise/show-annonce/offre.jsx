@@ -70,7 +70,7 @@ export default function offre({id}){
                 </label>
                 <label >
                     <Image width={20} height={20} src={"/icon/wallet.png"} alt="/icon/wallet.png"/>
-                    <span><h3>Salarai :</h3></span>
+                    <span><h3>Salaire :</h3></span>
                     <h3>{offre.salaire} DA</h3>
                 </label>
                

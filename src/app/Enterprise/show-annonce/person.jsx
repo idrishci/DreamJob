@@ -31,7 +31,7 @@ person.map((per)=>{return (
             <label > <h2>N Telephone:</h2> <h3>{per.num_telephone}</h3></label>
             <label > <h2>Email :</h2> <h3>{per.email}</h3></label>
             <label > <h2>Niveau d’etude :</h2> <h3>{per.niveau_detude}</h3></label>
-            <label > <a href={`/file/${per.cv}`} target="blanc"><h3>Mon cv</h3></a></label>
+            <label > <a href={`http://localhost:8800/uploaded/cv/${per.cv}`} target="blanc"><h3>Mon cv</h3></a></label>
 
         </div> 
     </div>

@@ -5,7 +5,7 @@ export default function list(){
         <ul className={styles.list}>
         <Link href="../Enterprise"><li>Accueil</li></Link>
             <Link href="../Enterprise/mesannonces/"><li >Mes offres</li></Link>
-            <Link href="../Enterprise/Candidat/"><li >Candidat</li></Link>
+            <Link href="../Enterprise/Candidat/"><li >Candidats</li></Link>
         </ul>
         
     );

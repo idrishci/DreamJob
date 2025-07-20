@@ -57,7 +57,7 @@ export default function Page(){
             <ul>
         <li onClick={()=>rendercomponent('profile') } style={{ color: selectedItem.type === 'profile' ? 'var(--buttoncolor)' : 'black' }}>Mon profile</li>
         <li onClick={()=>rendercomponent('edit')} style={{ color: selectedItem.type === 'edit' ? 'var(--buttoncolor)' : 'black' }}>Modification</li>
-        <li onClick={()=>rendercomponent('demende')}style={{ color: selectedItem.type === 'demende' ? 'var(--buttoncolor)' : 'black' }}> Demende demploi</li>
+        <li onClick={()=>rendercomponent('demende')}style={{ color: selectedItem.type === 'demende' ? 'var(--buttoncolor)' : 'black' }}> Demande d'emploi</li>
         <li onClick={()=>rendercomponent('fav')}style={{ color: selectedItem.type === 'fav' ? 'var(--buttoncolor)' : 'black' }}>Favoris</li>
 
             </ul> 

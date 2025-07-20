@@ -35,11 +35,11 @@ export default function statistiq({id}){
         <div className={Style.main}>
             <section>
                 <div className={Style.block}>
-                    <h2>les post cree :</h2>
+                    <h2>les offres crées:</h2>
                     <span>{offres.length}</span>
                 </div>
                 <div className={Style.block}>
-                    <h2>Les post actives :</h2>
+                    <h2>Les offres actives :</h2>
                     <span>{filtredoffre.length}</span>
                 </div>
                 <div className={Style.block}>

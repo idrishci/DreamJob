@@ -108,7 +108,7 @@ export default function edit({id}){
                   </select>
                 </label>
                 <label >
-                    <h3>Numero Telephone</h3>
+                    <h3>Numéro Telephone</h3>
                     <input type="text"onChange={e => handleChange('num_telephone', e.target.value)} defaultValue={enterprises.num_telephone}
                     placeholder="Numero telephone"/>
                 </label>

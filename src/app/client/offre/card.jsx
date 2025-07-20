@@ -97,10 +97,10 @@ function timeAgo(date) {
     const seconds = Math.floor((now - new Date(date)) / 1000);
   
     const intervals = {
-      year: 31536000,
-      month: 2592000,
-      day: 86400,
-      heurs: 3600,
+      année: 31536000,
+      mois: 2592000,
+      jour: 86400,
+      heur: 3600,
       minute: 60,
       second: 1,
     };

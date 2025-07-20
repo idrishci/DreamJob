@@ -170,13 +170,13 @@ useEffect(() => {
 
             </div>
             <hr />
-            <div className={style.three}>
+           { offre.description_offre&&<div className={style.three}>
             <span><h3>Description:</h3></span>
             
             <p>             
             {offre.description_offre}
             </p>
-            </div>
+            </div>}
          
           { (role!=="admin" && role!=="enterprise") &&
            <> {ispostuler?(

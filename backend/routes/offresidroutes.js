@@ -18,12 +18,20 @@ const getoffrebyId=(req,res)=>{
 const deletoffre=(req,res)=>{
   const id=req.params.id;
   const query="DELETE From offre_demploi  WHERE offre_demploi.idoffre=?";
+  const query2="DELETE From postuler  WHERE postuler.idoffre=?";
 connection.query(query,[id],(err,data)=>{
   if(err){return console.log(err);}
   console.log(data);
   // console.log("hello");
   return res.json(data);
-})}
+})
+connection.query(query2,[id],(err,data)=>{
+  if(err){return console.log(err);}
+  console.log(data);
+  // console.log("hello");
+  return ;
+})
+}
 ////updata data offre  by id offre 
 
 const postuler=(req,res)=>{

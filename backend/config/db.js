@@ -8,7 +8,7 @@ host:'localhost' ,
 user:'root',
 
 password:'',
-database:'offre',
+database:'bddoffer',
 
 // port:process.env.DB_PORT ,
 });

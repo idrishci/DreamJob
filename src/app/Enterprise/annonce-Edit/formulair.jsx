@@ -118,7 +118,7 @@ export default function Form({id}) {
           </label>
 
           <label className={style.area}>
-            <h3>Description du l'offre</h3>
+            <h3>Description de l'offre</h3>
             <textarea
               
               defaultValue={offre.description_offre}

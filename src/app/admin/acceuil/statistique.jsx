@@ -36,7 +36,7 @@ export default function statistiq(){
                     <span>{offres.length}</span>
                 </div>
                 <div className={Style.block} data-aos="zoom-in">
-                    <h2>Nombre des Entreprise</h2>
+                    <h2>Nombre des Entreprises</h2>
                     <span>{enterprise.length}</span>
                 </div>
                 <div className={Style.block} data-aos="zoom-in">

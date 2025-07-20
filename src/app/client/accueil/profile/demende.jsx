@@ -60,7 +60,7 @@ useEffect(()=>{
        {/* <textarea className={style.textarea} > */}
         <textarea name="sujet" id="sujet" className={style.textarea}   value={lademande.sujet || ""} onChange={handlelechange}></textarea>
     </div>
-    <button onClick={updatethepost}>demende</button>
+    <button onClick={updatethepost}>demande</button>
         </div>
         
     );

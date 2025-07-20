@@ -49,7 +49,7 @@ export default function Data({id}){
 <h1>Secteur d'activite:</h1>
 <p>{enterprises.secteur_dactivite}</p>
 {/* //////////// */}
-<h1>Nomber d’employés :</h1>
+<h1>Nombre d’employés :</h1>
 <p>{enterprises.nombre_demployer}</p>
 {/* //////////// */}
 <h1>Siège social :</h1>
